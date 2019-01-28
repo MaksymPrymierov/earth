@@ -26,10 +26,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-    earth.cpp
+    world.cpp \
+    building.cpp
 
 HEADERS += \
-    earth.h
+    world.h \
+    building.h
 
 FORMS +=
 
