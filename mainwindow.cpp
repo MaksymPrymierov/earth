@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 
-mainwindow::mainwindow(QObject *parent) : QObject(parent)
-{
+Mainwindow::Mainwindow(QObject *parent) : QObject(parent), lbl("null") {
+  lbl.show();
+}
 
+void Mainwindow::set(QString) {
+ // lbl.setText(QString);
 }
