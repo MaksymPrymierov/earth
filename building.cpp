@@ -2,38 +2,48 @@
 
 Building::Building(QObject *parent) : QObject(parent){
   quantity = 0;
-  p_minarals = 0;
-  m_energy = 0;
 }
 
-void Building::setQuantity(quint64 q){
+void Building::setQuantity(qint64 q){
   quantity = q;
 }
 
-void Building::setP_Minarals(quint64 p){
-  p_minarals = p;
+void Building::setPrice_Minerals(qint64 p){
+  price_minerals = p;
 }
 
-void Building::setM_Energy(qint64 m){
-  m_energy = m;
+void Building::setMod_Energy(qint64 m){
+  mod_energy = m;
 }
 
-quint64 Building::getQuantity(){
+qint64 Building::getQuantity(){
   return quantity;
 }
 
-quint64 Building::getP_Minarals(){
-  return p_minarals;
+qint64 Building::getPrice_Minerals(){
+  return price_minerals;
 }
 
-qint64  Building::getM_Energy(){
-  return m_energy;
+qint64 Building::getMod_Energy(){
+  return mod_energy;
+}
+
+qint64 Building::getFullPriece_Mineral(){
+  return quantity * price_minerals;
+}
+
+qint64 Building::getFullMod_Energy(){
+  return quantity * mod_energy;
 }
 
 void Building::build(){
   ++quantity;
+  ++price_minerals;
 }
 
 void Building::destroy(){
+  if(quantity != 0){
   --quantity;
+  --price_minerals;
+    }
 }

@@ -2,24 +2,19 @@
 #define WORLD_H
 
 #include <QObject>
-#include "building.h"
-
+#include "energystation.h"
+#include "mine.h"
 
 class World : public QObject
 {
   Q_OBJECT
 
 private:
-  quint64 year;
-  quint64 population;
-  quint64 energy;
-  quint64 minarals;
-  quint64 food;
-  quint8  pollution;
-  quint8  solidarity;
-  quint64 science;
+  qint64 year, population, energy, minerals, food, science;
+  float  pollution, solidarity;
 
-  Building b;
+  EnergyStation *energyStations = new EnergyStation();
+  Mine *mines = new Mine();
 
 public:
   explicit World(QObject *parent = nullptr);
@@ -27,12 +22,18 @@ public:
 
   QString get();
 
+private:
+  void updateEnergy();
+  void updateMinerals();
+  void updatePollution();
+
 signals:
   void print(QString);
 
 public slots:
   void update();
-  void build();
+  void buildEnergyStation();
+  void buildMine();
 };
 
 #endif // WORLD_H

@@ -6,37 +6,40 @@
 int main(int argc, char *argv[])
 {
 
+  int x = 600, y = 100;
   QApplication a(argc, argv);
   QMainWindow *w = new QMainWindow;
   QLabel *l = new QLabel;
-  QPushButton *y = new QPushButton("Next year");
-  QPushButton *b = new QPushButton("Build");
+  QList<QPushButton*> buttons;
+  buttons.append(new QPushButton("Next Year"));
+  buttons.append(new QPushButton("Build ES"));
+  buttons.append(new QPushButton("Build Min"));
+
+  QList<QPushButton*>::iterator itButtons = buttons.begin();
 
   World *e = new World;
 
   l->setParent(w);
-  y->setParent(w);
-  b->setParent(w);
+  for(int i = 0; itButtons != buttons.end(); ++itButtons, ++i){
+      buttons[i]->setParent(w);
+      buttons[i]->setMaximumSize(60, 20);
+      buttons[i]->move(600 - (65 * (i + 1)), 75);
+      buttons[i]->show();
+    }
+  itButtons = buttons.begin();
 
-  l->setMaximumSize(600, 100);
-  y->setMaximumSize(60, 20);
-  b->setMaximumSize(60, 20);
+  w->setFixedSize(x, y);
 
-  w->setFixedSize(600, 100);
-
+  l->setMaximumSize(x, y);
   l->move(1, 1);
-  y->move(540, 80);
-  b->move(480, 80);
-
   l->setText(e->get());
 
   w->show();
   l->show();
-  y->show();
-  b->show();
 
-  QObject::connect(y, SIGNAL(clicked()), e, SLOT(update()));
-  QObject::connect(b, SIGNAL(clicked()), e, SLOT(build()));
+  QObject::connect(buttons[0], SIGNAL(clicked()), e, SLOT(update()));
+  QObject::connect(buttons[1], SIGNAL(clicked()), e, SLOT(buildEnergyStation()));
+  QObject::connect(buttons[2], SIGNAL(clicked()), e, SLOT(buildMine()));
   QObject::connect(e, SIGNAL(print(QString)), l, SLOT(setText(QString)));
 
   return a.exec();

@@ -27,11 +27,15 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
     world.cpp \
-    building.cpp
+    building.cpp \
+    energystation.cpp \
+    mine.cpp
 
 HEADERS += \
     world.h \
-    building.h
+    building.h \
+    energystation.h \
+    mine.h
 
 FORMS +=
 

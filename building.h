@@ -6,20 +6,20 @@
 class Building : public QObject {
 Q_OBJECT
 private:
-  quint64 quantity;
-  quint64 p_minarals;
-  qint64  m_energy;
+  qint64 quantity, price_minerals, mod_energy;
 public:
   explicit Building(QObject *parent = nullptr);
   ~Building() = default;
 
-  void setQuantity(quint64 q);
-  void setP_Minarals(quint64 p);
-  void setM_Energy(qint64 m);
+  void setQuantity(qint64 q);
+  void setPrice_Minerals(qint64 p);
+  void setMod_Energy(qint64 m);
 
-  quint64 getQuantity();
-  quint64 getP_Minarals();
-  qint64  getM_Energy();
+  qint64 getQuantity();
+  qint64 getPrice_Minerals();
+  qint64 getMod_Energy();
+  qint64 getFullPriece_Mineral();
+  qint64 getFullMod_Energy();
 
 public slots:
   void build();
