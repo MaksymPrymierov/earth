@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
   QApplication a(argc, argv);
   const int x = 600, y = 200;
 
-  QWidget *w = new QWidget(nullptr, Qt::Window | Qt::WindowMaximizeButtonHint);
+  QWidget *w = new QWidget(nullptr, Qt::Window);
   QPalette *pall = new QPalette();
   QLabel *info = new QLabel();
   QLabel *command = new QLabel();
@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
       buttons[i]->setParent(w);
       pall->setColor(buttons[i]->backgroundRole(), Qt::blue);
       buttons[i]->setPalette(*pall);
+      buttons[i]->setAutoFillBackground(true);
       buttons[i]->setCursor(Qt::PointingHandCursor);
       buttons[i]->setMaximumSize(110, 20);
       buttons[i]->setMinimumSize(110, 20);
@@ -47,7 +48,7 @@ int main(int argc, char *argv[])
   info->setText(e->get());
   info->setFrameStyle(QFrame::Box | QFrame::Plain);
 
-  command->setMaximumSize(80, 40);
+  command->setMaximumSize(90, 40);
   command->move(5, y - 25);
   command->setText("Построить -> ");
   command->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
