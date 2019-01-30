@@ -1,4 +1,4 @@
-#include "world.h"
+#include "headers/world.h"
 
  World::World(QObject *parent) : QObject(parent){
   year = 0;

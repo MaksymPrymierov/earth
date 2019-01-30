@@ -1,7 +1,7 @@
 #include <QString>
 #include <QtWidgets>
 
-#include "world.h"
+#include "headers/world.h"
 
 int main(int argc, char *argv[])
 {

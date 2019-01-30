@@ -25,17 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        main.cpp \
-    world.cpp \
-    building.cpp \
-    energystation.cpp \
-    mine.cpp
+    src/main.cpp \
+    src/building.cpp \
+    src/energystation.cpp \
+    src/mine.cpp \
+    src/world.cpp
 
 HEADERS += \
-    world.h \
-    building.h \
-    energystation.h \
-    mine.h
+    headers/building.h \
+    headers/energystation.h \
+    headers/mine.h \
+    headers/world.h \
+    headers/building.h \
+    headers/energystation.h \
+    headers/mine.h \
+    headers/world.h
 
 FORMS +=
 

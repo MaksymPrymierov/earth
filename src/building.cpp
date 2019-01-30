@@ -1,4 +1,4 @@
-#include "building.h"
+#include "headers/building.h"
 
 Building::Building(QObject *parent) : QObject(parent){
   quantity = 0;

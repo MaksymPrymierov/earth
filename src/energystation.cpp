@@ -1,4 +1,4 @@
-#include "energystation.h"
+#include "headers/energystation.h"
 
 EnergyStation::EnergyStation(Building *parent) : Building(parent){
   mod_pollution = float(0.01);
