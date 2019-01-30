@@ -2,9 +2,9 @@
 #define WORLD_H
 
 #include <QObject>
-#include "energystation.h"
-#include "mine.h"
-#include "farm.h"
+#include "building/energystation.h"
+#include "building/mine.h"
+#include "building/farm.h"
 
 class World : public QObject
 {

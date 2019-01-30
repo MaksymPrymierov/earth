@@ -1,4 +1,4 @@
-#include "headers/building.h"
+#include "headers/building/building.h"
 
 Building::Building(QObject *parent) : QObject(parent){
   quantity = 0;
@@ -38,12 +38,10 @@ qint64 Building::getFullMod_Energy(){
 
 void Building::build(){
   ++quantity;
-  ++price_minerals;
 }
 
 void Building::destroy(){
   if(quantity != 0){
   --quantity;
-  --price_minerals;
     }
 }

@@ -26,22 +26,20 @@ CONFIG += c++11
 
 SOURCES += \
     src/main.cpp \
-    src/building.cpp \
-    src/energystation.cpp \
-    src/mine.cpp \
-    src/world.cpp \
-    src/farm.cpp
+    src/building/building.cpp \
+    src/building/energystation.cpp \
+    src/building/farm.cpp \
+    src/building/mine.cpp \
+    src/world.cpp
+
 
 HEADERS += \
-    headers/building.h \
-    headers/energystation.h \
-    headers/mine.h \
-    headers/world.h \
-    headers/building.h \
-    headers/energystation.h \
-    headers/mine.h \
-    headers/world.h \
-    headers/farm.h
+    headers/building/building.h \
+    headers/building/energystation.h \
+    headers/building/farm.h \
+    headers/building/mine.h \
+    headers/world.h
+
 
 FORMS +=
 

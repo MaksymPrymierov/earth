@@ -1,4 +1,4 @@
-#include "headers/mine.h"
+#include "headers/building/mine.h"
 
 Mine::Mine(Building *parent) : Building (parent){
   mod_pollution = float(0.01);
