@@ -29,7 +29,8 @@ SOURCES += \
     src/building.cpp \
     src/energystation.cpp \
     src/mine.cpp \
-    src/world.cpp
+    src/world.cpp \
+    src/farm.cpp
 
 HEADERS += \
     headers/building.h \
@@ -39,7 +40,8 @@ HEADERS += \
     headers/building.h \
     headers/energystation.h \
     headers/mine.h \
-    headers/world.h
+    headers/world.h \
+    headers/farm.h
 
 FORMS +=
 
