@@ -17,13 +17,13 @@ MainWindow::MainWindow(QWidget *parent) :
   setLayout(layouts[0]);
 }
 
-void MainWindow::addTextInformation(QString text){
+void MainWindow::addTextInformation(QString text) {
   info->setFrameStyle(QFrame::Box | QFrame::Plain);
   info->setText(text);
   layouts.last()->addWidget(info);
 }
 
-void MainWindow::addTextLine(QString text){
+void MainWindow::addTextLine(QString text) {
   QLabel *l = new QLabel(text);
 
   l->setText(text);
@@ -33,7 +33,7 @@ void MainWindow::addTextLine(QString text){
   textLines.append(l);
 }
 
-void MainWindow::addButton(QString text){
+void MainWindow::addButton(QString text) {
   QPushButton *b = new QPushButton(text);
 
   pall->setColor(b->backgroundRole(), Qt::lightGray);
@@ -45,7 +45,7 @@ void MainWindow::addButton(QString text){
   buttons.append(b);
 }
 
-void MainWindow::addLayout(int parentId, QBoxLayout::Direction direction){
+void MainWindow::addLayout(int parentId, QBoxLayout::Direction direction) {
   QBoxLayout *l = new QBoxLayout(direction);
 
   l->setContentsMargins(5, 5, 5, 5);
@@ -55,10 +55,26 @@ void MainWindow::addLayout(int parentId, QBoxLayout::Direction direction){
   layouts.append(l);
 }
 
-QPushButton* MainWindow::getButton(int id){
+void MainWindow::addStackWidgets(){
+  layouts.last()->addWidget(stackWidgets);
+}
+
+void MainWindow::addWidget(QWidget *w){
+  stackWidgets->addWidget(w);
+}
+
+void MainWindow::removeWidget(QWidget *w){
+  stackWidgets->removeWidget(w);
+}
+
+void MainWindow::setCurrentWidget(QWidget *w){
+  stackWidgets->setCurrentWidget(w);
+}
+
+QPushButton* MainWindow::getButton(int id) {
   return buttons[id];
 }
 
-void MainWindow::setInformation(QString s){
+void MainWindow::setInformation(QString s) {
   info->setText(s);
 }

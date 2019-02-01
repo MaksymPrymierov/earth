@@ -5,6 +5,7 @@
 #include "building/energystation.h"
 #include "building/mine.h"
 #include "building/farm.h"
+#include "building/laboratory.h"
 
 class World : public QObject {
   Q_OBJECT
@@ -16,6 +17,7 @@ private:
   EnergyStation *energyStations = new EnergyStation();
   Mine *mines = new Mine();
   Farm *farms = new Farm();
+  Laboratory *labs = new Laboratory();
 
 public:
   explicit World(QObject *parent = nullptr);
@@ -28,10 +30,12 @@ private:
   qint64 getMod_Minerals();
   float getMod_Pollution();
   qint64 getMod_Food();
+  qint64 getMod_Science();
 
   void updateEnergyStations();
   void updateMines();
   void updateFarms();
+  void updateLabs();
   void preUpdate();
   void postUpdate();
 
@@ -43,6 +47,7 @@ public slots:
   void buildEnergyStation();
   void buildMine();
   void buildFarm();
+  void buildLab();
 };
 
 #endif // WORLD_H

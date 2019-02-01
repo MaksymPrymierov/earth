@@ -11,6 +11,7 @@ private:
   int x, y;
   QLabel *info = new QLabel();
   QPalette *pall = new QPalette();
+  QStackedWidget *stackWidgets = new QStackedWidget();
   QList<QPushButton*> buttons;
   QList<QLabel*> textLines;
   QList<QBoxLayout*> layouts;
@@ -22,6 +23,11 @@ public:
   void addLayout(int parentId, QBoxLayout::Direction direction);
   void addTextInformation(QString text);
   void addTextLine(QString text);
+  void addStackWidgets();
+
+  void addWidget(QWidget *w);
+  void removeWidget(QWidget *w);
+  void setCurrentWidget(QWidget *w);
 
   QPushButton* getButton(int id);
 

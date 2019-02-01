@@ -31,7 +31,8 @@ SOURCES += \
     src/building/farm.cpp \
     src/building/mine.cpp \
     src/world.cpp \
-    src/conWidget/mainwindow.cpp
+    src/conWidget/mainwindow.cpp \
+    src/building/laboratory.cpp
 
 
 HEADERS += \
@@ -40,7 +41,8 @@ HEADERS += \
     headers/building/farm.h \
     headers/building/mine.h \
     headers/world.h \
-    headers/conWidget/mainwindow.h
+    headers/conWidget/mainwindow.h \
+    headers/building/laboratory.h
 
 
 FORMS +=

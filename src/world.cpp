@@ -16,25 +16,27 @@
 
 QString World::get() {
   QString str;
-  str.sprintf("Год: %lld, Люди: %lld тыс.\n\
-               Енергия: %lld (%lld), Минералы: %lld (%lld), Еда: %lld (%lld)\n\
-               Загрязнение: %d %% (%d %%), Сплоченность: %d %%\n\
-               Наука: %lld\n\
-               Электростанции: %lld, Шахты: %lld, Фермы: %lld",
+  str.sprintf("Год: %lld, Люди: %lld тыс.\n"
+              "Енергия: %lld (%lld), Минералы: %lld (%lld), Еда: %lld (%lld)\n"
+              "Загрязнение: %d %% (%d %%), Сплоченность: %d %%\n"
+              "Наука: %lld (%lld)\n"
+              "Электростанции: %lld, Шахты: %lld, Фермы: %lld\n"
+              "Лаборатории: %lld",
                year, population, energy, getMod_Energy(), minerals, getMod_Minerals(), food, getMod_Food(),\
-               qRound(pollution), qRound(getMod_Pollution()), qRound(solidarity), science,\
-               energyStations->getQuantity(), mines->getQuantity(), farms->getQuantity());
+               qRound(pollution), qRound(getMod_Pollution()), qRound(solidarity), science, getMod_Science(),\
+               energyStations->getQuantity(), mines->getQuantity(), farms->getQuantity(),\
+               labs->getQuantity());
   return str;
 }
 
 qint64 World::getMod_Energy() {
   return energyStations->getFullMod_Energy() + mines->getFullMod_Energy() + \
-         farms->getFullMod_Energy();
+         farms->getFullMod_Energy() + labs->getFullMod_Energy();
 }
 
 qint64 World::getMod_Minerals() {
   if(energy > 0) {
-    return mines->getFullMod_Minerals();
+    return mines->getFullMod_Minerals() + labs->getFullMod_Minerals();
   } else {
     return 0;
   }
@@ -47,6 +49,14 @@ float World::getMod_Pollution() {
 qint64 World::getMod_Food() {
   if(energy > 0) {
     return farms->getFullMod_Food() - qint64(population * 0.01);
+  } else {
+    return 0;
+  }
+}
+
+qint64 World::getMod_Science() {
+  if(energy > 0) {
+    return labs->getFullMod_Science();
   } else {
     return 0;
   }
@@ -78,6 +88,14 @@ void World::updateFarms() {
   }
 }
 
+void World::updateLabs() {
+  if(energy > 0 && minerals > 0) {
+    energy += labs->getFullMod_Energy();
+    minerals += labs->getFullMod_Minerals();
+    science += labs->getFullMod_Science();
+  }
+}
+
 void World::postUpdate() {
   if(food > 0) {
     food -= population * 0.01;
@@ -95,6 +113,7 @@ void World::update(){
   updateEnergyStations();
   updateMines();
   updateFarms();
+  updateLabs();
 
   postUpdate();
 
@@ -119,11 +138,20 @@ void World::buildMine() {
   update();
 }
 
-void World::buildFarm(){
+void World::buildFarm() {
   if(minerals < farms->getPrice_Minerals()) {
     return;
   }
   minerals -= farms->getPrice_Minerals();
   farms->build();
+  update();
+}
+
+void World::buildLab() {
+  if(minerals < labs->getPrice_Minerals())  {
+    return;
+  }
+  minerals -= labs->getPrice_Minerals();
+  labs->build();
   update();
 }
