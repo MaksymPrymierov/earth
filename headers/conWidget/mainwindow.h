@@ -1,36 +1,34 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#define GENERAL_LAYOUT 0
 
 #include <QtWidgets>
-#include "../world.h"
 
 class MainWindow : public QWidget
 {
   Q_OBJECT
 private:
   int x, y;
-  QLabel *info = new QLabel(this);
-  QLabel *command = new QLabel(this);
+  QLabel *info = new QLabel();
   QPalette *pall = new QPalette();
-  QList<QPushButton*> *buildButtons = new QList<QPushButton*>();
-  QVBoxLayout *vBoxLayout = new QVBoxLayout();
-  QHBoxLayout *hBoxLayout = new QHBoxLayout();
-
-  World *world = new World();
+  QList<QPushButton*> buttons;
+  QList<QLabel*> textLines;
+  QList<QBoxLayout*> layouts;
 
 public: 
   explicit MainWindow(QWidget *parent = nullptr);
-  void addBuildButton(QString text);
-  void connectObjects();
-  void addLayaout();
 
-private:
-  void addTextInformation();
-  void addTextCommand();
+  void addButton(QString text);
+  void addLayout(int parentId, QBoxLayout::Direction direction);
+  void addTextInformation(QString text);
+  void addTextLine(QString text);
+
+  QPushButton* getButton(int id);
 
 signals:
 
 public slots:
+  void setInformation(QString);
 };
 
 #endif // MAINWINDOW_H

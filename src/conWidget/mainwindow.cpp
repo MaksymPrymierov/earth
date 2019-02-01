@@ -1,4 +1,5 @@
 #include "headers/conWidget/mainwindow.h"
+#include <QtCore/QCoreApplication>
 
 MainWindow::MainWindow(QWidget *parent) :
   QWidget(parent),
@@ -9,51 +10,55 @@ MainWindow::MainWindow(QWidget *parent) :
   setWindowTitle("Con Civilization");
   setMinimumSize(x, y);
   setAutoFillBackground(true);
-  addLayaout();
-  addTextInformation();
-  addTextCommand();
-  addBuildButton("Электростанция");
-  addBuildButton("Шахта");
-  addBuildButton("Ферма");
-  connectObjects();
-  vBoxLayout->addLayout(hBoxLayout);
-  setLayout(vBoxLayout);
+  layouts.append(new QVBoxLayout());
+  layouts.last()->setContentsMargins(5, 5, 5, 5);
+  layouts.last()->setSpacing(10);
+
+  setLayout(layouts[0]);
 }
 
-void MainWindow::addTextInformation(){
+void MainWindow::addTextInformation(QString text){
   info->setFrameStyle(QFrame::Box | QFrame::Plain);
-  info->setText(world->get());
-  vBoxLayout->addWidget(info);
+  info->setText(text);
+  layouts.last()->addWidget(info);
 }
 
-void MainWindow::addTextCommand(){
-  command->setText("Построить ->");
-  command->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-  hBoxLayout->addWidget(command);
+void MainWindow::addTextLine(QString text){
+  QLabel *l = new QLabel(text);
+
+  l->setText(text);
+  l->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+  layouts.last()->addWidget(l);
+
+  textLines.append(l);
 }
 
-void MainWindow::addBuildButton(QString text){
-  QPushButton *b = new QPushButton(text, this);
+void MainWindow::addButton(QString text){
+  QPushButton *b = new QPushButton(text);
 
   pall->setColor(b->backgroundRole(), Qt::lightGray);
   b->setPalette(*pall);
   b->setAutoFillBackground(true);
   b->setCursor(Qt::PointingHandCursor);
-  hBoxLayout->addWidget(b);
+  layouts.last()->addWidget(b);
 
-  buildButtons->append(b);
+  buttons.append(b);
 }
 
-void MainWindow::addLayaout(){
-  vBoxLayout->setContentsMargins(5, 5, 5, 5);
-  vBoxLayout->setSpacing(15);
-  hBoxLayout->setContentsMargins(5, 5, 5, 5);
-  hBoxLayout->setSpacing(15);
+void MainWindow::addLayout(int parentId, QBoxLayout::Direction direction){
+  QBoxLayout *l = new QBoxLayout(direction);
+
+  l->setContentsMargins(5, 5, 5, 5);
+  l->setSpacing(10);
+
+  layouts[parentId]->addLayout(l);
+  layouts.append(l);
 }
 
-void MainWindow::connectObjects(){
-  QObject::connect(buildButtons->at(0), SIGNAL(clicked()), world, SLOT(buildEnergyStation()));
-  QObject::connect(buildButtons->at(1), SIGNAL(clicked()), world, SLOT(buildMine()));
-  QObject::connect(buildButtons->at(2), SIGNAL(clicked()), world, SLOT(buildFarm()));
-  QObject::connect(world, SIGNAL(print(QString)), info, SLOT(setText(QString)));
+QPushButton* MainWindow::getButton(int id){
+  return buttons[id];
+}
+
+void MainWindow::setInformation(QString s){
+  info->setText(s);
 }
