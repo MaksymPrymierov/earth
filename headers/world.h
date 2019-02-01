@@ -6,8 +6,7 @@
 #include "building/mine.h"
 #include "building/farm.h"
 
-class World : public QObject
-{
+class World : public QObject {
   Q_OBJECT
 
 private:
@@ -29,10 +28,10 @@ private:
   qint64 getMod_Minerals();
   float getMod_Pollution();
   qint64 getMod_Food();
-  void updateEnergy();
-  void updateMinerals();
-  void updatePollution();
-  void updateFood();
+
+  void updateEnergyStations();
+  void updateMines();
+  void updateFarms();
   void preUpdate();
   void postUpdate();
 

@@ -4,7 +4,7 @@
 #include "building.h"
 
 class EnergyStation : public Building {
-Q_OBJECT
+  Q_OBJECT
 private:
   float mod_pollution;
 public:

@@ -4,7 +4,7 @@
 #include "building.h"
 
 class Mine : public Building {
-Q_OBJECT
+  Q_OBJECT
 private:
   float mod_pollution;
   qint64 mod_minerals;

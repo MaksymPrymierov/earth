@@ -30,7 +30,8 @@ SOURCES += \
     src/building/energystation.cpp \
     src/building/farm.cpp \
     src/building/mine.cpp \
-    src/world.cpp
+    src/world.cpp \
+    src/conWidget/mainwindow.cpp
 
 
 HEADERS += \
@@ -38,7 +39,8 @@ HEADERS += \
     headers/building/energystation.h \
     headers/building/farm.h \
     headers/building/mine.h \
-    headers/world.h
+    headers/world.h \
+    headers/conWidget/mainwindow.h
 
 
 FORMS +=

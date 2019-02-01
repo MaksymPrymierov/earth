@@ -4,7 +4,7 @@
 #include <QObject>
 
 class Building : public QObject {
-Q_OBJECT
+  Q_OBJECT
 private:
   qint64 quantity, price_minerals, mod_energy;
 public:
