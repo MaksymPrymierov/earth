@@ -32,7 +32,10 @@ SOURCES += \
     src/building/mine.cpp \
     src/world.cpp \
     src/conWidget/mainwindow.cpp \
-    src/building/laboratory.cpp
+    src/building/laboratory.cpp \
+    src/conWidget/mainmenu.cpp \
+    src/conWidget/gamescreen.cpp \
+    src/conWidget/buttonspanel.cpp
 
 
 HEADERS += \
@@ -42,7 +45,10 @@ HEADERS += \
     headers/building/mine.h \
     headers/world.h \
     headers/conWidget/mainwindow.h \
-    headers/building/laboratory.h
+    headers/building/laboratory.h \
+    headers/conWidget/mainmenu.h \
+    headers/conWidget/gamescreen.h \
+    headers/conWidget/buttonspanel.h
 
 
 FORMS +=

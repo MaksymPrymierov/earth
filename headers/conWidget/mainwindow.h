@@ -1,40 +1,26 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#define GENERAL_LAYOUT 0
 
 #include <QtWidgets>
+#include "mainmenu.h"
+#include "gamescreen.h"
 
 class MainWindow : public QWidget
 {
   Q_OBJECT
 private:
   int x, y;
-  QLabel *info = new QLabel();
   QPalette *pall = new QPalette();
   QStackedWidget *stackWidgets = new QStackedWidget();
-  QList<QPushButton*> buttons;
-  QList<QLabel*> textLines;
-  QList<QBoxLayout*> layouts;
+  MainMenu *mainMenu = new MainMenu();
+  GameScreen *gameScreen = new GameScreen();
+  QVBoxLayout *layout = new QVBoxLayout();
 
 public: 
   explicit MainWindow(QWidget *parent = nullptr);
-
-  void addButton(QString text);
-  void addLayout(int parentId, QBoxLayout::Direction direction);
-  void addTextInformation(QString text);
-  void addTextLine(QString text);
-  void addStackWidgets();
-
-  void addWidget(QWidget *w);
-  void removeWidget(QWidget *w);
-  void setCurrentWidget(QWidget *w);
-
-  QPushButton* getButton(int id);
-
-signals:
-
 public slots:
-  void setInformation(QString);
+  void installMainMenu();
+  void installGameScreen();
 };
 
 #endif // MAINWINDOW_H
