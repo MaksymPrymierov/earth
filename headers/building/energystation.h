@@ -15,6 +15,7 @@ public:
 
   float getMod_Pollution();
   float getFullMod_Pollution();
+  QString getInfo();
 };
 
 #endif // ENERGYSTATION_H

@@ -3,6 +3,7 @@
 
 #include <QtWidgets>
 #include "buttonspanel.h"
+#include "../world.h"
 
 enum class ButtonPanel : quint8 {
   Menu, Action, Building
@@ -11,12 +12,13 @@ enum class ButtonPanel : quint8 {
 class GameScreen : public QWidget {
   Q_OBJECT
 private:
-  QWidget *infoPanel = new QWidget();
+  World *world = new World();
   QStackedWidget *header = new QStackedWidget();
   QStackedWidget *footer = new QStackedWidget();
   QPalette *pall = new QPalette();
   QVBoxLayout *generalLayout = new QVBoxLayout();
   QMap<ButtonPanel, ButtonsPanel*> buttonsPanels;
+  QLabel *textPanel = new QLabel();
 public:
   explicit GameScreen(QWidget *parent = nullptr);
 

@@ -19,6 +19,7 @@ public:
   qint64 getMod_Minerals();
   float getFullMod_Pollution();
   qint64 getFullMod_Minerals();
+  QString getInfo();
 };
 
 #endif // MINE_H

@@ -37,3 +37,13 @@ float Mine::getFullMod_Pollution() {
 qint64 Mine::getFullMod_Minerals() {
   return mod_minerals * getQuantity();
 }
+
+QString Mine::getInfo() {
+  QString s;
+  s.sprintf("Price: -%lld\n"
+            "Minerals: +%lld\n"
+            "Energy: -%lld\n"
+            "Pollution: -%3.2f",
+            this->getPrice_Minerals(), mod_minerals, this->getMod_Energy(), double(this->getMod_Pollution()));
+  return s;
+}

@@ -12,13 +12,16 @@ enum class Button : quint8 {
 class ButtonsPanel : public QGroupBox {
   Q_OBJECT
 private:
-  QBoxLayout *layout;
+  QGridLayout *layout;
   QMap<Button, QPushButton*> buttons;
+  QMap<Button, QLabel*> labels;
 public:
-  explicit ButtonsPanel(QBoxLayout::Direction direction, QGroupBox *parent = nullptr);
-  void addButton(Button button, QString text);
+  explicit ButtonsPanel(QGroupBox *parent = nullptr);
+  void addButton(Button button, int row, int column, QString text);
+  void addInfo(Button button, int row, int column, QString info);
+  void updateInfo(Button button, QString info);
   QPushButton* getButton(Button button);
-  void setAlignmentContent(Qt::AlignmentFlag align);
+  void setAlignmentContent(QFlags<Qt::AlignmentFlag> align);
 };
 
 #endif // BOTTONSPANEL_H

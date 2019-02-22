@@ -7,12 +7,12 @@
 class MainMenu : public QWidget {
   Q_OBJECT
 private:
-  QColor *background = new QColor(18, 46, 62);
   QPixmap *pix;
   QLabel *title = new QLabel();
   QPalette *pall = new QPalette();
+  QBrush *brush = new QBrush(Qt::TexturePattern);
   QVBoxLayout *generalLayout = new QVBoxLayout();
-  ButtonsPanel *menu = new ButtonsPanel(QBoxLayout::Direction::TopToBottom);
+  ButtonsPanel *menu = new ButtonsPanel();
 
   void setTitle(QString text);
   void installMenu();

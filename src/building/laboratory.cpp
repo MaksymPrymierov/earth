@@ -24,6 +24,15 @@ qint64 Laboratory::getFullMod_Minerals() {
   return getQuantity() * mod_minerals;
 }
 
+QString Laboratory::getInfo() {
+  QString s;
+  s.sprintf("Price: -%lld\n"
+            "Science: +%lld\n"
+            "Energy: -%lld\n",
+            this->getPrice_Minerals(), mod_science, this->getMod_Energy());
+  return s;
+}
+
 void Laboratory::setMod_Science(qint64 m){
   mod_science = m;
 }

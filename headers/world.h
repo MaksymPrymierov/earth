@@ -21,8 +21,12 @@ private:
 
 public:
   explicit World(QObject *parent = nullptr);
-  ~World() = default;
+  ~World();
 
+  inline QString getInfoEnergyStation() { return energyStations->getInfo(); }
+  inline QString getInfoMine() { return mines->getInfo(); }
+  inline QString getInfoFarm() { return farms->getInfo(); }
+  inline QString getInfoLab() { return labs->getInfo(); }
   QString get();
 
 private:

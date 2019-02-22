@@ -24,3 +24,12 @@ float EnergyStation::getFullMod_Pollution() {
 
   return b;
 }
+
+QString EnergyStation::getInfo() {
+  QString s;
+  s.sprintf("Price: -%lld\n"
+            "Energy: +%lld\n"
+            "Pollution: -%3.2f\n",
+            this->getPrice_Minerals(), this->getMod_Energy(), double(this->getMod_Pollution()));
+  return s;
+}

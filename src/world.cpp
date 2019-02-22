@@ -14,16 +14,23 @@
   pollution(0),
   solidarity(60) {   }
 
+ World::~World() {
+   delete energyStations;
+   delete mines;
+   delete farms;
+   delete labs;
+ }
+
 QString World::get() {
   QString str;
-  str.sprintf("Год: %lld, Люди: %lld тыс.\n"
-              "Енергия: %lld (%lld), Минералы: %lld (%lld), Еда: %lld (%lld)\n"
-              "Загрязнение: %d %% (%d %%), Сплоченность: %d %%\n"
-              "Наука: %lld (%lld)\n"
-              "Электростанции: %lld, Шахты: %lld, Фермы: %lld\n"
-              "Лаборатории: %lld",
+  str.sprintf("Year: %lld, Population: %lld тыс.\n"
+              "Energy: %lld (%lld), Minerals: %lld (%lld), Food: %lld (%lld)\n"
+              "Pollution: %3.2f %% (%3.2f %%), Solidarity: %3.2f %%\n"
+              "Science: %lld (%lld)\n"
+              "Energy Stations: %lld, Mines: %lld, Farms: %lld\n"
+              "Laboratories: %lld",
                year, population, energy, getMod_Energy(), minerals, getMod_Minerals(), food, getMod_Food(),\
-               qRound(pollution), qRound(getMod_Pollution()), qRound(solidarity), science, getMod_Science(),\
+               double(pollution), double(getMod_Pollution()), double(solidarity), science, getMod_Science(),\
                energyStations->getQuantity(), mines->getQuantity(), farms->getQuantity(),\
                labs->getQuantity());
   return str;

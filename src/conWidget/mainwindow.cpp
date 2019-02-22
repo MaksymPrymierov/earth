@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
   pall->setColor(backgroundRole(), Qt::gray);
   setPalette(*pall);
   setWindowTitle("Con Civilization");
-  setMinimumSize(x, y);
+  setFixedSize(x, y);
   setAutoFillBackground(true);
   mainMenu->resize(x, y);
   stackWidgets->setParent(this);

@@ -16,6 +16,7 @@ public:
   qint64 getMod_Science();
   qint64 getFullMod_Minerals();
   qint64 getFullMod_Science();
+  QString getInfo();
 
   void setMod_Minerals(qint64 m);
   void setMod_Science(qint64 m);

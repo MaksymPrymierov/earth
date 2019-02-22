@@ -15,6 +15,7 @@ public:
 
   qint64 getMod_Food();
   qint64 getFullMod_Food();
+  QString getInfo();
 };
 
 #endif // FARM_H

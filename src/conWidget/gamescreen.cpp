@@ -15,11 +15,12 @@ GameScreen::GameScreen(QWidget *parent) :
 }
 
 void GameScreen::addMenuPanel() {
-  ButtonsPanel *p = new ButtonsPanel(QBoxLayout::Direction::LeftToRight);
-  p->addButton(Button::Save, "Save");
-  p->addButton(Button::Load, "Load");
-  p->addButton(Button::ExitToMenu, "Exit to Menu");
-  p->addButton(Button::Exit, "Exit");
+  ButtonsPanel *p = new ButtonsPanel();
+  p->addButton(Button::Save, 0, 0, "Save");
+  p->addButton(Button::Load, 0, 1, "Load");
+  p->addButton(Button::ExitToMenu, 0, 2, "Exit to Menu");
+  p->addButton(Button::Exit, 0, 3, "Exit");
+  p->setAlignmentContent(Qt::AlignCenter);
 
   buttonsPanels[ButtonPanel::Menu] = p;
   header->addWidget(p);
@@ -30,12 +31,13 @@ void GameScreen::addMenuPanel() {
 }
 
 void GameScreen::addActionPanel() {
-  ButtonsPanel *p = new ButtonsPanel(QBoxLayout::Direction::LeftToRight);\
+  ButtonsPanel *p = new ButtonsPanel();
   p->setTitle("Select an action");
-  p->addButton(Button::Building, "Building");
-  p->addButton(Button::Destroy, "Destroy");
-  p->addButton(Button::Science, "Science");
-  p->addButton(Button::Events, "Events");
+  p->addButton(Button::Building, 0, 0, "Building");
+  p->addButton(Button::Destroy, 0, 1, "Destroy");
+  p->addButton(Button::Science, 0, 2, "Science");
+  p->addButton(Button::Events, 0, 3, "Events");
+  p->setAlignmentContent(Qt::AlignCenter);
 
   buttonsPanels[ButtonPanel::Action] = p;
   footer->addWidget(p);
@@ -45,17 +47,26 @@ void GameScreen::addActionPanel() {
 }
 
 void GameScreen::addBuildPanel() {
-  ButtonsPanel *p = new ButtonsPanel(QBoxLayout::Direction::LeftToRight);
+  ButtonsPanel *p = new ButtonsPanel();
   p->setTitle("Building");
-  p->addButton(Button::PowerStation, "Power station");
-  p->addButton(Button::Mine, "Mine");
-  p->addButton(Button::Farm, "Farm");
-  p->addButton(Button::Laboratory, "Laboratory");
-  p->addButton(Button::Cancel, "Cancel");
+  p->addButton(Button::PowerStation, 0, 0, "Power station");
+  p->addInfo(Button::PowerStation, 1, 0, world->getInfoEnergyStation());
+  p->addButton(Button::Mine, 0, 1, "Mine");
+  p->addInfo(Button::Mine, 1, 1, world->getInfoMine());
+  p->addButton(Button::Farm, 0, 2, "Farm");
+  p->addInfo(Button::Farm, 1, 2, world->getInfoFarm());
+  p->addButton(Button::Laboratory, 0, 3, "Laboratory");
+  p->addInfo(Button::Laboratory, 1, 3, world->getInfoLab());
+  p->addButton(Button::Cancel, 0, 4, "Cancel");
+  p->setAlignmentContent(Qt::AlignCenter);
 
   buttonsPanels[ButtonPanel::Building] = p;
   footer->addWidget(p);
 
+  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::PowerStation), &QPushButton::clicked, world, &World::buildEnergyStation);
+  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Mine), &QPushButton::clicked, world, &World::buildMine);
+  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Farm), &QPushButton::clicked, world, &World::buildFarm);
+  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Laboratory), &QPushButton::clicked, world, &World::buildLab);
   QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Cancel), &QPushButton::clicked, this, &GameScreen::showActionPanel);
 }
 
@@ -68,8 +79,12 @@ void GameScreen::installFooter() {
 }
 
 void GameScreen::installInfoPanel() {
-  infoPanel->setMinimumSize(600, 400);
-  generalLayout->addWidget(infoPanel);
+  textPanel->setText(world->get());
+  textPanel->setAlignment(Qt::AlignCenter);
+  textPanel->setMinimumSize(600, 400);
+  generalLayout->addWidget(textPanel);
+
+  QObject::connect(world, &World::print, textPanel, &QLabel::setText);
 }
 
 void GameScreen::showMenuPanel() {

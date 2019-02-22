@@ -35,7 +35,7 @@ SOURCES += \
     src/building/laboratory.cpp \
     src/conWidget/mainmenu.cpp \
     src/conWidget/gamescreen.cpp \
-    src/conWidget/buttonspanel.cpp
+    src/conWidget/buttonspanel.cpp \
 
 
 HEADERS += \
@@ -48,7 +48,7 @@ HEADERS += \
     headers/building/laboratory.h \
     headers/conWidget/mainmenu.h \
     headers/conWidget/gamescreen.h \
-    headers/conWidget/buttonspanel.h
+    headers/conWidget/buttonspanel.h \
 
 
 FORMS +=
@@ -57,3 +57,9 @@ FORMS +=
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    resources/images/mainmenu.png
+
+SUBDIRS += \
+    conEarth.pro
