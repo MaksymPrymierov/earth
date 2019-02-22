@@ -23,7 +23,7 @@ QString Mine::getInfo() {
   s.sprintf("Price: %lld\n"
             "Minerals: %lld\n"
             "Energy: %lld\n"
-            "Pollution: -%3.2f",
+            "Pollution: %3.2f",
             price, mod_minerals, mod_energy, double(mod_pollution));
   return s;
 }

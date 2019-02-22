@@ -6,6 +6,7 @@
 #include "building/mine.h"
 #include "building/farm.h"
 #include "building/laboratory.h"
+#include "building/cleaningstation.h"
 
 class World : public QObject {
   Q_OBJECT
@@ -18,6 +19,7 @@ private:
   Mine *mines = new Mine();
   Farm *farms = new Farm();
   Laboratory *labs = new Laboratory();
+  CleaningStation *cleaningStation = new CleaningStation();
 
 public:
   explicit World(QObject *parent = nullptr);
@@ -27,6 +29,7 @@ public:
   inline QString getInfoMine() { return mines->getInfo(); }
   inline QString getInfoFarm() { return farms->getInfo(); }
   inline QString getInfoLab() { return labs->getInfo(); }
+  inline QString getInfoCleaningStation() { return cleaningStation->getInfo(); }
   QString get();
 
 private:
@@ -40,6 +43,7 @@ private:
   void updateMines();
   void updateFarms();
   void updateLabs();
+  void updateCleaningStation();
   void preUpdate();
   void postUpdate();
 
@@ -52,6 +56,7 @@ public slots:
   void buildMine();
   void buildFarm();
   void buildLab();
+  void buildCleaningStation();
 };
 
 #endif // WORLD_H

@@ -36,6 +36,7 @@ SOURCES += \
     src/conWidget/mainmenu.cpp \
     src/conWidget/gamescreen.cpp \
     src/conWidget/buttonspanel.cpp \
+    src/building/cleaningstation.cpp
 
 
 HEADERS += \
@@ -49,6 +50,7 @@ HEADERS += \
     headers/conWidget/mainmenu.h \
     headers/conWidget/gamescreen.h \
     headers/conWidget/buttonspanel.h \
+    headers/building/cleaningstation.h
 
 
 FORMS +=

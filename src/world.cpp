@@ -19,38 +19,47 @@
    delete mines;
    delete farms;
    delete labs;
+   delete cleaningStation;
  }
 
 QString World::get() {
   QString str;
-  str.sprintf("Year: %lld, Population: %lld тыс.\n"
+  str.sprintf("Year: %lld, Population: %lldk\n"
               "Energy: %lld (%lld), Minerals: %lld (%lld), Food: %lld (%lld)\n"
               "Pollution: %3.2f %% (%3.2f %%), Solidarity: %3.2f %%\n"
               "Science: %lld (%lld)\n"
               "Energy Stations: %lld, Mines: %lld, Farms: %lld\n"
+              "Cleaning Stations: %lld,\n"
               "Laboratories: %lld",
                year, population, energy, getMod_Energy(), minerals, getMod_Minerals(), food, getMod_Food(),\
                double(pollution), double(getMod_Pollution()), double(solidarity), science, getMod_Science(),\
                energyStations->getQuantity(), mines->getQuantity(), farms->getQuantity(),\
+               cleaningStation->getQuantity(),\
                labs->getQuantity());
   return str;
 }
 
 qint64 World::getMod_Energy() {
   return energyStations->getFullMod_Energy() + mines->getFullMod_Energy() + \
-         farms->getFullMod_Energy() + labs->getFullMod_Energy();
+         farms->getFullMod_Energy() + labs->getFullMod_Energy() + \
+         cleaningStation->getFullMod_Energy();
 }
 
 qint64 World::getMod_Minerals() {
   if(energy > 0) {
-    return mines->getFullMod_Minerals() + labs->getFullMod_Minerals();
+    return mines->getFullMod_Minerals() + labs->getFullMod_Minerals() + \
+           cleaningStation->getFullMod_Minerals();
   } else {
     return 0;
   }
 }
 
 float World::getMod_Pollution() {
-  return energyStations->getFullMod_Pollution() + mines->getMod_Pollution();
+  float m = energyStations->getFullMod_Pollution() + mines->getMod_Pollution();
+  if(energy > 0) {
+    m += cleaningStation->getFullMod_Pollution();
+  }
+  return m;
 }
 
 qint64 World::getMod_Food() {
@@ -103,6 +112,14 @@ void World::updateLabs() {
   }
 }
 
+void World::updateCleaningStation() {
+  if(energy > 0) {
+    energy += cleaningStation->getFullMod_Energy();
+    minerals += cleaningStation->getFullMod_Minerals();
+    pollution += cleaningStation->getFullMod_Pollution();
+  }
+}
+
 void World::postUpdate() {
   if(food > 0) {
     food -= population * 0.01;
@@ -121,6 +138,7 @@ void World::update(){
   updateMines();
   updateFarms();
   updateLabs();
+  updateCleaningStation();
 
   postUpdate();
 
@@ -160,5 +178,14 @@ void World::buildLab() {
   }
   minerals -= labs->getPrice_Minerals();
   labs->build();
+  update();
+}
+
+void World::buildCleaningStation() {
+  if(minerals < cleaningStation->getPrice_Minerals()) {
+    return;
+  }
+  minerals -= cleaningStation->getPrice_Minerals();
+  cleaningStation->build();
   update();
 }

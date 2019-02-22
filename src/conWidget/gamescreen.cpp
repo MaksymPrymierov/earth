@@ -72,12 +72,14 @@ void GameScreen::addBuildPanel() {
   p->addButton(Button::Mine, 0, 1, "Mine");
   p->addButton(Button::Farm, 0, 2, "Farm");
   p->addButton(Button::Laboratory, 0, 3, "Laboratory");
-  p->addButton(Button::Cancel, 0, 4, "Cancel");
+  p->addButton(Button::CleaningStation, 0, 4, "Cleaning Station");
+  p->addButton(Button::Cancel, 0, 5, "Cancel");
 
   p->addInfo(Button::PowerStation, 1, 0, world->getInfoEnergyStation());
   p->addInfo(Button::Mine, 1, 1, world->getInfoMine());
   p->addInfo(Button::Farm, 1, 2, world->getInfoFarm());
   p->addInfo(Button::Laboratory, 1, 3, world->getInfoLab());
+  p->addInfo(Button::CleaningStation, 1, 4, world->getInfoCleaningStation());
 
   p->setAlignmentContent(Qt::AlignCenter);
 
@@ -88,6 +90,7 @@ void GameScreen::addBuildPanel() {
   QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Mine), &QPushButton::clicked, world, &World::buildMine);
   QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Farm), &QPushButton::clicked, world, &World::buildFarm);
   QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Laboratory), &QPushButton::clicked, world, &World::buildLab);
+  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::CleaningStation), &QPushButton::clicked, world, &World::buildCleaningStation);
   QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Cancel), &QPushButton::clicked, this, &GameScreen::showActionPanel);
 }
 

@@ -14,10 +14,10 @@ public:
   inline void setMod_Minerals(qint64 m) { mod_science = m; }
   inline void setMod_Science(qint64 m) { mod_minerals = m; }
 
-  inline qint64 getMod_Minerals() { return mod_science; }
-  inline qint64 getMod_Science() { return mod_minerals; }
-  inline qint64 getFullMod_Minerals() { return mod_science * quantity; }
-  inline qint64 getFullMod_Science() { return mod_minerals * quantity; }
+  inline qint64 getMod_Minerals() { return mod_minerals; }
+  inline qint64 getMod_Science() { return mod_science; }
+  inline qint64 getFullMod_Minerals() { return mod_minerals * quantity; }
+  inline qint64 getFullMod_Science() { return mod_science * quantity; }
 
   QString getInfo();
 };
