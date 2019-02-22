@@ -11,10 +11,11 @@ public:
   explicit EnergyStation(Building *parent = nullptr);
   ~EnergyStation() = default;
 
-  void setMod_Pollution(float m);
+  inline void setMod_Pollution(float m) { mod_pollution = m; }
 
-  float getMod_Pollution();
+  inline float getMod_Pollution() { return mod_pollution; }
   float getFullMod_Pollution();
+
   QString getInfo();
 };
 

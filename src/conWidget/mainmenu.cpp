@@ -13,6 +13,14 @@ MainMenu::MainMenu(QWidget *parent) :
   QObject::connect(menu->getButton(Button::Exit), &QPushButton::clicked, [this] () { emit clickedExit(); });
 }
 
+MainMenu::~MainMenu() {
+  delete brush;
+  delete pall;
+  delete title;
+  delete generalLayout;
+  delete menu;
+}
+
 void MainMenu::setTitle(QString text) {
   title->setText(text);
   title->setAlignment(Qt::AlignCenter);
@@ -23,13 +31,17 @@ void MainMenu::setTitle(QString text) {
 void MainMenu::installMenu() {
   menu->addButton(Button::NewGame, 0, 0, "New Game");
   menu->addButton(Button::Exit, 1, 0, "Exit");
+
   menu->getButton(Button::NewGame)->setMinimumWidth(150);
   menu->getButton(Button::Exit)->setMinimumWidth(150);
+
   menu->setAlignmentContent(Qt::AlignCenter);
   menu->setFixedSize(375, 500);
+
   brush->setTextureImage(QImage("resources/images/mainmenu.png"));
   pall->setBrush(menu->backgroundRole(), *brush);
   menu->setPalette(*pall);
   menu->setAutoFillBackground(true);
+
   generalLayout->addWidget(menu);
 }

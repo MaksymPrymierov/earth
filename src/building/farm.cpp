@@ -3,27 +3,15 @@
 Farm::Farm(Building *parent) :
   Building (parent),
   mod_food(1) {
-  setPrice_Minerals(1);
-  setMod_Energy(-1);
-}
-
-void Farm::setMod_Food(qint64 m) {
-  mod_food = m;
-}
-
-qint64 Farm::getMod_Food() {
-  return mod_food;
-}
-
-qint64 Farm::getFullMod_Food() {
-  return mod_food * getQuantity();
+  price = 1;
+  mod_energy = -1;
 }
 
 QString Farm::getInfo() {
   QString s;
-  s.sprintf("Price: -%lld\n"
-            "Food: +%lld\n"
-            "Energy: -%lld\n",
-            this->getPrice_Minerals(), mod_food, this->getMod_Energy());
+  s.sprintf("Price: %lld\n"
+            "Food: %lld\n"
+            "Energy: %lld\n",
+            price, mod_food, mod_energy);
   return s;
 }

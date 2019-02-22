@@ -6,11 +6,13 @@ MainWindow::MainWindow(QWidget *parent) :
   x(1024),
   y(768) {
   setWindowFlag(Qt::Window);
+
   pall->setColor(backgroundRole(), Qt::gray);
   setPalette(*pall);
   setWindowTitle("Con Civilization");
   setFixedSize(x, y);
   setAutoFillBackground(true);
+
   mainMenu->resize(x, y);
   stackWidgets->setParent(this);
   stackWidgets->addWidget(mainMenu);

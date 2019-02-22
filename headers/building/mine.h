@@ -12,13 +12,15 @@ public:
   explicit Mine(Building *parent = nullptr);
   ~Mine() = default;
 
-  void setMod_Pollution(float m);
-  void setMod_Minerals(qint64 m);
+  inline void setMod_Pollution(float m) { mod_pollution = m; }
+  inline void setMod_Minerals(qint64 m) { mod_minerals = m; }
 
-  float getMod_Pollution();
-  qint64 getMod_Minerals();
+  inline float getMod_Pollution() { return mod_pollution; }
+  inline qint64 getMod_Minerals() { return mod_minerals; }
+
   float getFullMod_Pollution();
-  qint64 getFullMod_Minerals();
+  inline qint64 getFullMod_Minerals() { return mod_minerals * quantity; }
+
   QString getInfo();
 };
 

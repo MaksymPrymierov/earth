@@ -5,25 +5,25 @@
 
 class Building : public QObject {
   Q_OBJECT
-private:
-  qint64 quantity, price_minerals, mod_energy;
+protected:
+  qint64 quantity, price, mod_energy;
 public:
   explicit Building(QObject *parent = nullptr);
   ~Building() = default;
 
-  void setQuantity(qint64 q);
-  void setPrice_Minerals(qint64 p);
-  void setMod_Energy(qint64 m);
+  inline void setQuantity(qint64 q) { quantity = q; }
+  inline void setPrice(qint64 p) { price = p; }
+  inline void setMod_Energy(qint64 m) { mod_energy = m; }
 
-  qint64 getQuantity();
-  qint64 getPrice_Minerals();
-  qint64 getMod_Energy();
-  qint64 getFullPriece_Mineral();
-  qint64 getFullMod_Energy();
+  inline qint64 getQuantity() { return quantity; }
+  inline qint64 getPrice_Minerals() { return price; }
+  inline qint64 getMod_Energy() { return mod_energy; }
+  inline qint64 getFullPriece_Mineral() { return quantity * price; }
+  inline qint64 getFullMod_Energy() { return quantity * mod_energy; }
 
 public slots:
-  void build();
-  void destroy();
+  inline void build() { ++quantity; }
+  inline void destroy() { if(quantity != 0) --quantity; }
 };
 
 

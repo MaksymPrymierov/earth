@@ -4,39 +4,16 @@ Laboratory::Laboratory(Building *parent) :
   Building (parent),
   mod_minerals(-2),
   mod_science(1) {
-  setMod_Energy(-2);
-  setPrice_Minerals(2);
-}
-
-qint64 Laboratory::getMod_Science() {
-  return mod_science;
-}
-
-qint64 Laboratory::getMod_Minerals() {
-  return mod_minerals;
-}
-
-qint64 Laboratory::getFullMod_Science() {
-  return getQuantity() * mod_science;
-}
-
-qint64 Laboratory::getFullMod_Minerals() {
-  return getQuantity() * mod_minerals;
+  price = 2;
+  mod_energy = -2;
 }
 
 QString Laboratory::getInfo() {
   QString s;
-  s.sprintf("Price: -%lld\n"
-            "Science: +%lld\n"
-            "Energy: -%lld\n",
-            this->getPrice_Minerals(), mod_science, this->getMod_Energy());
+  s.sprintf("Price: %lld\n"
+            "Science: %lld\n"
+            "Energy: %lld\n"
+            "Minerals: %lld",
+            price, mod_science, mod_energy, mod_minerals);
   return s;
-}
-
-void Laboratory::setMod_Science(qint64 m){
-  mod_science = m;
-}
-
-void Laboratory::setMod_Minerals(qint64 m){
-  mod_minerals = m;
 }

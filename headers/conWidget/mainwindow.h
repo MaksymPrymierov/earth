@@ -11,16 +11,22 @@ class MainWindow : public QWidget
 private:
   int x, y;
   QPalette *pall = new QPalette();
-  QStackedWidget *stackWidgets = new QStackedWidget();
-  MainMenu *mainMenu = new MainMenu();
+
   GameScreen *gameScreen = new GameScreen();
+  MainMenu *mainMenu = new MainMenu();
+
+  QStackedWidget *stackWidgets = new QStackedWidget();
   QVBoxLayout *layout = new QVBoxLayout();
+
 
 public: 
   explicit MainWindow(QWidget *parent = nullptr);
+  ~MainWindow() = default;
+
 public slots:
   void installMainMenu();
   void installGameScreen();
+
 };
 
 #endif // MAINWINDOW_H
