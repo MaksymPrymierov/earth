@@ -71,5 +71,6 @@ RESOURCES += \
 
 
 DISTFILES += \
-    resources/images/mainmenu.png
+    resources/images/mainmenu.png \
+    LICENSE
 
