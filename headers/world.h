@@ -30,7 +30,15 @@ public:
   inline QString getInfoFarm() { return farms->getInfo(); }
   inline QString getInfoLab() { return labs->getInfo(); }
   inline QString getInfoCleaningStation() { return cleaningStation->getInfo(); }
-  QString get();
+
+  QString getInfoYear();
+  QString getInfoPopulation();
+  QString getInfoEnergy();
+  QString getInfoMinerals();
+  QString getInfoFood();
+  QString getInfoScience();
+  QString getInfoPollution();
+  QString getInfoSolidarity();
 
 private:
   qint64 getMod_Energy();
@@ -48,7 +56,14 @@ private:
   void postUpdate();
 
 signals:
-  void print(QString);
+  void yearUpdate(QString);
+  void populationUpdate(QString);
+  void energyUpdate(QString);
+  void mineralsUpdate(QString);
+  void foodUpdate(QString);
+  void scienceUpdate(QString);
+  void pullutionUpdate(QString);
+  void solidarityUpdate(QString);
 
 public slots:
   void update();

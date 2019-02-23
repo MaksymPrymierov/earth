@@ -9,9 +9,10 @@ Farm::Farm(Building *parent) :
 
 QString Farm::getInfo() {
   QString s;
-  s.sprintf("Price: %lld\n"
+  s.sprintf("Quantity: %lld\n"
+            "Price: %lld\n"
             "Food: %lld\n"
             "Energy: %lld\n",
-            price, mod_food, mod_energy);
+            quantity, price, mod_food, mod_energy);
   return s;
 }

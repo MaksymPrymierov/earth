@@ -3,40 +3,71 @@
 #include <QtWidgets>
 
 
- World::World(QObject *parent) :
-  QObject(parent),
-  year(0),
-  population(300),
-  energy(100),
-  minerals(100),
-  food(100),
-  science(0),
-  pollution(0),
-  solidarity(60) {   }
+World::World(QObject *parent) :
+ QObject(parent),
+ year(0),
+ population(300),
+ energy(100),
+ minerals(100),
+ food(100),
+ science(0),
+ pollution(0),
+ solidarity(60) {   }
 
- World::~World() {
-   delete energyStations;
-   delete mines;
-   delete farms;
-   delete labs;
-   delete cleaningStation;
+World::~World() {
+  delete energyStations;
+  delete mines;
+  delete farms;
+  delete labs;
+  delete cleaningStation;
  }
 
-QString World::get() {
-  QString str;
-  str.sprintf("Year: %lld, Population: %lldk\n"
-              "Energy: %lld (%lld), Minerals: %lld (%lld), Food: %lld (%lld)\n"
-              "Pollution: %3.2f %% (%3.2f %%), Solidarity: %3.2f %%\n"
-              "Science: %lld (%lld)\n"
-              "Energy Stations: %lld, Mines: %lld, Farms: %lld\n"
-              "Cleaning Stations: %lld,\n"
-              "Laboratories: %lld",
-               year, population, energy, getMod_Energy(), minerals, getMod_Minerals(), food, getMod_Food(),\
-               double(pollution), double(getMod_Pollution()), double(solidarity), science, getMod_Science(),\
-               energyStations->getQuantity(), mines->getQuantity(), farms->getQuantity(),\
-               cleaningStation->getQuantity(),\
-               labs->getQuantity());
-  return str;
+QString World::getInfoYear() {
+  QString s;
+  s.sprintf("Year\n %lld", year);
+  return s;
+}
+
+QString World::getInfoPopulation() {
+  QString s;
+  s.sprintf("Population\n %lldk", population);
+  return s;
+}
+
+QString World::getInfoEnergy() {
+  QString s;
+  s.sprintf("Energy\n %lld [%lld]", energy, getMod_Energy());
+  return s;
+}
+
+QString World::getInfoMinerals() {
+  QString s;
+  s.sprintf("Minerals\n %lld [%lld]", minerals, getMod_Minerals());
+  return s;
+}
+
+QString World::getInfoFood() {
+  QString s;
+  s.sprintf("Food\n %lld [%lld]", food, getMod_Food());
+  return s;
+}
+
+QString World::getInfoScience() {
+  QString s;
+  s.sprintf("Science\n %lld [%lld]", science, getMod_Science());
+  return s;
+}
+
+QString World::getInfoPollution() {
+  QString s;
+  s.sprintf("Pollution\n %3.2f %% [%3.2f %%]", double(pollution), double(getMod_Pollution()));
+  return s;
+}
+
+QString World::getInfoSolidarity() {
+  QString s;
+  s.sprintf("Solidarity\n %3.2f %%", double(solidarity));
+  return s;
 }
 
 qint64 World::getMod_Energy() {
@@ -142,7 +173,14 @@ void World::update(){
 
   postUpdate();
 
-  emit print(get());
+  emit yearUpdate(getInfoYear());
+  emit populationUpdate(getInfoPopulation());
+  emit energyUpdate(getInfoEnergy());
+  emit mineralsUpdate(getInfoMinerals());
+  emit foodUpdate(getInfoFood());
+  emit scienceUpdate(getInfoScience());
+  emit pullutionUpdate(getInfoPollution());
+  emit solidarityUpdate(getInfoSolidarity());
 }
 
 void World::buildEnergyStation() {

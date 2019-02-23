@@ -10,10 +10,11 @@ CleaningStation::CleaningStation(Building *parent) :
 
 QString CleaningStation::getInfo() {
   QString s;
-  s.sprintf("Price: %lld\n"
+  s.sprintf("Quantity: %lld\n"
+            "Price: %lld\n"
             "Pollution: %3.2f\n"
             "Energy: %lld\n"
             "Minerals: %lld",
-            price, double(mod_pollution), mod_energy, mod_minerals);
+            quantity, price, double(mod_pollution), mod_energy, mod_minerals);
   return s;
 }

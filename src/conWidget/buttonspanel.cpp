@@ -2,7 +2,6 @@
 
 ButtonsPanel::ButtonsPanel(QGroupBox *parent) :
   QGroupBox(parent) {
-  layout = new QGridLayout();
   layout->setAlignment(Qt::AlignCenter);
   setLayout(layout);
   setMinimumHeight(50);
@@ -20,6 +19,8 @@ void ButtonsPanel::addButton(Button button, int row, int column, QString text) {
 
 void ButtonsPanel::addInfo(Button button, int row, int column, QString info) {
   QLabel *l = new QLabel(info);
+  l->setMargin(2);
+  l->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
   layout->addWidget(l, row, column);
   labels[button] = l;
 }

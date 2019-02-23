@@ -12,7 +12,7 @@ enum class Button : quint8 {
 class ButtonsPanel : public QGroupBox {
   Q_OBJECT
 private:
-  QGridLayout *layout;
+  QGridLayout *layout = new QGridLayout();
   QMap<Button, QPushButton*> buttons;
   QMap<Button, QLabel*> labels;
 
@@ -26,6 +26,7 @@ public:
   void updateInfo(Button button, QString info);
 
   inline QPushButton* getButton(Button button) { return buttons[button]; }
+  inline QLabel* getLabel(Button button) { return labels[button]; }
 
   void setAlignmentContent(QFlags<Qt::AlignmentFlag> align);
 };

@@ -7,7 +7,6 @@
 class MainMenu : public QWidget {
   Q_OBJECT
 private:
-  QBrush *brush = new QBrush(Qt::TexturePattern);
   QPalette *pall = new QPalette();
 
   QLabel *title = new QLabel();

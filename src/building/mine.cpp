@@ -20,10 +20,11 @@ float Mine::getFullMod_Pollution() {
 
 QString Mine::getInfo() {
   QString s;
-  s.sprintf("Price: %lld\n"
+  s.sprintf("Quantity: %lld\n"
+            "Price: %lld\n"
             "Minerals: %lld\n"
             "Energy: %lld\n"
             "Pollution: %3.2f",
-            price, mod_minerals, mod_energy, double(mod_pollution));
+            quantity, price, mod_minerals, mod_energy, double(mod_pollution));
   return s;
 }

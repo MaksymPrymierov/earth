@@ -3,6 +3,7 @@
 
 #include <QtWidgets>
 #include "buttonspanel.h"
+#include "textpanel.h"
 #include "../world.h"
 
 enum class ButtonPanel : quint8 {
@@ -19,7 +20,7 @@ private:
   QStackedWidget *footer = new QStackedWidget();
   QVBoxLayout *generalLayout = new QVBoxLayout();
 
-  QLabel *textPanel = new QLabel();
+  TextPanel *textPanel = new TextPanel();
 
   QMap<ButtonPanel, ButtonsPanel*> buttonsPanels;
 

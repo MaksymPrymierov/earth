@@ -19,9 +19,10 @@ float EnergyStation::getFullMod_Pollution() {
 
 QString EnergyStation::getInfo() {
   QString s;
-  s.sprintf("Price: %lld\n"
+  s.sprintf("Quantity: %lld\n"
+            "Price: %lld\n"
             "Energy: %lld\n"
             "Pollution: %3.2f\n",
-            price, mod_energy, double(mod_pollution));
+            quantity, price, mod_energy, double(mod_pollution));
   return s;
 }

@@ -25,32 +25,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/main.cpp \
     src/building/building.cpp \
+    src/building/cleaningstation.cpp \
     src/building/energystation.cpp \
     src/building/farm.cpp \
-    src/building/mine.cpp \
-    src/world.cpp \
-    src/conWidget/mainwindow.cpp \
     src/building/laboratory.cpp \
-    src/conWidget/mainmenu.cpp \
-    src/conWidget/gamescreen.cpp \
+    src/building/mine.cpp \
     src/conWidget/buttonspanel.cpp \
-    src/building/cleaningstation.cpp
+    src/conWidget/gamescreen.cpp \
+    src/conWidget/mainmenu.cpp \
+    src/conWidget/mainwindow.cpp \
+    src/main.cpp \
+    src/world.cpp \
+    src/conWidget/textpanel.cpp
 
 
 HEADERS += \
     headers/building/building.h \
+    headers/building/cleaningstation.h \
     headers/building/energystation.h \
     headers/building/farm.h \
-    headers/building/mine.h \
-    headers/world.h \
-    headers/conWidget/mainwindow.h \
     headers/building/laboratory.h \
-    headers/conWidget/mainmenu.h \
-    headers/conWidget/gamescreen.h \
+    headers/building/mine.h \
     headers/conWidget/buttonspanel.h \
-    headers/building/cleaningstation.h
+    headers/conWidget/gamescreen.h \
+    headers/conWidget/mainmenu.h \
+    headers/conWidget/mainwindow.h \
+    headers/world.h \
+    headers/conWidget/textpanel.h
+
 
 
 FORMS +=
@@ -60,8 +63,13 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+SUBDIRS += \
+    conEarth.pro
+
+RESOURCES += \
+    resources/images/images.qrc
+
+
 DISTFILES += \
     resources/images/mainmenu.png
 
-SUBDIRS += \
-    conEarth.pro

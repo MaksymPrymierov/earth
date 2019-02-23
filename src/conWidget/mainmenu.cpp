@@ -14,7 +14,6 @@ MainMenu::MainMenu(QWidget *parent) :
 }
 
 MainMenu::~MainMenu() {
-  delete brush;
   delete pall;
   delete title;
   delete generalLayout;
@@ -38,8 +37,7 @@ void MainMenu::installMenu() {
   menu->setAlignmentContent(Qt::AlignCenter);
   menu->setFixedSize(375, 500);
 
-  brush->setTextureImage(QImage("resources/images/mainmenu.png"));
-  pall->setBrush(menu->backgroundRole(), *brush);
+  pall->setBrush(menu->backgroundRole(), QBrush(QPixmap(":/images/mainmenu.png")));
   menu->setPalette(*pall);
   menu->setAutoFillBackground(true);
 

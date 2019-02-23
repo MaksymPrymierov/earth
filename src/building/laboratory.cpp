@@ -10,10 +10,11 @@ Laboratory::Laboratory(Building *parent) :
 
 QString Laboratory::getInfo() {
   QString s;
-  s.sprintf("Price: %lld\n"
+  s.sprintf("Quantity: %lld\n"
+            "Price: %lld\n"
             "Science: %lld\n"
             "Energy: %lld\n"
             "Minerals: %lld",
-            price, mod_science, mod_energy, mod_minerals);
+            quantity, price, mod_science, mod_energy, mod_minerals);
   return s;
 }

@@ -86,12 +86,24 @@ void GameScreen::addBuildPanel() {
   buttonsPanels[ButtonPanel::Building] = p;
   footer->addWidget(p);
 
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::PowerStation), &QPushButton::clicked, world, &World::buildEnergyStation);
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Mine), &QPushButton::clicked, world, &World::buildMine);
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Farm), &QPushButton::clicked, world, &World::buildFarm);
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Laboratory), &QPushButton::clicked, world, &World::buildLab);
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::CleaningStation), &QPushButton::clicked, world, &World::buildCleaningStation);
-  QObject::connect(buttonsPanels[ButtonPanel::Building]->getButton(Button::Cancel), &QPushButton::clicked, this, &GameScreen::showActionPanel);
+#define button(x) buttonsPanels[ButtonPanel::Building]->getButton(x)
+#define label(x)  buttonsPanels[ButtonPanel::Building]->getLabel(x)
+
+  QObject::connect(button(Button::PowerStation), &QPushButton::clicked, world, &World::buildEnergyStation);
+  QObject::connect(button(Button::Mine), &QPushButton::clicked, world, &World::buildMine);
+  QObject::connect(button(Button::Farm), &QPushButton::clicked, world, &World::buildFarm);
+  QObject::connect(button(Button::Laboratory), &QPushButton::clicked, world, &World::buildLab);
+  QObject::connect(button(Button::CleaningStation), &QPushButton::clicked, world, &World::buildCleaningStation);
+  QObject::connect(button(Button::Cancel), &QPushButton::clicked, this, &GameScreen::showActionPanel);
+
+  QObject::connect(button(Button::PowerStation), &QPushButton::clicked, [this] () { label(Button::PowerStation)->setText(world->getInfoEnergyStation()); });
+  QObject::connect(button(Button::Mine), &QPushButton::clicked, [this] () { label(Button::Mine)->setText(world->getInfoMine()); });
+  QObject::connect(button(Button::Farm), &QPushButton::clicked, [this] () { label(Button::Farm)->setText(world->getInfoFarm()); });
+  QObject::connect(button(Button::Laboratory), &QPushButton::clicked, [this] () { label(Button::Laboratory)->setText(world->getInfoLab()); });
+  QObject::connect(button(Button::CleaningStation), &QPushButton::clicked, [this] () { label(Button::CleaningStation)->setText(world->getInfoCleaningStation()); });
+
+#undef button
+#undef label
 }
 
 void GameScreen::installHeader() {
@@ -103,11 +115,25 @@ void GameScreen::installFooter() {
 }
 
 void GameScreen::installInfoPanel() {
-  textPanel->setText(world->get());
-  textPanel->setAlignment(Qt::AlignCenter);
+  textPanel->addInfo(Info::Year, 0, 0, world->getInfoYear());
+  textPanel->addInfo(Info::Population, 0, 1, world->getInfoPopulation());
+  textPanel->addInfo(Info::Energy, 1, 0, world->getInfoEnergy());
+  textPanel->addInfo(Info::Minerals, 1, 1, world->getInfoMinerals());
+  textPanel->addInfo(Info::Food, 1, 2, world->getInfoFood());
+  textPanel->addInfo(Info::Pollution, 2, 0, world->getInfoPollution());
+  textPanel->addInfo(Info::Solidarity, 2, 1, world->getInfoSolidarity());
+  textPanel->addInfo(Info::Science, 2, 2, world->getInfoScience());
+
   textPanel->setMinimumSize(600, 400);
 
   generalLayout->addWidget(textPanel);
 
-  QObject::connect(world, &World::print, textPanel, &QLabel::setText);
+  QObject::connect(world, &World::yearUpdate, textPanel->getLabel(Info::Year), &QLabel::setText);
+  QObject::connect(world, &World::populationUpdate, textPanel->getLabel(Info::Population), &QLabel::setText);
+  QObject::connect(world, &World::energyUpdate, textPanel->getLabel(Info::Energy), &QLabel::setText);
+  QObject::connect(world, &World::mineralsUpdate, textPanel->getLabel(Info::Minerals), &QLabel::setText);
+  QObject::connect(world, &World::foodUpdate, textPanel->getLabel(Info::Food), &QLabel::setText);
+  QObject::connect(world, &World::pullutionUpdate, textPanel->getLabel(Info::Pollution), &QLabel::setText);
+  QObject::connect(world, &World::solidarityUpdate, textPanel->getLabel(Info::Solidarity), &QLabel::setText);
+  QObject::connect(world, &World::scienceUpdate, textPanel->getLabel(Info::Science), &QLabel::setText);
 }
