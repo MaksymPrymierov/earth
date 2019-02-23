@@ -152,12 +152,11 @@ void World::updateCleaningStation() {
 }
 
 void World::postUpdate() {
-  if(food > 0) {
-    food -= population * 0.01;
-    ++population;
-  } else{
-    --population;
-  }
+  checkEnergy();
+  checkMinerals();
+  checkFood();
+  checkPollution();
+  checkSolidarity();
 
   ++year;
 }
@@ -226,4 +225,50 @@ void World::buildCleaningStation() {
   minerals -= cleaningStation->getPrice_Minerals();
   cleaningStation->build();
   update();
+}
+
+void World::checkEnergy() {
+  if (energy <= 0) {
+    energy = 0;
+    solidarity -= float(0.01);
+  }
+}
+
+void World::checkMinerals() {
+  if (minerals <= 0) {
+    minerals = 0;
+    solidarity -= float(0.01);
+  }
+}
+
+void World::checkFood() {
+  if (food <= 0) {
+    food = 0;
+    solidarity -= float(0.01);
+    population -= population * 0.01;
+  } else if(food > 0) {
+    food -= population * 0.01;
+    solidarity += float(0.01);
+    population += population * 0.01;
+  }
+}
+
+void World::checkPollution() {
+  if (pollution <= 0) {
+    pollution = 0;
+  } else if (pollution >= 100) {
+    pollution = 100;
+    solidarity -= float(0.05);
+  } else if (pollution >= 50) {
+    solidarity -= float(0.01);
+  }
+
+}
+
+void World::checkSolidarity() {
+  if (solidarity <= 0) {
+    solidarity = 0;
+  } else if (solidarity >= 100) {
+    solidarity = 100;
+  }
 }

@@ -4,8 +4,8 @@ CleaningStation::CleaningStation(Building *parent) :
   Building (parent),
   mod_minerals(0),
   mod_pollution(float(-0.1)) {
-  price = 5;
-  mod_energy = -2;
+  price = 10;
+  mod_energy = -4;
 }
 
 QString CleaningStation::getInfo() {

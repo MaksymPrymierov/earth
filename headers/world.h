@@ -55,6 +55,12 @@ private:
   void preUpdate();
   void postUpdate();
 
+  void checkEnergy();
+  void checkMinerals();
+  void checkFood();
+  void checkPollution();
+  void checkSolidarity();
+
 signals:
   void yearUpdate(QString);
   void populationUpdate(QString);
