@@ -1,30 +1,30 @@
 #include "headers/building/mine.h"
 
-Mine::Mine(Building *parent) :
-  Building (parent),
-  mod_pollution(float(0.01)),
-  mod_minerals(1) {
-  price = 1;
-  mod_energy = -1;
+QMine::QMine(QBuilding *parent) :
+    QBuilding(parent), modPollution(float(0.01)), modMinerals(1)
+{
+    setPrice(1);
+    setModEnergy(-1);
 }
 
-float Mine::getFullMod_Pollution() {
-  float b = mod_pollution * getQuantity();
+float QMine::getFullModPollution()
+{
+    float b = modPollution * getQuantity();
 
-  if(b > 100){
-    b = 100;
-  }
+    if (b > 100) {
+        b = 100;
+    }
 
-  return b;
+    return b;
 }
 
-QString Mine::getInfo() {
-  QString s;
-  s.sprintf("Quantity: %lld\n"
-            "Price: %lld\n"
-            "Minerals: %lld\n"
-            "Energy: %lld\n"
-            "Pollution: %3.2f",
-            quantity, price, mod_minerals, mod_energy, double(mod_pollution));
-  return s;
+QString QMine::getInfo()
+{
+    return QString::asprintf("Quantity: %lld\n"
+                             "Price: %lld\n"
+                             "Minerals: %lld\n"
+                             "Energy: %lld\n"
+                             "Pollution: %3.2f",
+                             getQuantity(), getPriceMinerals(), modMinerals, getModEnergy(),
+                             double(modPollution));
 }

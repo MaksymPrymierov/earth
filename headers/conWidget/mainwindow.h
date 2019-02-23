@@ -5,27 +5,27 @@
 #include "mainmenu.h"
 #include "gamescreen.h"
 
-class MainWindow : public QWidget
+class QGameMainWindow : public QWidget
 {
-  Q_OBJECT
-private:
-  int x, y;
-  QPalette *pall = new QPalette();
-
-  GameScreen *gameScreen = new GameScreen();
-  MainMenu *mainMenu = new MainMenu();
-
-  QStackedWidget *stackWidgets = new QStackedWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
-
-
+    Q_OBJECT
 public: 
-  explicit MainWindow(QWidget *parent = nullptr);
-  ~MainWindow() = default;
+    explicit QGameMainWindow(QWidget *parent = nullptr);
+    ~QGameMainWindow() = default;
 
 public slots:
-  void installMainMenu();
-  void installGameScreen();
+    void installMainMenu();
+    void installGameScreen();
+
+private:
+    int x;
+    int y;
+    QPalette *pall = new QPalette();
+
+    QGameScreen *gameScreen = new QGameScreen();
+    QMainMenu *mainMenu = new QMainMenu();
+
+    QStackedWidget *stackWidgets = new QStackedWidget();
+    QVBoxLayout *layout = new QVBoxLayout();
 
 };
 

@@ -3,25 +3,25 @@
 
 #include "building.h"
 
-class Mine : public Building {
-  Q_OBJECT
-private:
-  float mod_pollution;
-  qint64 mod_minerals;
+class QMine : public QBuilding
+{
+    Q_OBJECT
 public:
-  explicit Mine(Building *parent = nullptr);
-  ~Mine() = default;
+    explicit QMine(QBuilding *parent = nullptr);
+    ~QMine() = default;
 
-  inline void setMod_Pollution(float m) { mod_pollution = m; }
-  inline void setMod_Minerals(qint64 m) { mod_minerals = m; }
+    inline void setModPollution(float m) { modPollution = m; }
+    inline void setModMinerals(qint64 m) { modMinerals = m; }
 
-  inline float getMod_Pollution() { return mod_pollution; }
-  inline qint64 getMod_Minerals() { return mod_minerals; }
+    inline float getModPollution() { return modPollution; }
+    inline qint64 getModMinerals() { return modMinerals; }
+    float getFullModPollution();
+    inline qint64 getFullModMinerals() { return modMinerals * getQuantity(); }
+    QString getInfo();
 
-  float getFullMod_Pollution();
-  inline qint64 getFullMod_Minerals() { return mod_minerals * quantity; }
-
-  QString getInfo();
+private:
+    float modPollution;
+    qint64 modMinerals;
 };
 
 #endif // MINE_H

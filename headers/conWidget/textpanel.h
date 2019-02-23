@@ -3,25 +3,27 @@
 
 #include <QtWidgets>
 
-enum class Info : quint8 {
-  Year = 0, Population, Energy, Minerals, Food,
-  Science, Pollution, Solidarity
+enum class QInfo : quint8
+{
+    Year = 0, Population, Energy, Minerals, Food,
+    Science, Pollution, Solidarity
 };
 
-class TextPanel : public QWidget {
-  Q_OBJECT
-private:
-  QGridLayout *layout = new QGridLayout();
-  QMap<Info, QLabel*> labels;
-
+class QTextPanel : public QWidget
+{
+    Q_OBJECT
 public:
-  explicit TextPanel(QWidget *parent = nullptr);
-  ~TextPanel();
+    explicit QTextPanel(QWidget *parent = nullptr);
+    ~QTextPanel();
 
-  void addInfo(Info type, int row, int column, QString info);
-  void updateInfo(Info type, QString info);
+    void addInfo(QInfo type, int row, int column, QString info);
+    void updateInfo(QInfo type, QString info);
 
-  inline QLabel* getLabel(Info type) { return labels[type]; }
+    inline QLabel* getLabel(QInfo type) { return labels[type]; }
+
+private:
+    QGridLayout *layout = new QGridLayout();
+    QMap<QInfo, QLabel*> labels;
 };
 
 #endif // TEXTPANEL_H

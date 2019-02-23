@@ -3,23 +3,25 @@
 
 #include "building.h"
 
-class Laboratory : public Building {
-  Q_OBJECT
-private:
-  qint64 mod_minerals, mod_science;
+class QLaboratory : public QBuilding
+{
+    Q_OBJECT
 public:
-  explicit Laboratory(Building *parent = nullptr);
-  ~Laboratory() = default;
+    explicit QLaboratory(QBuilding *parent = nullptr);
+    ~QLaboratory() = default;
 
-  inline void setMod_Minerals(qint64 m) { mod_science = m; }
-  inline void setMod_Science(qint64 m) { mod_minerals = m; }
+    inline void setModMinerals(qint64 m) { modScience = m; }
+    inline void setModScience(qint64 m) { modMinerals = m; }
 
-  inline qint64 getMod_Minerals() { return mod_minerals; }
-  inline qint64 getMod_Science() { return mod_science; }
-  inline qint64 getFullMod_Minerals() { return mod_minerals * quantity; }
-  inline qint64 getFullMod_Science() { return mod_science * quantity; }
+    inline qint64 getModMinerals() { return modMinerals; }
+    inline qint64 getModScience() { return modScience; }
+    inline qint64 getFullModMinerals() { return modMinerals * getQuantity(); }
+    inline qint64 getFullModScience() { return modScience * getQuantity(); }
+    QString getInfo();
 
-  QString getInfo();
+private:
+    qint64 modMinerals;
+    qint64 modScience;
 };
 
 #endif // LABORATORY_H

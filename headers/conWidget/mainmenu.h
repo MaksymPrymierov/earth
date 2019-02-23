@@ -4,26 +4,28 @@
 #include <QtWidgets>
 #include "buttonspanel.h"
 
-class MainMenu : public QWidget {
-  Q_OBJECT
-private:
-  QPalette *pall = new QPalette();
-
-  QLabel *title = new QLabel();
-  ButtonsPanel *menu = new ButtonsPanel();
-
-  QVBoxLayout *generalLayout = new QVBoxLayout();
-
-  void setTitle(QString text);
-  void installMenu();
-
+class QMainMenu : public QWidget
+{
+    Q_OBJECT
 public:
-  explicit MainMenu(QWidget *parent = nullptr);
-  ~MainMenu();
+    explicit QMainMenu(QWidget *parent = nullptr);
+    ~QMainMenu();
 
 signals:
-  void clickedNewGame();
-  void clickedExit();
+    void clickedNewGame();
+    void clickedExit();
+
+protected:
+    void setTitle(QString text);
+    void installMenu();
+
+private:
+    QPalette *pall = new QPalette();
+
+    QLabel *title = new QLabel();
+    QButtonsPanel *menu = new QButtonsPanel();
+
+    QVBoxLayout *generalLayout = new QVBoxLayout();
 
 };
 

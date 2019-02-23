@@ -1,19 +1,24 @@
 #include "headers/conWidget/textpanel.h"
 
-TextPanel::TextPanel(QWidget *parent) :
-  QWidget(parent) {
-  layout->setAlignment(Qt::AlignCenter);
-  setLayout(layout);
+QTextPanel::QTextPanel(QWidget *parent) :
+    QWidget(parent)
+{
+    layout->setAlignment(Qt::AlignCenter);
+    setLayout(layout);
 }
 
-TextPanel::~TextPanel() {
-  delete layout;
+QTextPanel::~QTextPanel()
+{
+    delete layout;
 }
 
-void TextPanel::addInfo(Info type, int row, int column, QString info) {
-  QLabel *l = new QLabel(info);
-  l->setMargin(2);
-  l->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-  layout->addWidget(l, row, column);
-  labels[type] = l;
+void QTextPanel::addInfo(QInfo type, int row, int column, QString info)
+{
+    QLabel *l = new QLabel(info);
+
+    l->setMargin(2);
+    l->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
+
+    layout->addWidget(l, row, column);
+    labels[type] = l;
 }

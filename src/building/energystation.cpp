@@ -1,28 +1,29 @@
 #include "headers/building/energystation.h"
 
-EnergyStation::EnergyStation(Building *parent) :
-  Building(parent),
-  mod_pollution(float(0.01)) {
-  mod_energy = 1;
-  price = 1;
+QEnergyStation::QEnergyStation(QBuilding *parent) :
+    QBuilding(parent), modPollution(float(0.01))
+{
+    setModEnergy(1);
+    setPrice(1);
 }
 
-float EnergyStation::getFullMod_Pollution() {
-  float b = quantity * mod_pollution;
+float QEnergyStation::getFullModPollution()
+{
+    float b = getQuantity() * modPollution;
 
-  if(b > 100){
-    b = 100;
-  }
+    if (b > 100) {
+        b = 100;
+    }
 
-  return b;
+    return b;
 }
 
-QString EnergyStation::getInfo() {
-  QString s;
-  s.sprintf("Quantity: %lld\n"
-            "Price: %lld\n"
-            "Energy: %lld\n"
-            "Pollution: %3.2f\n",
-            quantity, price, mod_energy, double(mod_pollution));
-  return s;
+QString QEnergyStation::getInfo()
+{
+    return QString::asprintf("Quantity: %lld\n"
+                             "Price: %lld\n"
+                             "Energy: %lld\n"
+                             "Pollution: %3.2f\n",
+                             getQuantity(), getPriceMinerals(), getModEnergy(),
+                             double(modPollution));
 }

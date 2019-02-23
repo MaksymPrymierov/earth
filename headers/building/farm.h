@@ -3,19 +3,21 @@
 
 #include "building.h"
 
-class Farm : public Building {
-  Q_OBJECT
-private:
-  qint64 mod_food;
+class QFarm : public QBuilding
+{
+    Q_OBJECT
 public:
-  explicit Farm(Building *parent = nullptr);
-  ~Farm() = default;
+    explicit QFarm(QBuilding *parent = nullptr);
+    ~QFarm() = default;
 
-  inline void setMod_Food(qint64 m) { mod_food = m; }
+    inline void setModFood(qint64 m) { modFood = m; }
 
-  inline qint64 getMod_Food() { return mod_food; }
-  inline qint64 getFullMod_Food() { return mod_food * quantity; }
-  QString getInfo();
+    inline qint64 getModFood() { return modFood; }
+    inline qint64 getFullModFood() { return modFood * getQuantity(); }
+    QString getInfo();
+
+private:
+    qint64 modFood;
 };
 
 #endif // FARM_H

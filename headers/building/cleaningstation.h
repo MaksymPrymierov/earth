@@ -3,25 +3,26 @@
 
 #include "building.h"
 
-class CleaningStation : public Building {
-  Q_OBJECT
-private:
-  qint64 mod_minerals;
-  float mod_pollution;
+class QCleaningStation : public QBuilding
+{
+    Q_OBJECT
 public:
-  explicit CleaningStation(Building *parent = nullptr);
-  ~CleaningStation() = default;
+    explicit QCleaningStation(QBuilding *parent = nullptr);
+    ~QCleaningStation() = default;
 
-  inline void setMod_Minerals(qint64 m) { mod_minerals = m; }
-  inline void setMod_Pollution(float m) { mod_pollution = m; }
+    inline void setModMinerals(qint64 m) { modMinerals = m; }
+    inline void setModPollution(float m) { modPollution = m; }
 
-  inline qint64 getMod_Minerals() { return mod_minerals; }
-  inline float getMod_Pollution() { return mod_pollution; }
+    inline qint64 getModMinerals() { return modMinerals; }
+    inline float getModPollution() { return modPollution; }
 
-  inline qint64 getFullMod_Minerals() { return mod_minerals * quantity; }
-  inline float getFullMod_Pollution() { return mod_pollution * quantity; }
+    inline qint64 getFullModMinerals() { return modMinerals * getQuantity(); }
+    inline float getFullModPollution() { return modPollution * getQuantity(); }
+    QString getInfo();
 
-  QString getInfo();
+private:
+    qint64 modMinerals;
+    float modPollution;
 };
 
 #endif // CLEANINGSTATION_H

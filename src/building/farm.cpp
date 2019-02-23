@@ -1,18 +1,17 @@
 #include "headers/building/farm.h"
 
-Farm::Farm(Building *parent) :
-  Building (parent),
-  mod_food(1) {
-  price = 1;
-  mod_energy = -1;
+QFarm::QFarm(QBuilding *parent) :
+    QBuilding(parent), modFood(1)
+{
+    setPrice(1);
+    setModEnergy(-1);
 }
 
-QString Farm::getInfo() {
-  QString s;
-  s.sprintf("Quantity: %lld\n"
-            "Price: %lld\n"
-            "Food: %lld\n"
-            "Energy: %lld\n",
-            quantity, price, mod_food, mod_energy);
-  return s;
+QString QFarm::getInfo()
+{
+    return QString::asprintf("Quantity: %lld\n"
+                             "Price: %lld\n"
+                             "Food: %lld\n"
+                             "Energy: %lld\n",
+                             getQuantity(), getPriceMinerals(), modFood, getModEnergy());
 }

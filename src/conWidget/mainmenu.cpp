@@ -1,45 +1,53 @@
 #include "headers/conWidget/mainmenu.h"
 
-MainMenu::MainMenu(QWidget *parent) :
-  QWidget(parent) {
-  generalLayout->setContentsMargins(5, 5, 5, 5);
-  generalLayout->setSpacing(5);
-  generalLayout->setAlignment(Qt::AlignHCenter);
-  setTitle("Con Civilization");
-  installMenu();
-  setLayout(generalLayout);
+QMainMenu::QMainMenu(QWidget *parent) :
+    QWidget(parent)
+{
+    generalLayout->setContentsMargins(5, 5, 5, 5);
+    generalLayout->setSpacing(5);
+    generalLayout->setAlignment(Qt::AlignHCenter);
+    setLayout(generalLayout);
 
-  QObject::connect(menu->getButton(Button::NewGame), &QPushButton::clicked, [this] () { emit clickedNewGame(); });
-  QObject::connect(menu->getButton(Button::Exit), &QPushButton::clicked, [this] () { emit clickedExit(); });
+    setTitle("Con Civilization");
+
+    installMenu();
+
+    QObject::connect(menu->getButton(QButton::NewGame), &QPushButton::clicked,
+                     [this] () { emit clickedNewGame(); });
+    QObject::connect(menu->getButton(QButton::Exit), &QPushButton::clicked,
+                     [this] () { emit clickedExit(); });
 }
 
-MainMenu::~MainMenu() {
-  delete pall;
-  delete title;
-  delete generalLayout;
-  delete menu;
+QMainMenu::~QMainMenu()
+{
+    delete pall;
+    delete title;
+    delete generalLayout;
+    delete menu;
 }
 
-void MainMenu::setTitle(QString text) {
-  title->setText(text);
-  title->setAlignment(Qt::AlignCenter);
+void QMainMenu::setTitle(QString text)
+{
+    title->setText(text);
+    title->setAlignment(Qt::AlignCenter);
 
-  generalLayout->addWidget(title);
+    generalLayout->addWidget(title);
 }
 
-void MainMenu::installMenu() {
-  menu->addButton(Button::NewGame, 0, 0, "New Game");
-  menu->addButton(Button::Exit, 1, 0, "Exit");
+void QMainMenu::installMenu()
+{
+    menu->addButton(QButton::NewGame, 0, 0, "New Game");
+    menu->addButton(QButton::Exit, 1, 0, "Exit");
 
-  menu->getButton(Button::NewGame)->setMinimumWidth(150);
-  menu->getButton(Button::Exit)->setMinimumWidth(150);
+    menu->getButton(QButton::NewGame)->setMinimumWidth(150);
+    menu->getButton(QButton::Exit)->setMinimumWidth(150);
 
-  menu->setAlignmentContent(Qt::AlignCenter);
-  menu->setFixedSize(375, 500);
+    menu->setAlignmentContent(Qt::AlignCenter);
+    menu->setFixedSize(375, 500);
 
-  pall->setBrush(menu->backgroundRole(), QBrush(QPixmap(":/images/mainmenu.png")));
-  menu->setPalette(*pall);
-  menu->setAutoFillBackground(true);
+    pall->setBrush(menu->backgroundRole(), QBrush(QPixmap(":/images/mainmenu.png")));
+    menu->setPalette(*pall);
+    menu->setAutoFillBackground(true);
 
-  generalLayout->addWidget(menu);
+    generalLayout->addWidget(menu);
 }

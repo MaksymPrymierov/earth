@@ -3,32 +3,34 @@
 
 #include <QtWidgets>
 
-enum class Button : quint8 {
-  Save = 0, Load, ExitToMenu, Exit, Building,
-  Destroy, Science, Events, PowerStation, Mine,
-  Farm, Laboratory, CleaningStation, Cancel, NewGame
+enum class QButton : quint8
+{
+    Save = 0, Load, ExitToMenu, Exit, Building,
+    Destroy, Science, Events, PowerStation, Mine,
+    Farm, Laboratory, CleaningStation, Cancel, NewGame
 };
 
-class ButtonsPanel : public QGroupBox {
-  Q_OBJECT
-private:
-  QGridLayout *layout = new QGridLayout();
-  QMap<Button, QPushButton*> buttons;
-  QMap<Button, QLabel*> labels;
-
+class QButtonsPanel : public QGroupBox
+{
+    Q_OBJECT
 public:
-  explicit ButtonsPanel(QGroupBox *parent = nullptr);
-  ~ButtonsPanel();
+    explicit QButtonsPanel(QGroupBox *parent = nullptr);
+    ~QButtonsPanel();
 
-  void addButton(Button button, int row, int column, QString text);
-  void addInfo(Button button, int row, int column, QString info);
+    void addButton(QButton button, int row, int column, QString text);
+    void addInfo(QButton button, int row, int column, QString info);
 
-  void updateInfo(Button button, QString info);
+    void updateInfo(QButton button, QString info);
 
-  inline QPushButton* getButton(Button button) { return buttons[button]; }
-  inline QLabel* getLabel(Button button) { return labels[button]; }
+    inline QPushButton* getButton(QButton button) { return buttons[button]; }
+    inline QLabel* getLabel(QButton button) { return labels[button]; }
 
-  void setAlignmentContent(QFlags<Qt::AlignmentFlag> align);
+    void setAlignmentContent(QFlags<Qt::AlignmentFlag> align);
+
+private:
+    QGridLayout *layout = new QGridLayout();
+    QMap<QButton, QPushButton*> buttons;
+    QMap<QButton, QLabel*> labels;
 };
 
 #endif // BOTTONSPANEL_H
