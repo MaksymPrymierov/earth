@@ -1,4 +1,4 @@
-#include "headers/building/mine.h"
+#include "headers/QBuilding/QMine.h"
 
 QMine::QMine(QBuilding *parent) :
     QBuilding(parent), modPollution(float(0.01)), modMinerals(1)

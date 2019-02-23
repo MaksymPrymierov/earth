@@ -1,4 +1,4 @@
-#include "headers/building/laboratory.h"
+#include "headers/QBuilding/QLaboratory.h"
 
 QLaboratory::QLaboratory(QBuilding *parent) :
     QBuilding(parent), modMinerals(-2), modScience(1)

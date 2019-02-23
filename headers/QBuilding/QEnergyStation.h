@@ -1,7 +1,6 @@
-#ifndef ENERGYSTATION_H
-#define ENERGYSTATION_H
+#pragma once
 
-#include "building.h"
+#include "QBuilding.h"
 
 class QEnergyStation : public QBuilding
 {
@@ -19,5 +18,3 @@ public:
 private:
     float modPollution;
 };
-
-#endif // ENERGYSTATION_H

@@ -1,7 +1,6 @@
-#ifndef LABORATORY_H
-#define LABORATORY_H
+#pragma once
 
-#include "building.h"
+#include "QBuilding.h"
 
 class QLaboratory : public QBuilding
 {
@@ -23,5 +22,3 @@ private:
     qint64 modMinerals;
     qint64 modScience;
 };
-
-#endif // LABORATORY_H

@@ -1,4 +1,4 @@
-#include "headers/building/cleaningstation.h"
+#include "headers/QBuilding/QCleaningStation.h"
 
 QCleaningStation::QCleaningStation(QBuilding *parent) :
     QBuilding(parent), modMinerals(0), modPollution(float(-0.1))

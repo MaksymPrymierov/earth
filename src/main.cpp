@@ -1,7 +1,7 @@
 #include <QString>
 #include <QtWidgets>
 
-#include "headers/conWidget/mainwindow.h"
+#include "headers/QConWidgets/QGameMainWindow.h"
 
 int main(int argc, char *argv[])
 {

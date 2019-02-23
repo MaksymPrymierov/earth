@@ -1,4 +1,4 @@
-#include "headers/building/farm.h"
+#include "headers/QBuilding/QFarm.h"
 
 QFarm::QFarm(QBuilding *parent) :
     QBuilding(parent), modFood(1)

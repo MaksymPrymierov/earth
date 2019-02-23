@@ -1,8 +1,7 @@
-#ifndef MAINMENU_H
-#define MAINMENU_H
+#pragma once
 
 #include <QtWidgets>
-#include "buttonspanel.h"
+#include "QButtonsPanel.h"
 
 class QMainMenu : public QWidget
 {
@@ -28,5 +27,3 @@ private:
     QVBoxLayout *generalLayout = new QVBoxLayout();
 
 };
-
-#endif // MAINMENU_H

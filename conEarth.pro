@@ -25,34 +25,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/building/building.cpp \
-    src/building/cleaningstation.cpp \
-    src/building/energystation.cpp \
-    src/building/farm.cpp \
-    src/building/laboratory.cpp \
-    src/building/mine.cpp \
-    src/conWidget/buttonspanel.cpp \
-    src/conWidget/gamescreen.cpp \
-    src/conWidget/mainmenu.cpp \
-    src/conWidget/mainwindow.cpp \
+    src/QBuilding/QBuilding.cpp \
+    src/QBuilding/QCleaningStation.cpp \
+    src/QBuilding/QEnergyStation.cpp \
+    src/QBuilding/QFarm.cpp \
+    src/QBuilding/QLaboratory.cpp \
+    src/QBuilding/QMine.cpp \
+    src/QConWidgets/QButtonsPanel.cpp \
+    src/QConWidgets/QGameMainWindow.cpp \
+    src/QConWidgets/QGameScreen.cpp \
+    src/QConWidgets/QMainMenu.cpp \
+    src/QConWidgets/QTextPanel.cpp \
     src/main.cpp \
-    src/world.cpp \
-    src/conWidget/textpanel.cpp
+    src/QWorld.cpp
 
 
 HEADERS += \
-    headers/building/building.h \
-    headers/building/cleaningstation.h \
-    headers/building/energystation.h \
-    headers/building/farm.h \
-    headers/building/laboratory.h \
-    headers/building/mine.h \
-    headers/conWidget/buttonspanel.h \
-    headers/conWidget/gamescreen.h \
-    headers/conWidget/mainmenu.h \
-    headers/conWidget/mainwindow.h \
-    headers/world.h \
-    headers/conWidget/textpanel.h
+    headers/QBuilding/QBuilding.h \
+    headers/QBuilding/QCleaningStation.h \
+    headers/QBuilding/QEnergyStation.h \
+    headers/QBuilding/QFarm.h \
+    headers/QBuilding/QLaboratory.h \
+    headers/QBuilding/QMine.h \
+    headers/QConWidgets/QButtonsPanel.h \
+    headers/QConWidgets/QGameMainWindow.h \
+    headers/QConWidgets/QGameScreen.h \
+    headers/QConWidgets/QMainMenu.h \
+    headers/QWorld.h \
+    headers/QConWidgets/QTextPanel.h
+
 
 
 

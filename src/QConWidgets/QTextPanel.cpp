@@ -1,4 +1,4 @@
-#include "headers/conWidget/textpanel.h"
+#include "headers/QConWidgets/QTextPanel.h"
 
 QTextPanel::QTextPanel(QWidget *parent) :
     QWidget(parent)

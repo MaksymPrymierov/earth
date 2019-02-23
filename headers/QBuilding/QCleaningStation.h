@@ -1,7 +1,6 @@
-#ifndef CLEANINGSTATION_H
-#define CLEANINGSTATION_H
+#pragma once
 
-#include "building.h"
+#include "QBuilding.h"
 
 class QCleaningStation : public QBuilding
 {
@@ -24,5 +23,3 @@ private:
     qint64 modMinerals;
     float modPollution;
 };
-
-#endif // CLEANINGSTATION_H

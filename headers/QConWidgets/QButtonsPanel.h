@@ -1,5 +1,4 @@
-#ifndef BOTTONSPANEL_H
-#define BOTTONSPANEL_H
+#pragma once
 
 #include <QtWidgets>
 
@@ -32,5 +31,3 @@ private:
     QMap<QButton, QPushButton*> buttons;
     QMap<QButton, QLabel*> labels;
 };
-
-#endif // BOTTONSPANEL_H

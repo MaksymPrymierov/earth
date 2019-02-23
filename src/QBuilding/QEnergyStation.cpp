@@ -1,4 +1,4 @@
-#include "headers/building/energystation.h"
+#include "headers/QBuilding/QEnergyStation.h"
 
 QEnergyStation::QEnergyStation(QBuilding *parent) :
     QBuilding(parent), modPollution(float(0.01))

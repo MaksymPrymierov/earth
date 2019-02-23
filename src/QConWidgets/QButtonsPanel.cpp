@@ -1,4 +1,4 @@
-#include "headers/conWidget/buttonspanel.h"
+#include "headers/QConWidgets/QButtonsPanel.h"
 
 QButtonsPanel::QButtonsPanel(QGroupBox *parent) :
     QGroupBox(parent)

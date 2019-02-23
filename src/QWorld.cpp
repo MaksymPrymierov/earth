@@ -1,7 +1,4 @@
-#include "headers/world.h"
-#include <QtCore/QCoreApplication>
-#include <QtWidgets>
-
+#include "headers/QWorld.h"
 
 QWorld::QWorld(QObject *parent) :
     QObject(parent), year(0), population(300), energy(100), minerals(100), food(100), science(0),
@@ -104,8 +101,7 @@ qint64 QWorld::getModScience()
 
 void QWorld::preUpdate()
 {
-    if (population == 0)
-        QCoreApplication::quit();
+
 }
 
 void QWorld::updateEnergyStations()

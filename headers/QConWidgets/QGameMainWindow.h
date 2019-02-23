@@ -1,9 +1,8 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QtWidgets>
-#include "mainmenu.h"
-#include "gamescreen.h"
+#include "QMainMenu.h"
+#include "QGameScreen.h"
 
 class QGameMainWindow : public QWidget
 {
@@ -28,5 +27,3 @@ private:
     QVBoxLayout *layout = new QVBoxLayout();
 
 };
-
-#endif // MAINWINDOW_H

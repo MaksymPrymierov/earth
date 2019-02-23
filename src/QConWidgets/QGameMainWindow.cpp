@@ -1,4 +1,4 @@
-#include "headers/conWidget/mainwindow.h"
+#include "headers/QConWidgets/QGameMainWindow.h"
 #include <QtCore/QCoreApplication>
 
 QGameMainWindow::QGameMainWindow(QWidget *parent) :

@@ -1,4 +1,4 @@
-#include "headers/conWidget/mainmenu.h"
+#include "headers/QConWidgets/QMainMenu.h"
 
 QMainMenu::QMainMenu(QWidget *parent) :
     QWidget(parent)

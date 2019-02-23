@@ -1,7 +1,6 @@
-#ifndef MINE_H
-#define MINE_H
+#pragma once
 
-#include "building.h"
+#include "QBuilding.h"
 
 class QMine : public QBuilding
 {
@@ -23,5 +22,3 @@ private:
     float modPollution;
     qint64 modMinerals;
 };
-
-#endif // MINE_H

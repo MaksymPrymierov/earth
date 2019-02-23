@@ -1,12 +1,11 @@
-#ifndef WORLD_H
-#define WORLD_H
+#pragma once
 
 #include <QObject>
-#include "building/energystation.h"
-#include "building/mine.h"
-#include "building/farm.h"
-#include "building/laboratory.h"
-#include "building/cleaningstation.h"
+#include "QBuilding/QEnergyStation.h"
+#include "QBuilding/QMine.h"
+#include "QBuilding/QFarm.h"
+#include "QBuilding/QLaboratory.h"
+#include "QBuilding/QCleaningStation.h"
 
 class QWorld : public QObject
 {
@@ -85,5 +84,3 @@ private:
     QLaboratory *labs = new QLaboratory();
     QCleaningStation *cleaningStation = new QCleaningStation();
 };
-
-#endif // WORLD_H

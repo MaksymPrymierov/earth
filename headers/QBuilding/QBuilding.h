@@ -1,5 +1,4 @@
-#ifndef BUILDING_H
-#define BUILDING_H
+#pragma once
 
 #include <QObject>
 
@@ -29,6 +28,3 @@ private:
     qint64 price;
     qint64 modEnergy;
 };
-
-
-#endif // BUILDING_H

@@ -1,4 +1,4 @@
-#include "headers/conWidget/gamescreen.h"
+#include "headers/QConWidgets/QGameScreen.h"
 #include <QtCore/QCoreApplication>
 
 QGameScreen::QGameScreen(QWidget *parent) :

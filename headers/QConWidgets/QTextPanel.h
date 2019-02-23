@@ -1,5 +1,4 @@
-#ifndef TEXTPANEL_H
-#define TEXTPANEL_H
+#pragma once
 
 #include <QtWidgets>
 
@@ -25,5 +24,3 @@ private:
     QGridLayout *layout = new QGridLayout();
     QMap<QInfo, QLabel*> labels;
 };
-
-#endif // TEXTPANEL_H

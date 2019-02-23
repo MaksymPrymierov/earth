@@ -1,10 +1,9 @@
-#ifndef GAMESCREEN_H
-#define GAMESCREEN_H
+#pragma once
 
 #include <QtWidgets>
-#include "buttonspanel.h"
-#include "textpanel.h"
-#include "../world.h"
+#include "QButtonsPanel.h"
+#include "QTextPanel.h"
+#include "../QWorld.h"
 
 enum class QButtonPanel : quint8
 {
@@ -36,6 +35,9 @@ protected:
     void installFooter();
     void installInfoPanel();
 
+    QPushButton* button(QButtonPanel panel, QButton button);
+    void setText(QButtonPanel panel, QButton button, QString text);
+
 private:
     QWorld *world = new QWorld();
     QPalette *pall = new QPalette();
@@ -48,5 +50,3 @@ private:
 
     QMap<QButtonPanel, QButtonsPanel*> buttonsPanels;
 };
-
-#endif // GAMESCREEN_H

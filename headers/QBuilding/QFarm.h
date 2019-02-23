@@ -1,7 +1,6 @@
-#ifndef FARM_H
-#define FARM_H
+#pragma once
 
-#include "building.h"
+#include "QBuilding.h"
 
 class QFarm : public QBuilding
 {
@@ -19,5 +18,3 @@ public:
 private:
     qint64 modFood;
 };
-
-#endif // FARM_H
