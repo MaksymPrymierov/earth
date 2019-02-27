@@ -1,11 +1,12 @@
 #pragma once
 
 #include <QtWidgets>
+#include <string>
 
 enum class QInfo : quint8
 {
     Year = 0, Population, Energy, Minerals, Food,
-    Science, Pollution, Solidarity
+    Science, Pollution, Solidarity, Capacity
 };
 
 class QTextPanel : public QWidget

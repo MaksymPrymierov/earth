@@ -4,16 +4,15 @@
 
 class QEnergyStation : public QBuilding
 {
-    Q_OBJECT
 public:
-    explicit QEnergyStation(QBuilding *parent = nullptr);
+    QEnergyStation();
     ~QEnergyStation() = default;
 
     inline void setModPollution(float m) { modPollution = m; }
 
     inline float getModPollution() { return modPollution; }
-    float getFullModPollution();
-    QString getInfo();
+    inline float getFullModPollution() { return modPollution * getQuantity(); }
+    std::string getInfo();
 
 private:
     float modPollution;

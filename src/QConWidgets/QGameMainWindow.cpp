@@ -2,9 +2,10 @@
 #include <QtCore/QCoreApplication>
 
 QGameMainWindow::QGameMainWindow(QWidget *parent) :
-    QWidget(parent), x(1024), y(768)
+    QWidget(parent), x(1366), y(768)
 {
     setWindowFlag(Qt::Window);
+    setWindowState(Qt::WindowFullScreen);
 
     pall->setColor(backgroundRole(), Qt::gray);
     setPalette(*pall);

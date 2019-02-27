@@ -4,22 +4,21 @@
 
 class QCleaningStation : public QBuilding
 {
-    Q_OBJECT
 public:
-    explicit QCleaningStation(QBuilding *parent = nullptr);
+    QCleaningStation();
     ~QCleaningStation() = default;
 
-    inline void setModMinerals(qint64 m) { modMinerals = m; }
+    inline void setModMineral(int64_t m) { modMinerals = m; }
     inline void setModPollution(float m) { modPollution = m; }
 
-    inline qint64 getModMinerals() { return modMinerals; }
+    inline int64_t getModMinerals() { return modMinerals; }
     inline float getModPollution() { return modPollution; }
 
-    inline qint64 getFullModMinerals() { return modMinerals * getQuantity(); }
+    inline int64_t getFullModMinerals() { return modMinerals * getQuantity(); }
     inline float getFullModPollution() { return modPollution * getQuantity(); }
-    QString getInfo();
+    std::string getInfo();
 
 private:
-    qint64 modMinerals;
+    int64_t modMinerals;
     float modPollution;
 };

@@ -4,17 +4,16 @@
 
 class QFarm : public QBuilding
 {
-    Q_OBJECT
 public:
-    explicit QFarm(QBuilding *parent = nullptr);
+    QFarm();
     ~QFarm() = default;
 
-    inline void setModFood(qint64 m) { modFood = m; }
+    inline void setModFood(int64_t m) { modFood = m; }
 
-    inline qint64 getModFood() { return modFood; }
-    inline qint64 getFullModFood() { return modFood * getQuantity(); }
-    QString getInfo();
+    inline int64_t getModFood() { return modFood; }
+    inline int64_t getFullModFood() { return modFood * getQuantity(); }
+    std::string getInfo();
 
 private:
-    qint64 modFood;
+    int64_t modFood;
 };

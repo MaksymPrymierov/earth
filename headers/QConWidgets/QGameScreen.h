@@ -7,7 +7,7 @@
 
 enum class QButtonPanel : quint8
 {
-    Menu = 0, Action, Building
+    Menu = 0, Action, Building, Destroy
 };
 
 class QGameScreen : public QWidget
@@ -22,24 +22,29 @@ signals:
     void clickedExit();
 
 public slots:
-    inline void showMenuPanel() { header->setCurrentWidget(buttonsPanels[QButtonPanel::Menu]); }
-    inline void showActionPanel() { footer->setCurrentWidget(buttonsPanels[QButtonPanel::Action]); }
-    inline void showBuildPanel() { footer->setCurrentWidget(buttonsPanels[QButtonPanel::Building]); }
+    void showMenuPanel();
+    void showActionPanel(QButtonsPanel *panel = nullptr);
+    void showBuildPanel();
+    void showDestroyPanel();
 
 protected:
     void addMenuPanel();
     void addActionPanel();
     void addBuildPanel();
+    void addDestroyPanel();
 
-    void installHeader();
-    void installFooter();
-    void installInfoPanel();
+    inline void installHeader();
+    inline void installFooter();
+    inline void installInfoPanel();
+    void updateInfoPanel();
 
-    QPushButton* button(QButtonPanel panel, QButton button);
-    void setText(QButtonPanel panel, QButton button, QString text);
+    inline QPushButton* button(QButtonPanel panel, QButton button);
+    inline void setTextLabel(QButtonPanel panel, QButton button, QString text);
+
+    bool event(QEvent *event);
 
 private:
-    QWorld *world = new QWorld();
+    QWorld *world = new QWorld(this);
     QPalette *pall = new QPalette();
 
     QStackedWidget *header = new QStackedWidget();

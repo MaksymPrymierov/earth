@@ -6,7 +6,8 @@ enum class QButton : quint8
 {
     Save = 0, Load, ExitToMenu, Exit, Building,
     Destroy, Science, Events, PowerStation, Mine,
-    Farm, Laboratory, CleaningStation, Cancel, NewGame
+    Farm, Laboratory, CleaningStation, Stock, Cancel,
+    NewGame
 };
 
 class QButtonsPanel : public QGroupBox

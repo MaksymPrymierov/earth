@@ -1,64 +1,75 @@
 #pragma once
 
+#include <string>
+#include <cstdint>
+#include <QEvent>
 #include <QObject>
 #include "QBuilding/QEnergyStation.h"
 #include "QBuilding/QMine.h"
 #include "QBuilding/QFarm.h"
 #include "QBuilding/QLaboratory.h"
 #include "QBuilding/QCleaningStation.h"
+#include "QBuilding/QStock.h"
 
-class QWorld : public QObject
+class QWorldEvent : public QEvent
 {
-    Q_OBJECT
 public:
-    explicit QWorld(QObject *parent = nullptr);
-    ~QWorld();
+    explicit QWorldEvent(Type type);
+};
 
-    inline QString getInfoEnergyStation() { return energyStations->getInfo(); }
-    inline QString getInfoMine() { return mines->getInfo(); }
-    inline QString getInfoFarm() { return farms->getInfo(); }
-    inline QString getInfoLab() { return labs->getInfo(); }
-    inline QString getInfoCleaningStation() { return cleaningStation->getInfo(); }
+class QWorld
+{
+public:
+    const QEvent::Type WorldEvent = QEvent::Type(QEvent::User + 200);
 
-    QString getInfoYear();
-    QString getInfoPopulation();
-    QString getInfoEnergy();
-    QString getInfoMinerals();
-    QString getInfoFood();
-    QString getInfoScience();
-    QString getInfoPollution();
-    QString getInfoSolidarity();
+    explicit QWorld(QObject *receiverEvent);
+    virtual ~QWorld();
 
-signals:
-    void yearUpdate(QString);
-    void populationUpdate(QString);
-    void energyUpdate(QString);
-    void mineralsUpdate(QString);
-    void foodUpdate(QString);
-    void scienceUpdate(QString);
-    void pullutionUpdate(QString);
-    void solidarityUpdate(QString);
+    inline std::string getInfoEnergyStation() { return energyStations->getInfo(); }
+    inline std::string getInfoMine() { return mines->getInfo(); }
+    inline std::string getInfoFarm() { return farms->getInfo(); }
+    inline std::string getInfoLab() { return labs->getInfo(); }
+    inline std::string getInfoCleaningStation() { return cleaningStation->getInfo(); }
+    inline std::string getInfoStock() { return stock->getInfo(); }
 
-public slots:
+    std::string getInfoYear();
+    std::string getInfoPopulation();
+    std::string getInfoEnergy();
+    std::string getInfoMinerals();
+    std::string getInfoFood();
+    std::string getInfoScience();
+    std::string getInfoPollution();
+    std::string getInfoSolidarity();
+    std::string getInfoCapacity();
+
     void update();
     void buildEnergyStation();
     void buildMine();
     void buildFarm();
     void buildLab();
     void buildCleaningStation();
+    void buildStock();
+
+    void destroyEnergyStation();
+    void destroyMine();
+    void destroyFarm();
+    void destroyLab();
+    void destroyCleaningStation();
+    void destroyStock();
 
 protected:
-    qint64 getModEnergy();
-    qint64 getModMinerals();
+    int64_t getModEnergy();
+    int64_t getModMinerals();
     float getModPollution();
-    qint64 getModFood();
-    qint64 getModScience();
+    int64_t getModFood();
+    int64_t getModScience();
 
     void updateEnergyStations();
     void updateMines();
     void updateFarms();
     void updateLabs();
     void updateCleaningStation();
+
     void preUpdate();
     void postUpdate();
 
@@ -69,12 +80,12 @@ protected:
     void checkSolidarity();
 
 private:
-    qint64 year;
-    qint64 population;
-    qint64 energy;
-    qint64 minerals;
-    qint64 food;
-    qint64 science;
+    int64_t year;
+    int64_t population;
+    int64_t energy;
+    int64_t minerals;
+    int64_t food;
+    int64_t science;
     float  pollution;
     float solidarity;
 
@@ -83,4 +94,7 @@ private:
     QFarm *farms = new QFarm();
     QLaboratory *labs = new QLaboratory();
     QCleaningStation *cleaningStation = new QCleaningStation();
+    QStock *stock = new QStock();
+
+    QObject *receiver;
 };

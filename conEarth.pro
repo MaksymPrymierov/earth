@@ -37,7 +37,8 @@ SOURCES += \
     src/QConWidgets/QMainMenu.cpp \
     src/QConWidgets/QTextPanel.cpp \
     src/main.cpp \
-    src/QWorld.cpp
+    src/QWorld.cpp \
+    src/QBuilding/QStock.cpp
 
 
 HEADERS += \
@@ -52,7 +53,8 @@ HEADERS += \
     headers/QConWidgets/QGameScreen.h \
     headers/QConWidgets/QMainMenu.h \
     headers/QWorld.h \
-    headers/QConWidgets/QTextPanel.h
+    headers/QConWidgets/QTextPanel.h \
+    headers/QBuilding/QStock.h
 
 
 

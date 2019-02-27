@@ -1,30 +1,17 @@
 #include "headers/QBuilding/QMine.h"
+#include <sstream>
 
-QMine::QMine(QBuilding *parent) :
-    QBuilding(parent), modPollution(float(0.01)), modMinerals(1)
+QMine::QMine() :
+    modPollution(float(0.01)), modMinerals(1)
 {
     setPrice(1);
     setModEnergy(-1);
 }
 
-float QMine::getFullModPollution()
+std::string QMine::getInfo()
 {
-    float b = modPollution * getQuantity();
-
-    if (b > 100) {
-        b = 100;
-    }
-
-    return b;
-}
-
-QString QMine::getInfo()
-{
-    return QString::asprintf("Quantity: %lld\n"
-                             "Price: %lld\n"
-                             "Minerals: %lld\n"
-                             "Energy: %lld\n"
-                             "Pollution: %3.2f",
-                             getQuantity(), getPriceMinerals(), modMinerals, getModEnergy(),
-                             double(modPollution));
+    std::stringstream s;
+    s << "Quantity: " << getQuantity() << "\nPrice: " << getPriceMinerals() << "\nMinerals: " <<
+         modMinerals << "\nPollution: " << modPollution;
+    return s.str();
 }

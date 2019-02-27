@@ -13,7 +13,6 @@ QGameScreen::QGameScreen(QWidget *parent) :
 
     addMenuPanel();
     addActionPanel();
-    addBuildPanel();
 
     setLayout(generalLayout);
 }
@@ -31,6 +30,7 @@ QGameScreen::~QGameScreen()
 void QGameScreen::addMenuPanel()
 {
     QButtonsPanel *p = new QButtonsPanel();
+    QButtonPanel panel = QButtonPanel::Menu;
 
     p->addButton(QButton::Save, 0, 0, "Save");
     p->addButton(QButton::Load, 0, 1, "Load");
@@ -39,23 +39,21 @@ void QGameScreen::addMenuPanel()
 
     p->setAlignmentContent(Qt::AlignCenter);
 
-    buttonsPanels[QButtonPanel::Menu] = p;
+    buttonsPanels[panel] = p;
     header->addWidget(p);
     header->setCurrentWidget(p);
 
-#define button(x) buttonsPanels[QButtonPanel::Menu]->getButton(x)
-
-    QObject::connect(button(QButton::ExitToMenu), &QPushButton::clicked,
+    QObject::connect(button(panel, QButton::ExitToMenu), &QPushButton::clicked,
                      [this] () { emit clickedMenu(); });
-    QObject::connect(button(QButton::Exit), &QPushButton::clicked,
+    QObject::connect(button(panel, QButton::Exit), &QPushButton::clicked,
                      [] () { QCoreApplication::quit(); });
 
-#undef button
 }
 
 void QGameScreen::addActionPanel()
 {
     QButtonsPanel *p = new QButtonsPanel();
+    QButtonPanel panel = QButtonPanel::Action;
 
     p->setTitle("Select an action");
 
@@ -66,21 +64,20 @@ void QGameScreen::addActionPanel()
 
     p->setAlignmentContent(Qt::AlignCenter);
 
-    buttonsPanels[QButtonPanel::Action] = p;
+    buttonsPanels[panel] = p;
     footer->addWidget(p);
     footer->setCurrentWidget(p);
 
-#define button(x) buttonsPanels[QButtonPanel::Action]->getButton(x)
-
-    QObject::connect(button(QButton::Building), &QPushButton::clicked, this,
+    QObject::connect(button(panel, QButton::Building), &QPushButton::clicked, this,
                      &QGameScreen::showBuildPanel);
-
-#undef button
+    QObject::connect(button(panel, QButton::Destroy), &QPushButton::clicked, this,
+                     &QGameScreen::showDestroyPanel);
 }
 
 void QGameScreen::addBuildPanel()
 {
     QButtonsPanel *p = new QButtonsPanel();
+    QButtonPanel panel = QButtonPanel::Building;
 
     p->setTitle("Building");
 
@@ -89,46 +86,116 @@ void QGameScreen::addBuildPanel()
     p->addButton(QButton::Farm, 0, 2, "Farm");
     p->addButton(QButton::Laboratory, 0, 3, "Laboratory");
     p->addButton(QButton::CleaningStation, 0, 4, "Cleaning Station");
-    p->addButton(QButton::Cancel, 0, 5, "Cancel");
+    p->addButton(QButton::Stock, 0, 5, "Stock");
+    p->addButton(QButton::Cancel, 0, 6, "Cancel");
 
-    p->addInfo(QButton::PowerStation, 1, 0, world->getInfoEnergyStation());
-    p->addInfo(QButton::Mine, 1, 1, world->getInfoMine());
-    p->addInfo(QButton::Farm, 1, 2, world->getInfoFarm());
-    p->addInfo(QButton::Laboratory, 1, 3, world->getInfoLab());
-    p->addInfo(QButton::CleaningStation, 1, 4, world->getInfoCleaningStation());
+    p->addInfo(QButton::PowerStation, 1, 0, world->getInfoEnergyStation().data());
+    p->addInfo(QButton::Mine, 1, 1, world->getInfoMine().data());
+    p->addInfo(QButton::Farm, 1, 2, world->getInfoFarm().data());
+    p->addInfo(QButton::Laboratory, 1, 3, world->getInfoLab().data());
+    p->addInfo(QButton::CleaningStation, 1, 4, world->getInfoCleaningStation().data());
+    p->addInfo(QButton::Stock, 1, 5, world->getInfoStock().data());
 
     p->setAlignmentContent(Qt::AlignCenter);
 
-    buttonsPanels[QButtonPanel::Building] = p;
+    buttonsPanels[panel] = p;
     footer->addWidget(p);
 
-#define button(x) buttonsPanels[QButtonPanel::Building]->getButton(x)
-#define label(x, y)  buttonsPanels[QButtonPanel::Building]->getLabel(x)->setText(y)
+    QObject::connect(button(panel, QButton::PowerStation), &QPushButton::clicked,
+                     [this] () { world->buildEnergyStation(); });
+    QObject::connect(button(panel, QButton::Mine), &QPushButton::clicked,
+                     [this] () { world->buildMine(); });
+    QObject::connect(button(panel, QButton::Farm), &QPushButton::clicked,
+                     [this] () { world->buildFarm(); });
+    QObject::connect(button(panel, QButton::Laboratory), &QPushButton::clicked,
+                     [this] () { world->buildLab(); });
+    QObject::connect(button(panel, QButton::CleaningStation), &QPushButton::clicked,
+                     [this] () { world->buildCleaningStation(); });
+    QObject::connect(button(panel, QButton::Stock), &QPushButton::clicked,
+                     [this] () { world->buildStock(); });
+    QObject::connect(button(panel, QButton::Cancel), &QPushButton::clicked,
+                     [this, p] () { this->showActionPanel(p); });
 
-    QObject::connect(button(QButton::PowerStation), &QPushButton::clicked, world,
-                     &QWorld::buildEnergyStation);
-    QObject::connect(button(QButton::Mine), &QPushButton::clicked, world, &QWorld::buildMine);
-    QObject::connect(button(QButton::Farm), &QPushButton::clicked, world, &QWorld::buildFarm);
-    QObject::connect(button(QButton::Laboratory), &QPushButton::clicked, world, &QWorld::buildLab);
-    QObject::connect(button(QButton::CleaningStation), &QPushButton::clicked, world,
-                     &QWorld::buildCleaningStation);
-    QObject::connect(button(QButton::Cancel), &QPushButton::clicked, this,
-                     &QGameScreen::showActionPanel);
+    QObject::connect(button(panel, QButton::PowerStation), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::PowerStation,
+                                                     world->getInfoEnergyStation().data()); });
+    QObject::connect(button(panel, QButton::Mine), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Mine,
+                                                     world->getInfoMine().data()); });
+    QObject::connect(button(panel, QButton::Farm), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Farm,
+                                                     world->getInfoFarm().data()); });
+    QObject::connect(button(panel, QButton::Laboratory), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Laboratory,
+                                                     world->getInfoLab().data()); });
+    QObject::connect(button(panel, QButton::CleaningStation), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::CleaningStation,
+                                                     world->getInfoCleaningStation().data()); });
+    QObject::connect(button(panel, QButton::Stock), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Stock,
+                                                     world->getInfoStock().data()); });
+}
 
-    QObject::connect(button(QButton::PowerStation), &QPushButton::clicked,
-                     [this] () { label(QButton::PowerStation, world->getInfoEnergyStation()); });
-    QObject::connect(button(QButton::Mine), &QPushButton::clicked,
-                     [this] () { label(QButton::Mine, world->getInfoMine()); });
-    QObject::connect(button(QButton::Farm), &QPushButton::clicked,
-                     [this] () { label(QButton::Farm, world->getInfoFarm()); });
-    QObject::connect(button(QButton::Laboratory), &QPushButton::clicked,
-                     [this] () { label(QButton::Laboratory, world->getInfoLab()); });
-    QObject::connect(button(QButton::CleaningStation), &QPushButton::clicked,
-                     [this] () { label(QButton::CleaningStation,
-                                       world->getInfoCleaningStation()); });
+void QGameScreen::addDestroyPanel()
+{
+    QButtonsPanel *p = new QButtonsPanel();
+    QButtonPanel panel = QButtonPanel::Destroy;
 
-#undef button
-#undef label
+    p->setTitle("Destroy");
+
+    p->addButton(QButton::PowerStation, 0, 0, "Power station");
+    p->addButton(QButton::Mine, 0, 1, "Mine");
+    p->addButton(QButton::Farm, 0, 2, "Farm");
+    p->addButton(QButton::Laboratory, 0, 3, "Laboratory");
+    p->addButton(QButton::CleaningStation, 0, 4, "Cleaning Station");
+    p->addButton(QButton::Stock, 0, 5, "Stock");
+    p->addButton(QButton::Cancel, 0, 6, "Cancel");
+
+    p->addInfo(QButton::PowerStation, 1, 0, world->getInfoEnergyStation().data());
+    p->addInfo(QButton::Mine, 1, 1, world->getInfoMine().data());
+    p->addInfo(QButton::Farm, 1, 2, world->getInfoFarm().data());
+    p->addInfo(QButton::Laboratory, 1, 3, world->getInfoLab().data());
+    p->addInfo(QButton::CleaningStation, 1, 4, world->getInfoCleaningStation().data());
+    p->addInfo(QButton::Stock, 1, 5, world->getInfoStock().data());
+
+    p->setAlignmentContent(Qt::AlignCenter);
+
+    buttonsPanels[panel] = p;
+    footer->addWidget(p);
+
+    QObject::connect(button(panel, QButton::PowerStation), &QPushButton::clicked,
+                     [this] () { world->destroyEnergyStation(); });
+    QObject::connect(button(panel, QButton::Mine), &QPushButton::clicked,
+                     [this] () { world->destroyMine(); });
+    QObject::connect(button(panel, QButton::Farm), &QPushButton::clicked,
+                     [this] () { world->destroyFarm(); });
+    QObject::connect(button(panel, QButton::Laboratory), &QPushButton::clicked,
+                     [this] () { world->destroyLab(); });
+    QObject::connect(button(panel, QButton::CleaningStation), &QPushButton::clicked,
+                     [this] () { world->destroyCleaningStation(); });
+    QObject::connect(button(panel, QButton::Stock), &QPushButton::clicked,
+                     [this] () { world->destroyStock(); });
+    QObject::connect(button(panel, QButton::Cancel), &QPushButton::clicked,
+                     [this, p] () { this->showActionPanel(p); });
+
+    QObject::connect(button(panel, QButton::PowerStation), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::PowerStation,
+                                                     world->getInfoEnergyStation().data()); });
+    QObject::connect(button(panel, QButton::Mine), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Mine,
+                                                     world->getInfoMine().data()); });
+    QObject::connect(button(panel, QButton::Farm), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Farm,
+                                                     world->getInfoFarm().data()); });
+    QObject::connect(button(panel, QButton::Laboratory), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Laboratory,
+                                                     world->getInfoLab().data()); });
+    QObject::connect(button(panel, QButton::CleaningStation), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::CleaningStation,
+                                                     world->getInfoCleaningStation().data()); });
+    QObject::connect(button(panel, QButton::Stock), &QPushButton::clicked,
+                     [this, panel] () { setTextLabel(panel, QButton::Stock,
+                                                     world->getInfoStock().data()); });
 }
 
 void QGameScreen::installHeader()
@@ -143,33 +210,76 @@ void QGameScreen::installFooter()
 
 void QGameScreen::installInfoPanel()
 {
-    textPanel->addInfo(QInfo::Year, 0, 0, world->getInfoYear());
-    textPanel->addInfo(QInfo::Population, 0, 1, world->getInfoPopulation());
-    textPanel->addInfo(QInfo::Energy, 1, 0, world->getInfoEnergy());
-    textPanel->addInfo(QInfo::Minerals, 1, 1, world->getInfoMinerals());
-    textPanel->addInfo(QInfo::Food, 1, 2, world->getInfoFood());
-    textPanel->addInfo(QInfo::Pollution, 2, 0, world->getInfoPollution());
-    textPanel->addInfo(QInfo::Solidarity, 2, 1, world->getInfoSolidarity());
-    textPanel->addInfo(QInfo::Science, 2, 2, world->getInfoScience());
+    textPanel->addInfo(QInfo::Year, 0, 0, world->getInfoYear().data());
+    textPanel->addInfo(QInfo::Population, 0, 1, world->getInfoPopulation().data());
+    textPanel->addInfo(QInfo::Capacity, 0, 2, world->getInfoCapacity().data());
+    textPanel->addInfo(QInfo::Energy, 1, 0, world->getInfoEnergy().data());
+    textPanel->addInfo(QInfo::Minerals, 1, 1, world->getInfoMinerals().data());
+    textPanel->addInfo(QInfo::Food, 1, 2, world->getInfoFood().data());
+    textPanel->addInfo(QInfo::Pollution, 2, 0, world->getInfoPollution().data());
+    textPanel->addInfo(QInfo::Solidarity, 2, 1, world->getInfoSolidarity().data());
+    textPanel->addInfo(QInfo::Science, 2, 2, world->getInfoScience().data());
 
     textPanel->setMinimumSize(600, 400);
 
     generalLayout->addWidget(textPanel);
+}
 
-    QObject::connect(world, &QWorld::yearUpdate, textPanel->getLabel(QInfo::Year),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::populationUpdate, textPanel->getLabel(QInfo::Population),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::energyUpdate, textPanel->getLabel(QInfo::Energy),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::mineralsUpdate, textPanel->getLabel(QInfo::Minerals),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::foodUpdate, textPanel->getLabel(QInfo::Food),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::pullutionUpdate, textPanel->getLabel(QInfo::Pollution),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::solidarityUpdate, textPanel->getLabel(QInfo::Solidarity),
-                     &QLabel::setText);
-    QObject::connect(world, &QWorld::scienceUpdate, textPanel->getLabel(QInfo::Science),
-                     &QLabel::setText);
+void QGameScreen::updateInfoPanel()
+{
+    textPanel->getLabel(QInfo::Year)->setText(world->getInfoYear().data());
+    textPanel->getLabel(QInfo::Population)->setText(world->getInfoPopulation().data());
+    textPanel->getLabel(QInfo::Capacity)->setText(world->getInfoCapacity().data());
+    textPanel->getLabel(QInfo::Energy)->setText(world->getInfoEnergy().data());
+    textPanel->getLabel(QInfo::Minerals)->setText(world->getInfoMinerals().data());
+    textPanel->getLabel(QInfo::Food)->setText(world->getInfoFood().data());
+    textPanel->getLabel(QInfo::Pollution)->setText(world->getInfoPollution().data());
+    textPanel->getLabel(QInfo::Solidarity)->setText(world->getInfoSolidarity().data());
+    textPanel->getLabel(QInfo::Science)->setText(world->getInfoScience().data());
+}
+
+void QGameScreen::showBuildPanel()
+{
+    addBuildPanel();
+    footer->setCurrentWidget(buttonsPanels[QButtonPanel::Building]);
+}
+
+void QGameScreen::showActionPanel(QButtonsPanel *panel)
+{
+    addActionPanel();
+    if (panel != nullptr) {
+        footer->removeWidget(panel);
+        delete panel;
+    }
+    footer->setCurrentWidget(buttonsPanels[QButtonPanel::Action]);
+}
+
+void QGameScreen::showMenuPanel(){
+    header->setCurrentWidget(buttonsPanels[QButtonPanel::Menu]);
+}
+
+void QGameScreen::showDestroyPanel(){
+    addDestroyPanel();
+    footer->setCurrentWidget(buttonsPanels[QButtonPanel::Destroy]);
+}
+
+
+QPushButton* QGameScreen::button(QButtonPanel panel, QButton button)
+{
+    return buttonsPanels[panel]->getButton(button);
+}
+
+void QGameScreen::setTextLabel(QButtonPanel panel, QButton button, QString text)
+{
+    buttonsPanels[panel]->getLabel(button)->setText(text);
+}
+
+bool QGameScreen::event(QEvent *event)
+{
+    if (event->type() == world->WorldEvent) {
+        updateInfoPanel();
+        return true;
+    }
+
+    return QWidget::event(event);
 }

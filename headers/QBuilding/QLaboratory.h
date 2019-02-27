@@ -4,21 +4,20 @@
 
 class QLaboratory : public QBuilding
 {
-    Q_OBJECT
 public:
-    explicit QLaboratory(QBuilding *parent = nullptr);
+    QLaboratory();
     ~QLaboratory() = default;
 
-    inline void setModMinerals(qint64 m) { modScience = m; }
-    inline void setModScience(qint64 m) { modMinerals = m; }
+    inline void setModMinerals(int64_t m) { modScience = m; }
+    inline void setModScience(int64_t m) { modMinerals = m; }
 
-    inline qint64 getModMinerals() { return modMinerals; }
-    inline qint64 getModScience() { return modScience; }
-    inline qint64 getFullModMinerals() { return modMinerals * getQuantity(); }
-    inline qint64 getFullModScience() { return modScience * getQuantity(); }
-    QString getInfo();
+    inline int64_t getModMinerals() { return modMinerals; }
+    inline int64_t getModScience() { return modScience; }
+    inline int64_t getFullModMinerals() { return modMinerals * getQuantity(); }
+    inline int64_t getFullModScience() { return modScience * getQuantity(); }
+    std::string getInfo();
 
 private:
-    qint64 modMinerals;
-    qint64 modScience;
+    int64_t modMinerals;
+    int64_t modScience;
 };
