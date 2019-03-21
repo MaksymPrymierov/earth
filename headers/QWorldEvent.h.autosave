@@ -1,0 +1,27 @@
+#ifndef WORLDEVENT_H
+#define WORLDEVENT_H
+#include <vector>
+
+enum class QWorldActionEvents : unsigned char
+{
+    NoEvents, War, Epidemic, Revolution, ActOfTerrorism, AlienAttack,
+    GlobalCataclysm, GlobalAccident
+};
+
+class QWorldActionEvent
+{
+private:
+    std::vector<QWorldActionEvents> events;
+    QWorldActionEvents currentEvent;
+
+public:
+    QWorldActionEvent();
+    ~QWorldActionEvent() = default;
+
+    void changeEvent();
+    QWorldActionEvents get() const;
+    void set(QWorldActionEvents e);
+    float getChance(QWorldActionEvents e);
+};
+
+#endif // WORLDEVENT_H

@@ -23,3 +23,15 @@ void QWorldActionEvent::set(QWorldActionEvents e)
 {
     events.push_back(e);
 }
+
+float QWorldActionEvent::getChance(QWorldActionEvents e)
+{
+    int countEvent = 0;
+
+    for (std::vector<QWorldActionEvents>::iterator i = events.begin(); i != events.end(); ++i) {
+        if (*i == e)
+            ++countEvent;
+    }
+
+    return countEvent * 100 / float(events.size());
+}
