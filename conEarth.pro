@@ -41,7 +41,7 @@ SOURCES += \
     src/QConResources.cpp \
     src/QWorld.cpp \
     src/QScience.cpp \
-    src/WorldEvent.cpp
+    src/QWorldEvent.cpp
 
 
 
@@ -61,7 +61,7 @@ HEADERS += \
     headers/QConResources.h \
     headers/QWorld.h \
     headers/QScience.h \
-    headers/WorldEvent.h
+    headers/QWorldEvent.h
 
 
 

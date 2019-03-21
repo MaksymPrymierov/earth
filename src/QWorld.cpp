@@ -165,6 +165,13 @@ void QWorld::updateCleaningStation()
     }
 }
 
+void QWorld::updateActionEvent()
+{
+    if (year > 1 && (year % 50 == 0)) {
+        actionEvent.changeEvent();
+    }
+}
+
 void QWorld::postUpdate()
 {
     checkEnergy();
@@ -314,6 +321,35 @@ void QWorld::checkSolidarity()
         solidarity = 0;
     } else if (solidarity >= 100) {
         solidarity = 100;
+    }
+}
+
+void QWorld::checkActionEvent()
+{
+    switch (actionEvent.get()) {
+    case QWorldActionEvents::War :
+        population = int(population * 0.0058);
+        break;
+    case QWorldActionEvents::Epidemic :
+        population = int(population * 0.013);
+        break;
+    case QWorldActionEvents::Revolution :
+        population = int(population * 0.001);
+        break;
+    case QWorldActionEvents::AlienAttack :
+        population = int(population * 0.5);
+        break;
+    case QWorldActionEvents::ActOfTerrorism :
+        population = int(population * 0.001);
+        break;
+    case QWorldActionEvents::GlobalAccident :
+        population = int(population * 0.001);
+        break;
+    case QWorldActionEvents::GlobalCataclysm :
+        population = int(population * 0.4);
+        break;
+    default:
+        break;
     }
 }
 

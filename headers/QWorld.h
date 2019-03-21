@@ -10,7 +10,7 @@
 #include "QBuilding/QLaboratory.h"
 #include "QBuilding/QCleaningStation.h"
 #include "QBuilding/QStock.h"
-#include "WorldEvent.h"
+#include "QWorldEvent.h"
 
 class QWorldEvent : public QEvent
 {
@@ -70,6 +70,7 @@ protected:
     void updateFarms();
     void updateLabs();
     void updateCleaningStation();
+    void updateActionEvent();
 
     void preUpdate();
     void postUpdate();
@@ -79,6 +80,7 @@ protected:
     void checkFood();
     void checkPollution();
     void checkSolidarity();
+    void checkActionEvent();
 
 private:
     int64_t year;
@@ -96,7 +98,7 @@ private:
     QLaboratory labs;
     QCleaningStation cleaningStation;
     QStock stock;
-    //WorldEvent event;
+    QWorldActionEvent actionEvent;
 
     QObject *receiver;
 };
