@@ -179,6 +179,7 @@ void QWorld::postUpdate()
     checkFood();
     checkPollution();
     checkSolidarity();
+    checkActionEvent();
 
     ++year;
 }
@@ -192,6 +193,7 @@ void QWorld::update()
     updateFarms();
     updateLabs();
     updateCleaningStation();
+    updateActionEvent();
 
     postUpdate();
 
@@ -268,9 +270,12 @@ void QWorld::checkEnergy()
     if (energy <= 0) {
         energy = 0;
         solidarity -= float(0.01);
+        actionEvent.set(QWorldActionEvents::Revolution);
+        actionEvent.set(QWorldActionEvents::GlobalAccident);
     } else if (energy >= stock.getFullCapacity()) {
         energy = stock.getFullCapacity();
         solidarity += float(0.01);
+        actionEvent.set(QWorldActionEvents::War);
     }
 }
 
@@ -279,9 +284,11 @@ void QWorld::checkMinerals()
     if (minerals <= 0) {
         minerals = 0;
         solidarity -= float(0.01);
+        actionEvent.set(QWorldActionEvents::Revolution);
     } else if (minerals >= stock.getFullCapacity()) {
         minerals = stock.getFullCapacity();
         solidarity += float(0.01);
+        actionEvent.set(QWorldActionEvents::War);
     }
 }
 
@@ -291,10 +298,12 @@ void QWorld::checkFood()
         food = 0;
         solidarity -= float(0.01);
         population -= population * 0.01;
+        actionEvent.set(QWorldActionEvents::Revolution);
     } else if (food >= stock.getFullCapacity()) {
         food = stock.getCapacity();
         solidarity += float(0.02);
         population += population * 0.02;
+        actionEvent.set(QWorldActionEvents::ActOfTerrorism);
     } else {
         food -= population * 0.01;
         solidarity += float(0.01);
@@ -309,6 +318,8 @@ void QWorld::checkPollution()
     } else if (pollution >= 100) {
         pollution = 100;
         solidarity -= float(0.05);
+        actionEvent.set(QWorldActionEvents::GlobalCataclysm);
+        actionEvent.set(QWorldActionEvents::Epidemic);
     } else if (pollution >= 50) {
         solidarity -= float(0.01);
     }
@@ -319,6 +330,9 @@ void QWorld::checkSolidarity()
 {
     if (solidarity <= 0) {
         solidarity = 0;
+        actionEvent.set(QWorldActionEvents::War);
+        actionEvent.set(QWorldActionEvents::Revolution);
+        actionEvent.set(QWorldActionEvents::ActOfTerrorism);
     } else if (solidarity >= 100) {
         solidarity = 100;
     }
@@ -328,25 +342,25 @@ void QWorld::checkActionEvent()
 {
     switch (actionEvent.get()) {
     case QWorldActionEvents::War :
-        population = int(population * 0.0058);
+        population -= int(population * 0.0058);
         break;
     case QWorldActionEvents::Epidemic :
-        population = int(population * 0.013);
+        population -= int(population * 0.013);
         break;
     case QWorldActionEvents::Revolution :
-        population = int(population * 0.001);
+        population -= int(population * 0.001);
         break;
     case QWorldActionEvents::AlienAttack :
-        population = int(population * 0.5);
+        population -= int(population * 0.5);
         break;
     case QWorldActionEvents::ActOfTerrorism :
-        population = int(population * 0.001);
+        population -= int(population * 0.001);
         break;
     case QWorldActionEvents::GlobalAccident :
-        population = int(population * 0.001);
+        population -= int(population * 0.001);
         break;
     case QWorldActionEvents::GlobalCataclysm :
-        population = int(population * 0.4);
+        population -= int(population * 0.4);
         break;
     default:
         break;

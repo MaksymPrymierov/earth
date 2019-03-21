@@ -19,8 +19,8 @@ public:
     ~QWorldActionEvent() = default;
 
     void changeEvent();
-    inline QWorldActionEvents get() const;
-    inline void set(QWorldActionEvents e);
+    QWorldActionEvents get() const;
+    void set(QWorldActionEvents e);
 };
 
 #endif // WORLDEVENT_H
