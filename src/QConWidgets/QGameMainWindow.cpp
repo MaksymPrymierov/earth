@@ -1,22 +1,22 @@
 #include "headers/QConWidgets/QGameMainWindow.h"
 #include <QtCore/QCoreApplication>
 
-QGameMainWindow::QGameMainWindow(QWidget *parent) :
-    QWidget(parent), x(1366), y(768)
+QGameMainWindow::QGameMainWindow(QConResources *res, QWidget *parent) :
+    QWidget(parent), x(1366), y(768), resources(res)
 {
     setWindowFlag(Qt::Window);
     setWindowState(Qt::WindowFullScreen);
-
-    pall->setColor(backgroundRole(), Qt::gray);
-    setPalette(*pall);
     setAutoFillBackground(true);
 
-    setWindowTitle("Con Civilization");
+    setWindowTitle("Decisive Year");
     setFixedSize(x, y);
 
     mainMenu->resize(x, y);
     stackWidgets->setParent(this);
     stackWidgets->addWidget(mainMenu);
+    stackWidgets->addWidget(gameScreen);
+
+    installMainMenu();
 
     layout->addWidget(stackWidgets);
     setLayout(layout);
@@ -30,11 +30,14 @@ QGameMainWindow::QGameMainWindow(QWidget *parent) :
 
 void QGameMainWindow::installGameScreen()
 {
-    stackWidgets->addWidget(gameScreen);
     stackWidgets->setCurrentWidget(gameScreen);
+    pall->setColor(backgroundRole(), Qt::lightGray);
+    setPalette(*pall);
 }
 
 void QGameMainWindow::installMainMenu()
 {
     stackWidgets->setCurrentWidget(mainMenu);
+    pall->setBrush(backgroundRole(), *(resources->getMainMenuTheme()));
+    setPalette(*pall);
 }

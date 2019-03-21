@@ -11,16 +11,6 @@ QWorld::QWorld(QObject *receiverEvent) :
     pollution(0), solidarity(40), receiver(receiverEvent)
     { }
 
-QWorld::~QWorld()
-{
-    delete energyStations;
-    delete mines;
-    delete farms;
-    delete labs;
-    delete cleaningStation;
-    delete stock;
-}
-
 std::string QWorld::getInfoYear()
 {
     std::stringstream s;
@@ -80,22 +70,22 @@ std::string QWorld::getInfoSolidarity()
 std::string QWorld::getInfoCapacity()
 {
     std::stringstream s;
-    s << "Capacity of Stocks\n " << stock->getFullCapacity();
+    s << "Capacity of Stocks\n " << stock.getFullCapacity();
     return s.str();
 }
 
 int64_t QWorld::getModEnergy()
 {
-    return energyStations->getFullModEnergy() + mines->getFullModEnergy() + \
-            farms->getFullModEnergy() + labs->getFullModEnergy() + \
-            cleaningStation->getFullModEnergy();
+    return energyStations.getFullModEnergy() + mines.getFullModEnergy() + \
+            farms.getFullModEnergy() + labs.getFullModEnergy() + \
+            cleaningStation.getFullModEnergy();
 }
 
 int64_t QWorld::getModMinerals()
 {
-    if (energy >= mines->getFullModMinerals ()) {
-        return mines->getFullModMinerals() + labs->getFullModMinerals() + \
-                cleaningStation->getFullModMinerals();
+    if (energy >= mines.getFullModMinerals ()) {
+        return mines.getFullModMinerals() + labs.getFullModMinerals() + \
+                cleaningStation.getFullModMinerals();
     } else {
         return 0;
     }
@@ -103,9 +93,9 @@ int64_t QWorld::getModMinerals()
 
 float QWorld::getModPollution()
 {
-    float m = energyStations->getFullModPollution() + mines->getModPollution();
+    float m = energyStations.getFullModPollution() + mines.getModPollution();
     if (energy > 0) {
-        m += cleaningStation->getFullModPollution();
+        m += cleaningStation.getFullModPollution();
     }
     return m;
 }
@@ -113,7 +103,7 @@ float QWorld::getModPollution()
 int64_t QWorld::getModFood()
 {
     if (energy > 0) {
-        return farms->getFullModFood() - qint64(population * 0.01);
+        return farms.getFullModFood() - qint64(population * 0.01);
     } else {
         return 0;
     }
@@ -122,7 +112,7 @@ int64_t QWorld::getModFood()
 int64_t QWorld::getModScience()
 {
     if (energy > 0) {
-        return labs->getFullModScience();
+        return labs.getFullModScience();
     } else {
         return 0;
     }
@@ -137,41 +127,41 @@ void QWorld::preUpdate()
 
 void QWorld::updateEnergyStations()
 {
-    energy += energyStations->getFullModEnergy();
-    pollution += energyStations->getFullModPollution();
+    energy += energyStations.getFullModEnergy();
+    pollution += energyStations.getFullModPollution();
 }
 
 void QWorld::updateMines()
 {
-    if (energy >= mines->getFullModEnergy()) {
-        energy += mines->getFullModEnergy();
-        pollution += mines->getFullModPollution();
-        minerals += mines->getFullModMinerals();
+    if (energy >= mines.getFullModEnergy()) {
+        energy += mines.getFullModEnergy();
+        pollution += mines.getFullModPollution();
+        minerals += mines.getFullModMinerals();
     }
 }
 
 void QWorld::updateFarms()
 {
-    if (energy >= farms->getFullModEnergy()) {
-        energy += farms->getFullModEnergy();
-        food += farms->getFullModFood();
+    if (energy >= farms.getFullModEnergy()) {
+        energy += farms.getFullModEnergy();
+        food += farms.getFullModFood();
     }
 }
 
 void QWorld::updateLabs() {
-    if ((energy >= labs->getFullModEnergy()) && (minerals >= labs->getFullModMinerals())) {
-        energy += labs->getFullModEnergy();
-        minerals += labs->getFullModMinerals();
-        science += labs->getFullModScience();
+    if ((energy >= labs.getFullModEnergy()) && (minerals >= labs.getFullModMinerals())) {
+        energy += labs.getFullModEnergy();
+        minerals += labs.getFullModMinerals();
+        science += labs.getFullModScience();
     }
 }
 
 void QWorld::updateCleaningStation()
 {
-    if (energy >= cleaningStation->getFullModEnergy()) {
-        energy += cleaningStation->getFullModEnergy();
-        minerals += cleaningStation->getFullModMinerals();
-        pollution += cleaningStation->getFullModPollution();
+    if (energy >= cleaningStation.getFullModEnergy()) {
+        energy += cleaningStation.getFullModEnergy();
+        minerals += cleaningStation.getFullModMinerals();
+        pollution += cleaningStation.getFullModPollution();
     }
 }
 
@@ -203,65 +193,65 @@ void QWorld::update()
 
 void QWorld::buildEnergyStation()
 {
-    if (minerals < energyStations->getPriceMinerals())
+    if (minerals < energyStations.getPriceMinerals())
         return;
 
-    minerals -= energyStations->getPriceMinerals();
-    energyStations->build();
+    minerals -= energyStations.getPriceMinerals();
+    energyStations.build();
 
     update();
 }
 
 void QWorld::buildMine()
 {
-    if (minerals < mines->getPriceMinerals())
+    if (minerals < mines.getPriceMinerals())
         return;
 
-    minerals -= mines->getPriceMinerals();
-    mines->build();
+    minerals -= mines.getPriceMinerals();
+    mines.build();
 
     update();
 }
 
 void QWorld::buildFarm()
 {
-    if (minerals < farms->getPriceMinerals())
+    if (minerals < farms.getPriceMinerals())
         return;
 
-    minerals -= farms->getPriceMinerals();
-    farms->build();
+    minerals -= farms.getPriceMinerals();
+    farms.build();
 
     update();
 }
 
 void QWorld::buildLab()
 {
-    if(minerals < labs->getPriceMinerals())
+    if(minerals < labs.getPriceMinerals())
         return;
 
-    minerals -= labs->getPriceMinerals();
-    labs->build();
+    minerals -= labs.getPriceMinerals();
+    labs.build();
 
     update();
 }
 
 void QWorld::buildCleaningStation()
 {
-    if (minerals < cleaningStation->getPriceMinerals())
+    if (minerals < cleaningStation.getPriceMinerals())
         return;
 
-    minerals -= cleaningStation->getPriceMinerals();
-    cleaningStation->build();
+    minerals -= cleaningStation.getPriceMinerals();
+    cleaningStation.build();
 
     update();
 }
 
 void QWorld::buildStock() {
-    if (minerals < stock->getPriceMinerals())
+    if (minerals < stock.getPriceMinerals())
         return;
 
-    minerals -= stock->getPriceMinerals();
-    stock->build();
+    minerals -= stock.getPriceMinerals();
+    stock.build();
 
     update();
 }
@@ -271,8 +261,8 @@ void QWorld::checkEnergy()
     if (energy <= 0) {
         energy = 0;
         solidarity -= float(0.01);
-    } else if (energy >= stock->getFullCapacity()) {
-        energy = stock->getFullCapacity();
+    } else if (energy >= stock.getFullCapacity()) {
+        energy = stock.getFullCapacity();
         solidarity += float(0.01);
     }
 }
@@ -282,8 +272,8 @@ void QWorld::checkMinerals()
     if (minerals <= 0) {
         minerals = 0;
         solidarity -= float(0.01);
-    } else if (minerals >= stock->getFullCapacity()) {
-        minerals = stock->getFullCapacity();
+    } else if (minerals >= stock.getFullCapacity()) {
+        minerals = stock.getFullCapacity();
         solidarity += float(0.01);
     }
 }
@@ -294,8 +284,8 @@ void QWorld::checkFood()
         food = 0;
         solidarity -= float(0.01);
         population -= population * 0.01;
-    } else if (food >= stock->getFullCapacity()) {
-        food = stock->getCapacity();
+    } else if (food >= stock.getFullCapacity()) {
+        food = stock.getCapacity();
         solidarity += float(0.02);
         population += population * 0.02;
     } else {
@@ -329,60 +319,60 @@ void QWorld::checkSolidarity()
 
 void QWorld::destroyLab()
 {
-    if (labs->getQuantity() == 0)
+    if (labs.getQuantity() == 0)
         return;
 
-    labs->destroy();
+    labs.destroy();
 
     update();
 }
 
 void QWorld::destroyFarm()
 {
-    if (farms->getQuantity() == 0)
+    if (farms.getQuantity() == 0)
         return;
 
-    farms->destroy();
+    farms.destroy();
 
     update();
 }
 
 void QWorld::destroyMine()
 {
-    if (mines->getQuantity() == 0)
+    if (mines.getQuantity() == 0)
         return;
 
-    mines->destroy();
+    mines.destroy();
 
     update();
 }
 
 void QWorld::destroyStock()
 {
-    if (stock->getQuantity() == 1)
+    if (stock.getQuantity() == 1)
         return;
 
-    stock->destroy();
+    stock.destroy();
 
     update();
 }
 
 void QWorld::destroyEnergyStation()
 {
-    if (energyStations->getQuantity() == 0)
+    if (energyStations.getQuantity() == 0)
         return;
 
-    energyStations->destroy();
+    energyStations.destroy();
 
     update();
 }
 
 void QWorld::destroyCleaningStation()
 {
-    if (cleaningStation->getQuantity() == 0)
+    if (cleaningStation.getQuantity() == 0)
         return;
 
-    cleaningStation->destroy();
+    cleaningStation.destroy();
 
     update();
 }

@@ -10,6 +10,7 @@
 #include "QBuilding/QLaboratory.h"
 #include "QBuilding/QCleaningStation.h"
 #include "QBuilding/QStock.h"
+#include "WorldEvent.h"
 
 class QWorldEvent : public QEvent
 {
@@ -23,14 +24,14 @@ public:
     const QEvent::Type WorldEvent = QEvent::Type(QEvent::User + 200);
 
     explicit QWorld(QObject *receiverEvent);
-    virtual ~QWorld();
+    ~QWorld() = default;
 
-    inline std::string getInfoEnergyStation() { return energyStations->getInfo(); }
-    inline std::string getInfoMine() { return mines->getInfo(); }
-    inline std::string getInfoFarm() { return farms->getInfo(); }
-    inline std::string getInfoLab() { return labs->getInfo(); }
-    inline std::string getInfoCleaningStation() { return cleaningStation->getInfo(); }
-    inline std::string getInfoStock() { return stock->getInfo(); }
+    inline std::string getInfoEnergyStation() { return energyStations.getInfo(); }
+    inline std::string getInfoMine() { return mines.getInfo(); }
+    inline std::string getInfoFarm() { return farms.getInfo(); }
+    inline std::string getInfoLab() { return labs.getInfo(); }
+    inline std::string getInfoCleaningStation() { return cleaningStation.getInfo(); }
+    inline std::string getInfoStock() { return stock.getInfo(); }
 
     std::string getInfoYear();
     std::string getInfoPopulation();
@@ -89,12 +90,13 @@ private:
     float  pollution;
     float solidarity;
 
-    QEnergyStation *energyStations = new QEnergyStation();
-    QMine *mines = new QMine();
-    QFarm *farms = new QFarm();
-    QLaboratory *labs = new QLaboratory();
-    QCleaningStation *cleaningStation = new QCleaningStation();
-    QStock *stock = new QStock();
+    QEnergyStation energyStations;
+    QMine mines;
+    QFarm farms;
+    QLaboratory labs;
+    QCleaningStation cleaningStation;
+    QStock stock;
+    //WorldEvent event;
 
     QObject *receiver;
 };

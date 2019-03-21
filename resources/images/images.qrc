@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/images">
-        <file>mainmenu.png</file>
+        <file>mainMenuBackground-2484x1200.png</file>
+        <file>mainMenuBackground-1368x768.png</file>
     </qresource>
 </RCC>

@@ -7,7 +7,7 @@
 
 enum class QButtonPanel : quint8
 {
-    Menu = 0, Action, Building, Destroy
+    Menu = 0, Action, Building, Destroy, Science
 };
 
 class QGameScreen : public QWidget
@@ -26,12 +26,14 @@ public slots:
     void showActionPanel(QButtonsPanel *panel = nullptr);
     void showBuildPanel();
     void showDestroyPanel();
+    void showSciencePanel();
 
 protected:
     void addMenuPanel();
     void addActionPanel();
     void addBuildPanel();
     void addDestroyPanel();
+    void addSciencePanel();
 
     inline void installHeader();
     inline void installFooter();

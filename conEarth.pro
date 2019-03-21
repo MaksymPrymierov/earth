@@ -31,14 +31,18 @@ SOURCES += \
     src/QBuilding/QFarm.cpp \
     src/QBuilding/QLaboratory.cpp \
     src/QBuilding/QMine.cpp \
+    src/QBuilding/QStock.cpp \
     src/QConWidgets/QButtonsPanel.cpp \
     src/QConWidgets/QGameMainWindow.cpp \
     src/QConWidgets/QGameScreen.cpp \
     src/QConWidgets/QMainMenu.cpp \
     src/QConWidgets/QTextPanel.cpp \
     src/main.cpp \
+    src/QConResources.cpp \
     src/QWorld.cpp \
-    src/QBuilding/QStock.cpp
+    src/QScience.cpp \
+    src/WorldEvent.cpp
+
 
 
 HEADERS += \
@@ -48,13 +52,17 @@ HEADERS += \
     headers/QBuilding/QFarm.h \
     headers/QBuilding/QLaboratory.h \
     headers/QBuilding/QMine.h \
+    headers/QBuilding/QStock.h \
     headers/QConWidgets/QButtonsPanel.h \
     headers/QConWidgets/QGameMainWindow.h \
     headers/QConWidgets/QGameScreen.h \
     headers/QConWidgets/QMainMenu.h \
-    headers/QWorld.h \
     headers/QConWidgets/QTextPanel.h \
-    headers/QBuilding/QStock.h
+    headers/QConResources.h \
+    headers/QWorld.h \
+    headers/QScience.h \
+    headers/WorldEvent.h
+
 
 
 
@@ -67,13 +75,17 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 SUBDIRS += \
+    conEarth.pro \
     conEarth.pro
 
 RESOURCES += \
     resources/images/images.qrc
 
 
+
 DISTFILES += \
-    resources/images/mainmenu.png \
+    resources/images/mainMenuBackground-1368x768.png \
+    resources/images/mainMenuBackground-2484x1200.png \
     LICENSE
+
 

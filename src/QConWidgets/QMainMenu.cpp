@@ -4,11 +4,9 @@ QMainMenu::QMainMenu(QWidget *parent) :
     QWidget(parent)
 {
     generalLayout->setContentsMargins(5, 5, 5, 5);
-    generalLayout->setSpacing(5);
-    generalLayout->setAlignment(Qt::AlignHCenter);
+    generalLayout->setSpacing(10);
+    generalLayout->setAlignment(Qt::AlignBottom | Qt::AlignHCenter);
     setLayout(generalLayout);
-
-    setTitle("Con Civilization");
 
     installMenu();
 
@@ -37,17 +35,15 @@ void QMainMenu::setTitle(QString text)
 void QMainMenu::installMenu()
 {
     menu->addButton(QButton::NewGame, 0, 0, "New Game");
-    menu->addButton(QButton::Exit, 1, 0, "Exit");
+    menu->addButton(QButton::Continue, 1, 0, "Continue");
+    menu->addButton(QButton::Load, 2, 0, "Load");
+    menu->addButton(QButton::Settings, 3, 0, "Settings");
+    menu->addButton(QButton::Exit, 4, 0, "Exit");
 
     menu->getButton(QButton::NewGame)->setMinimumWidth(150);
-    menu->getButton(QButton::Exit)->setMinimumWidth(150);
 
     menu->setAlignmentContent(Qt::AlignCenter);
     menu->setFixedSize(375, 500);
-
-    pall->setBrush(menu->backgroundRole(), QBrush(QPixmap(":/images/mainmenu.png")));
-    menu->setPalette(*pall);
-    menu->setAutoFillBackground(true);
 
     generalLayout->addWidget(menu);
 }

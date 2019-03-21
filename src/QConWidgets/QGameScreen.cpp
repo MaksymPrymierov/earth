@@ -13,6 +13,7 @@ QGameScreen::QGameScreen(QWidget *parent) :
 
     addMenuPanel();
     addActionPanel();
+    addSciencePanel();
 
     setLayout(generalLayout);
 }
@@ -72,6 +73,8 @@ void QGameScreen::addActionPanel()
                      &QGameScreen::showBuildPanel);
     QObject::connect(button(panel, QButton::Destroy), &QPushButton::clicked, this,
                      &QGameScreen::showDestroyPanel);
+    QObject::connect(button(panel, QButton::Science), &QPushButton::clicked, this,
+                     &QGameScreen::showSciencePanel);
 }
 
 void QGameScreen::addBuildPanel()
@@ -198,6 +201,31 @@ void QGameScreen::addDestroyPanel()
                                                      world->getInfoStock().data()); });
 }
 
+void QGameScreen::addSciencePanel()
+{
+    QButtonsPanel *p = new QButtonsPanel();
+
+    QButtonPanel panel = QButtonPanel::Science;
+
+    p->setTitle("Research");
+
+    p->addButton(QButton::PowerStation, 0, 0, "Power station");
+    p->addButton(QButton::Mine, 0, 1, "Mine");
+    p->addButton(QButton::Farm, 0, 2, "Farm");
+    p->addButton(QButton::Laboratory, 0, 3, "Laboratory");
+    p->addButton(QButton::CleaningStation, 0, 4, "Cleaning Station");
+    p->addButton(QButton::Stock, 0, 5, "Stock");
+    p->addButton(QButton::Cancel, 0, 6, "Cancel");
+
+    p->setAlignmentContent(Qt::AlignCenter);
+
+    buttonsPanels[panel] = p;
+    footer->addWidget(p);
+
+    QObject::connect(button(panel, QButton::Cancel), &QPushButton::clicked,
+                     [this, p] () { this->showActionPanel(p); });
+}
+
 void QGameScreen::installHeader()
 {
     generalLayout->addWidget(header);
@@ -254,15 +282,22 @@ void QGameScreen::showActionPanel(QButtonsPanel *panel)
     footer->setCurrentWidget(buttonsPanels[QButtonPanel::Action]);
 }
 
-void QGameScreen::showMenuPanel(){
+void QGameScreen::showMenuPanel()
+{
     header->setCurrentWidget(buttonsPanels[QButtonPanel::Menu]);
 }
 
-void QGameScreen::showDestroyPanel(){
+void QGameScreen::showDestroyPanel()
+{
     addDestroyPanel();
     footer->setCurrentWidget(buttonsPanels[QButtonPanel::Destroy]);
 }
 
+void QGameScreen::showSciencePanel()
+{
+    addSciencePanel();
+    footer->setCurrentWidget(buttonsPanels[QButtonPanel::Science]);
+}
 
 QPushButton* QGameScreen::button(QButtonPanel panel, QButton button)
 {
