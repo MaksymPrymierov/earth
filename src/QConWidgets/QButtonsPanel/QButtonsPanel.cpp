@@ -12,6 +12,9 @@ QButtonsPanel::QButtonsPanel(QGroupBox *parent) :
 QButtonsPanel::~QButtonsPanel()
 {
     delete layout;
+    for (QMap<QButton, QPushButton*>::iterator i = buttons.begin(); i != buttons.end(); ++i) {
+        delete *i;
+    }
 }
 
 void QButtonsPanel::addButton(QButton button, int row, int column, QString text)
@@ -21,29 +24,9 @@ void QButtonsPanel::addButton(QButton button, int row, int column, QString text)
     buttons[button] = b;
 }
 
-void QButtonsPanel::addInfo(QButton button, int row, int column, QString info)
-{
-    QLabel *l = new QLabel(info);
-    l->setMargin(2);
-    l->setFrameStyle(QFrame::StyledPanel | QFrame::Plain);
-
-    layout->addWidget(l, row, column);
-    labels[button] = l;
-}
-
 void QButtonsPanel::setAlignmentContent(QFlags<Qt::AlignmentFlag> aling)
 {
     setAlignment(int(aling));
 
     layout->setAlignment(aling);
-}
-
-void QButtonsPanel::updateInfo(QButton button, QString info)
-{
-     labels[button]->setText(info);
-}
-
-void QButtonsPanel::updateInfo(QButton button, const char* info)
-{
-    labels[button]->setText(info);
 }

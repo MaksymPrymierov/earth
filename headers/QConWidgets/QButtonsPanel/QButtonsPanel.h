@@ -18,18 +18,12 @@ public:
     ~QButtonsPanel();
 
     void addButton(QButton button, int row, int column, QString text);
-    void addInfo(QButton button, int row, int column, QString info);
-
-    void updateInfo(QButton button, QString info);
-    void updateInfo(QButton button, const char* info);
 
     inline QPushButton* getButton(QButton button) { return buttons[button]; }
-    inline QLabel* getLabel(QButton button) { return labels[button]; }
 
     void setAlignmentContent(QFlags<Qt::AlignmentFlag> align);
 
 private:
     QGridLayout *layout = new QGridLayout();
     QMap<QButton, QPushButton*> buttons;
-    QMap<QButton, QLabel*> labels;
 };

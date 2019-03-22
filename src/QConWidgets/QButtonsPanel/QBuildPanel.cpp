@@ -12,12 +12,5 @@ QBuildPanel::QBuildPanel()
     addButton(QButton::Stock, 0, 5, "Stock");
     addButton(QButton::Cancel, 0, 6, "Cancel");
 
-    addInfo(QButton::PowerStation, 1, 0, "Power Station");
-    addInfo(QButton::Mine, 1, 1, "Mine");
-    addInfo(QButton::Farm, 1, 2, "Farm");
-    addInfo(QButton::Laboratory, 1, 3, "Laboratory");
-    addInfo(QButton::CleaningStation, 1, 4, "Cleaning Station");
-    addInfo(QButton::Stock, 1, 5, "Stock");
-
     setAlignmentContent(Qt::AlignCenter);
 }
