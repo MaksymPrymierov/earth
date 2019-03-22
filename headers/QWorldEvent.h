@@ -1,6 +1,7 @@
 #ifndef WORLDEVENT_H
 #define WORLDEVENT_H
 #include <vector>
+#include <string>
 
 enum class QWorldActionEvents : unsigned char
 {
@@ -21,6 +22,7 @@ public:
     void changeEvent();
     QWorldActionEvents get() const;
     void set(QWorldActionEvents e);
+    std::string getChance(QWorldActionEvents e);
 };
 
 #endif // WORLDEVENT_H

@@ -1,5 +1,6 @@
 #include "headers/QWorldEvent.h"
 #include <cstdlib>
+#include <sstream>
 
 QWorldActionEvent::QWorldActionEvent() :
     currentEvent(QWorldActionEvents::NoEvents)
@@ -24,8 +25,36 @@ void QWorldActionEvent::set(QWorldActionEvents e)
     events.push_back(e);
 }
 
-float QWorldActionEvent::getChance(QWorldActionEvents e)
+std::string QWorldActionEvent::getChance(QWorldActionEvents e)
 {
+    std::stringstream name;
+
+    switch (e) {
+    case QWorldActionEvents::War :
+        name << "War ";
+        break;
+    case QWorldActionEvents::Epidemic :
+        name << "Epidemic ";
+        break;
+    case QWorldActionEvents::Revolution :
+        name << "Revolution ";
+        break;
+    case QWorldActionEvents::AlienAttack :
+        name << "Alien Attack ";
+        break;
+    case QWorldActionEvents::ActOfTerrorism :
+        name << "Act Of Terrorism ";
+        break;
+    case QWorldActionEvents::GlobalAccident :
+        name << "Global Accident ";
+        break;
+    case QWorldActionEvents::GlobalCataclysm :
+        name << "Global Cataclysm ";
+        break;
+    default:
+        name << "NULL";
+    }
+
     int countEvent = 0;
 
     for (std::vector<QWorldActionEvents>::iterator i = events.begin(); i != events.end(); ++i) {
@@ -33,5 +62,6 @@ float QWorldActionEvent::getChance(QWorldActionEvents e)
             ++countEvent;
     }
 
-    return countEvent * 100 / float(events.size());
+    name << countEvent * 100 / float(events.size()) << " %";
+    return name.str();
 }

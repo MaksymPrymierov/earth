@@ -6,7 +6,9 @@
 enum class QInfo : quint8
 {
     Year = 0, Population, Energy, Minerals, Food,
-    Science, Pollution, Solidarity, Capacity
+    Science, Pollution, Solidarity, Capacity, War,
+    Epidemic, Revolution, ActOfTerrorism, AlienAttack, GlobalCataclysm,
+    GlobalAccident, Risks
 };
 
 class QTextPanel : public QWidget

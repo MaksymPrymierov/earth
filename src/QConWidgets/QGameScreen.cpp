@@ -199,6 +199,7 @@ void QGameScreen::addDestroyPanel()
     QObject::connect(button(panel, QButton::Stock), &QPushButton::clicked,
                      [this, panel] () { setTextLabel(panel, QButton::Stock,
                                                      world->getInfoStock().data()); });
+
 }
 
 void QGameScreen::addSciencePanel()
@@ -247,6 +248,21 @@ void QGameScreen::installInfoPanel()
     textPanel->addInfo(QInfo::Pollution, 2, 0, world->getInfoPollution().data());
     textPanel->addInfo(QInfo::Solidarity, 2, 1, world->getInfoSolidarity().data());
     textPanel->addInfo(QInfo::Science, 2, 2, world->getInfoScience().data());
+    textPanel->addInfo(QInfo::Risks, 3, 0, "Risks: ");
+    textPanel->addInfo(QInfo::War, 3, 1, world->getInfoActionEvent(QWorldActionEvents::War).data());
+    textPanel->addInfo(QInfo::Epidemic, 3, 2,
+                       world->getInfoActionEvent(QWorldActionEvents::Epidemic).data());
+    textPanel->addInfo(QInfo::Revolution, 3, 3,
+                       world->getInfoActionEvent(QWorldActionEvents::Revolution).data());
+    textPanel->addInfo(QInfo::ActOfTerrorism, 4, 0,
+                       world->getInfoActionEvent(QWorldActionEvents::ActOfTerrorism).data());
+    textPanel->addInfo(QInfo::AlienAttack, 4, 1,
+                       world->getInfoActionEvent(QWorldActionEvents::AlienAttack).data());
+    textPanel->addInfo(QInfo::GlobalCataclysm, 4, 2,
+                       world->getInfoActionEvent(QWorldActionEvents::GlobalCataclysm).data());
+    textPanel->addInfo(QInfo::GlobalAccident, 4, 3,
+                       world->getInfoActionEvent(QWorldActionEvents::GlobalAccident).data());
+
 
     textPanel->setMinimumSize(600, 400);
 
@@ -264,6 +280,20 @@ void QGameScreen::updateInfoPanel()
     textPanel->getLabel(QInfo::Pollution)->setText(world->getInfoPollution().data());
     textPanel->getLabel(QInfo::Solidarity)->setText(world->getInfoSolidarity().data());
     textPanel->getLabel(QInfo::Science)->setText(world->getInfoScience().data());
+    textPanel->getLabel(QInfo::War)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::War).data());
+    textPanel->getLabel(QInfo::Epidemic)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::Epidemic).data());
+    textPanel->getLabel(QInfo::Revolution)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::Revolution).data());
+    textPanel->getLabel(QInfo::ActOfTerrorism)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::ActOfTerrorism).data());
+    textPanel->getLabel(QInfo::AlienAttack)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::AlienAttack).data());
+    textPanel->getLabel(QInfo::GlobalCataclysm)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::GlobalCataclysm).data());
+    textPanel->getLabel(QInfo::GlobalAccident)->
+            setText(world->getInfoActionEvent(QWorldActionEvents::GlobalAccident).data());
 }
 
 void QGameScreen::showBuildPanel()
