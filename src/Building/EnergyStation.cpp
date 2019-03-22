@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QEnergyStation.h"
+#include "headers/Building/EnergyStation.h"
 #include <sstream>
 
 

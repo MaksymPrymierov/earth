@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QStock.h"
+#include "headers/Building/Stock.h"
 #include <sstream>
 
 QStock::QStock() :

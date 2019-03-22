@@ -4,13 +4,13 @@
 #include <cstdint>
 #include <QEvent>
 #include <QObject>
-#include "QBuilding/QEnergyStation.h"
-#include "QBuilding/QMine.h"
-#include "QBuilding/QFarm.h"
-#include "QBuilding/QLaboratory.h"
-#include "QBuilding/QCleaningStation.h"
-#include "QBuilding/QStock.h"
-#include "QWorldEvent.h"
+#include "Building/EnergyStation.h"
+#include "Building/Mine.h"
+#include "Building/Farm.h"
+#include "Building/Laboratory.h"
+#include "Building/CleaningStation.h"
+#include "Building/Stock.h"
+#include "WorldEvent.h"
 
 class QWorldEvent : public QEvent
 {

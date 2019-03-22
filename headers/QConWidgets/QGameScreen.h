@@ -3,7 +3,7 @@
 #include <QtWidgets>
 #include "QButtonsPanel.h"
 #include "QTextPanel.h"
-#include "../QWorld.h"
+#include "../World.h"
 
 enum class QButtonPanel : quint8
 {

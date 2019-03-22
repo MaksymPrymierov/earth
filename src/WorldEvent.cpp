@@ -1,4 +1,4 @@
-#include "headers/QWorldEvent.h"
+#include "headers/WorldEvent.h"
 #include <cstdlib>
 #include <sstream>
 

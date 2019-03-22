@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QMine.h"
+#include "headers/Building/Mine.h"
 #include <sstream>
 
 QMine::QMine() :

@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QFarm.h"
+#include "headers/Building/Farm.h"
 #include <sstream>
 
 QFarm::QFarm() :

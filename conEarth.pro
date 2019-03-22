@@ -25,13 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/QBuilding/QBuilding.cpp \
-    src/QBuilding/QCleaningStation.cpp \
-    src/QBuilding/QEnergyStation.cpp \
-    src/QBuilding/QFarm.cpp \
-    src/QBuilding/QLaboratory.cpp \
-    src/QBuilding/QMine.cpp \
-    src/QBuilding/QStock.cpp \
     src/QConWidgets/QButtonsPanel.cpp \
     src/QConWidgets/QGameMainWindow.cpp \
     src/QConWidgets/QGameScreen.cpp \
@@ -39,33 +32,36 @@ SOURCES += \
     src/QConWidgets/QTextPanel.cpp \
     src/main.cpp \
     src/QConResources.cpp \
-    src/QWorld.cpp \
-    src/QScience.cpp \
-    src/QWorldEvent.cpp
+    src/Building/Building.cpp \
+    src/Building/CleaningStation.cpp \
+    src/Building/EnergyStation.cpp \
+    src/Building/Farm.cpp \
+    src/Building/Laboratory.cpp \
+    src/Building/Mine.cpp \
+    src/Building/Stock.cpp \
+    src/Science.cpp \
+    src/World.cpp \
+    src/WorldEvent.cpp
 
 
 
 HEADERS += \
-    headers/QBuilding/QBuilding.h \
-    headers/QBuilding/QCleaningStation.h \
-    headers/QBuilding/QEnergyStation.h \
-    headers/QBuilding/QFarm.h \
-    headers/QBuilding/QLaboratory.h \
-    headers/QBuilding/QMine.h \
-    headers/QBuilding/QStock.h \
     headers/QConWidgets/QButtonsPanel.h \
     headers/QConWidgets/QGameMainWindow.h \
     headers/QConWidgets/QGameScreen.h \
     headers/QConWidgets/QMainMenu.h \
     headers/QConWidgets/QTextPanel.h \
     headers/QConResources.h \
-    headers/QWorld.h \
-    headers/QScience.h \
-    headers/QWorldEvent.h
-
-
-
-
+    headers/Building/Building.h \
+    headers/Building/CleaningStation.h \
+    headers/Building/EnergyStation.h \
+    headers/Building/Farm.h \
+    headers/Building/Laboratory.h \
+    headers/Building/Mine.h \
+    headers/Building/Stock.h \
+    headers/Science.h \
+    headers/World.h \
+    headers/WorldEvent.h
 
 FORMS +=
 

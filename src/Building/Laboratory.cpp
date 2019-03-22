@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QLaboratory.h"
+#include "headers/Building/Laboratory.h"
 #include <sstream>
 
 QLaboratory::QLaboratory() :

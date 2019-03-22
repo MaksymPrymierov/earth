@@ -1,6 +1,6 @@
 #pragma once
 
-#include "QBuilding.h"
+#include "Building.h"
 
 class QMine : public QBuilding
 {

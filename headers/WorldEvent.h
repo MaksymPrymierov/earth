@@ -2,7 +2,6 @@
 #define WORLDEVENT_H
 #include <vector>
 #include <string>
-#include <map>
 
 enum class QWorldActionEvents : unsigned char
 {

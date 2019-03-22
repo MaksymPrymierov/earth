@@ -1,4 +1,4 @@
-#include "headers/QBuilding/QCleaningStation.h"
+#include "headers/Building/CleaningStation.h"
 #include <sstream>
 
 QCleaningStation::QCleaningStation() :

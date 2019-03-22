@@ -1,4 +1,4 @@
-#include "headers/QWorld.h"
+#include "headers/World.h"
 #include <QCoreApplication>
 #include <sstream>
 
