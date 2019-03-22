@@ -1,5 +1,5 @@
-#ifndef WORLDEVENT_H
-#define WORLDEVENT_H
+#pragma once
+
 #include <vector>
 #include <string>
 
@@ -28,5 +28,3 @@ public:
     void set(WorldActionEvents e);
     std::string getChance(WorldActionEvents e);
 };
-
-#endif // WORLDEVENT_H

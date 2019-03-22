@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QtWidgets>
-#include "QButtonsPanel.h"
+#include "QButtonsPanel/QButtonsPanel.h"
 
 class QMainMenu : public QWidget
 {

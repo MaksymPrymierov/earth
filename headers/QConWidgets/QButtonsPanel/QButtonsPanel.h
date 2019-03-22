@@ -21,6 +21,7 @@ public:
     void addInfo(QButton button, int row, int column, QString info);
 
     void updateInfo(QButton button, QString info);
+    void updateInfo(QButton button, const char* info);
 
     inline QPushButton* getButton(QButton button) { return buttons[button]; }
     inline QLabel* getLabel(QButton button) { return labels[button]; }

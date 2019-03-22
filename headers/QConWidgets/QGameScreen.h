@@ -1,9 +1,15 @@
 #pragma once
 
 #include <QtWidgets>
-#include "QButtonsPanel.h"
+#include "QButtonsPanel/QButtonsPanel.h"
 #include "QTextPanel.h"
 #include "../World.h"
+
+#include "headers/QConWidgets/QButtonsPanel/QMainMenuPanel.h"
+#include "headers/QConWidgets/QButtonsPanel/QActionPanel.h"
+#include "headers/QConWidgets/QButtonsPanel/QBuildPanel.h"
+#include "headers/QConWidgets/QButtonsPanel/QDestroyPanel.h"
+#include "headers/QConWidgets/QButtonsPanel/QSciencePanel.h"
 
 enum class QButtonPanel : quint8
 {
@@ -23,17 +29,17 @@ signals:
 
 public slots:
     void showMenuPanel();
-    void showActionPanel(QButtonsPanel *panel = nullptr);
+    void showActionPanel();
     void showBuildPanel();
     void showDestroyPanel();
     void showSciencePanel();
 
 protected:
-    void addMenuPanel();
-    void addActionPanel();
-    void addBuildPanel();
-    void addDestroyPanel();
-    void addSciencePanel();
+    inline void handlerMenuPanel();
+    inline void handlerActionPanel();
+    inline void handlerBuildPanel();
+    inline void handlerDestroyPanel();
+    inline void handlerSciencePanel();
 
     inline void installHeader();
     inline void installFooter();
@@ -54,6 +60,9 @@ private:
     QVBoxLayout *generalLayout = new QVBoxLayout();
 
     QTextPanel *textPanel = new QTextPanel();
-
-    QMap<QButtonPanel, QButtonsPanel*> buttonsPanels;
+    QMainMenuPanel *mainMenuPanel = new QMainMenuPanel();
+    QActionPanel *actionPanel = new QActionPanel();
+    QBuildPanel *buildPanel = new QBuildPanel();
+    QDestroyPanel *destroyPanel = new QDestroyPanel();
+    QSciencePanel *sciencePanel = new QSciencePanel();
 };

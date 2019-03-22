@@ -1,4 +1,4 @@
-#include "headers/QConWidgets/QButtonsPanel.h"
+#include "headers/QConWidgets/QButtonsPanel/QButtonsPanel.h"
 
 QButtonsPanel::QButtonsPanel(QGroupBox *parent) :
     QGroupBox(parent)
@@ -36,4 +36,14 @@ void QButtonsPanel::setAlignmentContent(QFlags<Qt::AlignmentFlag> aling)
     setAlignment(int(aling));
 
     layout->setAlignment(aling);
+}
+
+void QButtonsPanel::updateInfo(QButton button, QString info)
+{
+     labels[button]->setText(info);
+}
+
+void QButtonsPanel::updateInfo(QButton button, const char* info)
+{
+    labels[button]->setText(info);
 }

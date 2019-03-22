@@ -25,7 +25,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    src/QConWidgets/QButtonsPanel.cpp \
     src/QConWidgets/QGameMainWindow.cpp \
     src/QConWidgets/QGameScreen.cpp \
     src/QConWidgets/QMainMenu.cpp \
@@ -41,12 +40,17 @@ SOURCES += \
     src/Building/Stock.cpp \
     src/Science.cpp \
     src/World.cpp \
-    src/WorldEvent.cpp
+    src/WorldEvent.cpp \
+    src/QConWidgets/QButtonsPanel/QButtonsPanel.cpp \
+    src/QConWidgets/QButtonsPanel/QMainMenuPanel.cpp \
+    src/QConWidgets/QButtonsPanel/QActionPanel.cpp \
+    src/QConWidgets/QButtonsPanel/QBuildPanel.cpp \
+    src/QConWidgets/QButtonsPanel/QDestroyPanel.cpp \
+    src/QConWidgets/QButtonsPanel/QSciencePanel.cpp
 
 
 
 HEADERS += \
-    headers/QConWidgets/QButtonsPanel.h \
     headers/QConWidgets/QGameMainWindow.h \
     headers/QConWidgets/QGameScreen.h \
     headers/QConWidgets/QMainMenu.h \
@@ -61,7 +65,13 @@ HEADERS += \
     headers/Building/Stock.h \
     headers/Science.h \
     headers/World.h \
-    headers/WorldEvent.h
+    headers/WorldEvent.h \
+    headers/QConWidgets/QButtonsPanel/QButtonsPanel.h \
+    headers/QConWidgets/QButtonsPanel/QMainMenuPanel.h \
+    headers/QConWidgets/QButtonsPanel/QActionPanel.h \
+    headers/QConWidgets/QButtonsPanel/QBuildPanel.h \
+    headers/QConWidgets/QButtonsPanel/QDestroyPanel.h \
+    headers/QConWidgets/QButtonsPanel/QSciencePanel.h
 
 FORMS +=
 
