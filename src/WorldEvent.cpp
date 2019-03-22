@@ -2,58 +2,58 @@
 #include <cstdlib>
 #include <sstream>
 
-QWorldActionEvent::QWorldActionEvent() :
-    currentEvent(QWorldActionEvents::NoEvents)
+WorldActionEvent::WorldActionEvent() :
+    currentEvent(WorldActionEvents::NoEvents)
 {
-    events.push_back(QWorldActionEvents::NoEvents);
+    events.push_back(WorldActionEvents::NoEvents);
 }
 
-void QWorldActionEvent::changeEvent()
+void WorldActionEvent::changeEvent()
 {
     currentEvent = events[size_t(rand() % int(events.size() + 1))];
     events.clear();
-    events.push_back(QWorldActionEvents::NoEvents);
+    events.push_back(WorldActionEvents::NoEvents);
 }
 
-QWorldActionEvents QWorldActionEvent::get() const
+WorldActionEvents WorldActionEvent::get() const
 {
     return currentEvent;
 }
 
-std::string QWorldActionEvent::getName() const
+std::string WorldActionEvent::getName() const
 {
     return names[size_t(get())];
 }
 
-void QWorldActionEvent::set(QWorldActionEvents e)
+void WorldActionEvent::set(WorldActionEvents e)
 {
     events.push_back(e);
 }
 
-std::string QWorldActionEvent::getChance(QWorldActionEvents e)
+std::string WorldActionEvent::getChance(WorldActionEvents e)
 {
     std::stringstream name;
 
     switch (e) {
-    case QWorldActionEvents::War :
+    case WorldActionEvents::War :
         name << "War ";
         break;
-    case QWorldActionEvents::Epidemic :
+    case WorldActionEvents::Epidemic :
         name << "Epidemic ";
         break;
-    case QWorldActionEvents::Revolution :
+    case WorldActionEvents::Revolution :
         name << "Revolution ";
         break;
-    case QWorldActionEvents::AlienAttack :
+    case WorldActionEvents::AlienAttack :
         name << "Alien Attack ";
         break;
-    case QWorldActionEvents::ActOfTerrorism :
+    case WorldActionEvents::ActOfTerrorism :
         name << "Act Of Terrorism ";
         break;
-    case QWorldActionEvents::GlobalAccident :
+    case WorldActionEvents::GlobalAccident :
         name << "Global Accident ";
         break;
-    case QWorldActionEvents::GlobalCataclysm :
+    case WorldActionEvents::GlobalCataclysm :
         name << "Global Cataclysm ";
         break;
     default:
@@ -62,7 +62,7 @@ std::string QWorldActionEvent::getChance(QWorldActionEvents e)
 
     int countEvent = 0;
 
-    for (std::vector<QWorldActionEvents>::iterator i = events.begin(); i != events.end(); ++i) {
+    for (std::vector<WorldActionEvents>::iterator i = events.begin(); i != events.end(); ++i) {
         if (*i == e)
             ++countEvent;
     }

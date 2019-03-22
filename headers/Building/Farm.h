@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QFarm : public QBuilding
+class Farm : public Building
 {
 public:
-    QFarm();
-    ~QFarm() = default;
+    Farm();
+    ~Farm() = default;
 
     inline void setModFood(int64_t m) { modFood = m; }
 

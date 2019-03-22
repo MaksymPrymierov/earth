@@ -1,7 +1,7 @@
 #include "headers/Building/Stock.h"
 #include <sstream>
 
-QStock::QStock() :
+Stock::Stock() :
     capacity(100)
 {
     setQuantity(1);
@@ -9,7 +9,7 @@ QStock::QStock() :
     setModEnergy(0);
 }
 
-std::string QStock::getInfo()
+std::string Stock::getInfo()
 {
     std::stringstream s;
     s << "Quantity: " << getQuantity() << "\nPrice: " << getPriceMinerals() << "\nEnergy: " <<

@@ -3,11 +3,11 @@
 #include <string>
 #include <cstdint>
 
-class QBuilding
+class Building
 {
 public:
-    QBuilding();
-    ~QBuilding() = default;
+    Building();
+    ~Building() = default;
 
     inline void setQuantity(int64_t q) { quantity = q; }
     inline void setPrice(int64_t p) { price = p; }

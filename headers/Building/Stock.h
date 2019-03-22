@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QStock : public QBuilding
+class Stock : public Building
 {
 public:
-    QStock();
-    ~QStock() = default;
+    Stock();
+    ~Stock() = default;
 
     inline int64_t getCapacity() { return capacity; }
     inline int64_t getFullCapacity() { return capacity * getQuantity(); }

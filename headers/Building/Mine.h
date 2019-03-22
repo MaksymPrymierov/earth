@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QMine : public QBuilding
+class Mine : public Building
 {
 public:
-    QMine();
-    ~QMine() = default;
+    Mine();
+    ~Mine() = default;
 
     inline void setModPollution(float m) { modPollution = m; }
     inline void setModMinerals(int64_t m) { modMinerals = m; }

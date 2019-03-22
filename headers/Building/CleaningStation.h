@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QCleaningStation : public QBuilding
+class CleaningStation : public Building
 {
 public:
-    QCleaningStation();
-    ~QCleaningStation() = default;
+    CleaningStation();
+    ~CleaningStation() = default;
 
     inline void setModMineral(int64_t m) { modMinerals = m; }
     inline void setModPollution(float m) { modPollution = m; }

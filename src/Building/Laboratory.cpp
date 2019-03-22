@@ -1,14 +1,14 @@
 #include "headers/Building/Laboratory.h"
 #include <sstream>
 
-QLaboratory::QLaboratory() :
+Laboratory::Laboratory() :
     modMinerals(-2), modScience(1)
 {
     setPrice(2);
     setModEnergy(-2);
 }
 
-std::string QLaboratory::getInfo()
+std::string Laboratory::getInfo()
 {
     std::stringstream stream;
     stream << "Quantity: " << getQuantity() << "\nPrice: " << getPriceMinerals() <<

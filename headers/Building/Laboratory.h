@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QLaboratory : public QBuilding
+class Laboratory : public Building
 {
 public:
-    QLaboratory();
-    ~QLaboratory() = default;
+    Laboratory();
+    ~Laboratory() = default;
 
     inline void setModMinerals(int64_t m) { modScience = m; }
     inline void setModScience(int64_t m) { modMinerals = m; }

@@ -2,14 +2,14 @@
 #include <sstream>
 
 
-QEnergyStation::QEnergyStation() :
+EnergyStation::EnergyStation() :
     modPollution(float(0.01))
 {
     setModEnergy(1);
     setPrice(1);
 }
 
-std::string QEnergyStation::getInfo()
+std::string EnergyStation::getInfo()
 {
     std::stringstream stream;
     stream << "Quantity: " << getQuantity() << "\nPrice: " << getPriceMinerals() << "\nEnergy: " <<

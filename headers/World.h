@@ -32,7 +32,7 @@ public:
     inline std::string getInfoLab() { return labs.getInfo(); }
     inline std::string getInfoCleaningStation() { return cleaningStation.getInfo(); }
     inline std::string getInfoStock() { return stock.getInfo(); }
-    inline std::string getInfoActionEvent(QWorldActionEvents e) { return actionEvent.getChance(e); }
+    inline std::string getInfoActionEvent(WorldActionEvents e) { return actionEvent.getChance(e); }
     inline std::string getCurrentEvent() const { return actionEvent.getName(); }
 
     std::string getInfoYear();
@@ -94,13 +94,13 @@ private:
     float  pollution;
     float solidarity;
 
-    QEnergyStation energyStations;
-    QMine mines;
-    QFarm farms;
-    QLaboratory labs;
-    QCleaningStation cleaningStation;
-    QStock stock;
-    QWorldActionEvent actionEvent;
+    EnergyStation energyStations;
+    Mine mines;
+    Farm farms;
+    Laboratory labs;
+    CleaningStation cleaningStation;
+    Stock stock;
+    WorldActionEvent actionEvent;
 
     QObject *receiver;
 };

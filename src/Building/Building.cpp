@@ -1,5 +1,5 @@
 #include "headers/Building/Building.h"
 
-QBuilding::QBuilding() :
+Building::Building() :
     quantity(0), price(0), modEnergy(0)
     {}

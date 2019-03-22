@@ -2,11 +2,11 @@
 
 #include "Building.h"
 
-class QEnergyStation : public QBuilding
+class EnergyStation : public Building
 {
 public:
-    QEnergyStation();
-    ~QEnergyStation() = default;
+    EnergyStation();
+    ~EnergyStation() = default;
 
     inline void setModPollution(float m) { modPollution = m; }
 
