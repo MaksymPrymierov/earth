@@ -262,6 +262,8 @@ void QGameScreen::installInfoPanel()
                        world->getInfoActionEvent(QWorldActionEvents::GlobalCataclysm).data());
     textPanel->addInfo(QInfo::GlobalAccident, 4, 3,
                        world->getInfoActionEvent(QWorldActionEvents::GlobalAccident).data());
+    textPanel->addInfo(QInfo::PastEvent, 5, 0,
+                       ("Past event " + world->getCurrentEvent()).data());
 
 
     textPanel->setMinimumSize(600, 400);
@@ -294,6 +296,8 @@ void QGameScreen::updateInfoPanel()
             setText(world->getInfoActionEvent(QWorldActionEvents::GlobalCataclysm).data());
     textPanel->getLabel(QInfo::GlobalAccident)->
             setText(world->getInfoActionEvent(QWorldActionEvents::GlobalAccident).data());
+    textPanel->getLabel(QInfo::PastEvent)->
+            setText(("Past event: " + world->getCurrentEvent()).data());
 }
 
 void QGameScreen::showBuildPanel()

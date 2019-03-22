@@ -20,6 +20,11 @@ QWorldActionEvents QWorldActionEvent::get() const
     return currentEvent;
 }
 
+std::string QWorldActionEvent::getName() const
+{
+    return names[size_t(get())];
+}
+
 void QWorldActionEvent::set(QWorldActionEvents e)
 {
     events.push_back(e);

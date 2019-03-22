@@ -33,6 +33,7 @@ public:
     inline std::string getInfoCleaningStation() { return cleaningStation.getInfo(); }
     inline std::string getInfoStock() { return stock.getInfo(); }
     inline std::string getInfoActionEvent(QWorldActionEvents e) { return actionEvent.getChance(e); }
+    inline std::string getCurrentEvent() const { return actionEvent.getName(); }
 
     std::string getInfoYear();
     std::string getInfoPopulation();
