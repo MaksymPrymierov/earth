@@ -11,11 +11,11 @@ public:
     inline void setModMineral(int64_t m) { modMinerals = m; }
     inline void setModPollution(float m) { modPollution = m; }
 
-    inline int64_t getModMinerals() { return modMinerals; }
-    inline float getModPollution() { return modPollution; }
+    inline int64_t getModMinerals() const { return modMinerals; }
+    inline float getModPollution() const { return modPollution; }
 
-    inline int64_t getFullModMinerals() { return modMinerals * getQuantity(); }
-    inline float getFullModPollution() { return modPollution * getQuantity(); }
+    inline int64_t getFullModMinerals() const { return modMinerals * getQuantity(); }
+    inline float getFullModPollution() const { return modPollution * getQuantity(); }
     std::string getInfo();
 
 private:

@@ -10,8 +10,8 @@ public:
 
     inline void setModPollution(float m) { modPollution = m; }
 
-    inline float getModPollution() { return modPollution; }
-    inline float getFullModPollution() { return modPollution * getQuantity(); }
+    inline float getModPollution() const { return modPollution; }
+    inline float getFullModPollution() const { return modPollution * getQuantity(); }
     std::string getInfo();
 
 private:

@@ -8,8 +8,8 @@ public:
     Stock();
     ~Stock() = default;
 
-    inline int64_t getCapacity() { return capacity; }
-    inline int64_t getFullCapacity() { return capacity * getQuantity(); }
+    inline int64_t getCapacity() const { return capacity; }
+    inline int64_t getFullCapacity() const { return capacity * getQuantity(); }
     std::string getInfo();
 
 private:
