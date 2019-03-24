@@ -23,8 +23,6 @@ public:
     void addInfo(QInfo type, int row, int column, QString info);
     void updateInfo(QInfo type, QString info) { labels[type]->setText(info); }
 
-    inline QLabel* getLabel(QInfo type) { return labels[type]; }
-
 private:
     QGridLayout *layout = new QGridLayout();
     QMap<QInfo, QLabel*> labels;

@@ -46,7 +46,8 @@ SOURCES += \
     src/World/Science.cpp \
     src/World/World.cpp \
     src/World/WorldEvent.cpp \
-    src/QConWidgets/QTextPanel/QTextPanel.cpp
+    src/QConWidgets/QTextPanel/QTextPanel.cpp \
+    src/QConWidgets/QTextPanel/QGameInfoPanel.cpp
 
 
 
@@ -72,7 +73,8 @@ HEADERS += \
     headers/World/World.h \
     headers/World/WorldEvent.h \
     headers/World/WorldStats.h \
-    headers/QConWidgets/QTextPanel/QTextPanel.h
+    headers/QConWidgets/QTextPanel/QTextPanel.h \
+    headers/QConWidgets/QTextPanel/QGameInfoPanel.h
 
 FORMS +=
 

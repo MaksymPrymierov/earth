@@ -9,7 +9,7 @@
 #include "headers/QConWidgets/QButtonsPanel/QBuildPanel.h"
 #include "headers/QConWidgets/QButtonsPanel/QDestroyPanel.h"
 #include "headers/QConWidgets/QButtonsPanel/QSciencePanel.h"
-#include "headers/QConWidgets/QTextPanel/QTextPanel.h"
+#include "headers/QConWidgets/QTextPanel/QGameInfoPanel.h"
 
 enum class QButtonPanel : quint8
 {
@@ -44,10 +44,7 @@ protected:
     inline void installHeader();
     inline void installFooter();
     inline void installInfoPanel();
-    void updateInfoPanel();
-
-    inline QPushButton* button(QButtonPanel panel, QButton button);
-    inline void setTextLabel(QButtonPanel panel, QButton button, QString text);
+    inline void updateInfoPanel();
 
     bool event(QEvent *event);
 
@@ -59,10 +56,11 @@ private:
     QStackedWidget *footer = new QStackedWidget();
     QVBoxLayout *generalLayout = new QVBoxLayout();
 
-    QTextPanel *textPanel = new QTextPanel();
     QMainMenuPanel *mainMenuPanel = new QMainMenuPanel();
     QActionPanel *actionPanel = new QActionPanel();
     QBuildPanel *buildPanel = new QBuildPanel();
     QDestroyPanel *destroyPanel = new QDestroyPanel();
     QSciencePanel *sciencePanel = new QSciencePanel();
+
+    QGameInfoPanel *infoPanel = new QGameInfoPanel(world);
 };
