@@ -8,7 +8,9 @@ enum class QInfo : quint8
     Year = 0, Population, Energy, Minerals, Food,
     Science, Pollution, Solidarity, Capacity, War,
     Epidemic, Revolution, ActOfTerrorism, AlienAttack, GlobalCataclysm,
-    GlobalAccident, Risks, PastEvent
+    GlobalAccident, Risks, PastEvent, InfoYear, InfoPopulation,
+    InfoEnergy, InfoMinerals, InfoFood, InfoScience, InfoPollution,
+    InfoSolidarity, InfoCapacity
 };
 
 class QTextPanel : public QWidget
@@ -19,7 +21,7 @@ public:
     ~QTextPanel();
 
     void addInfo(QInfo type, int row, int column, QString info);
-    void updateInfo(QInfo type, QString info);
+    void updateInfo(QInfo type, QString info) { labels[type]->setText(info); }
 
     inline QLabel* getLabel(QInfo type) { return labels[type]; }
 

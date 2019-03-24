@@ -117,32 +117,48 @@ void QGameScreen::installFooter()
 
 void QGameScreen::installInfoPanel()
 {
-    textPanel->addInfo(QInfo::Year, 0, 0, world->getInfoYear().data());
-    textPanel->addInfo(QInfo::Population, 0, 1, world->getInfoPopulation().data());
-    textPanel->addInfo(QInfo::Capacity, 0, 2, world->getInfoCapacity().data());
-    textPanel->addInfo(QInfo::Energy, 1, 0, world->getInfoEnergy().data());
-    textPanel->addInfo(QInfo::Minerals, 1, 1, world->getInfoMinerals().data());
-    textPanel->addInfo(QInfo::Food, 1, 2, world->getInfoFood().data());
-    textPanel->addInfo(QInfo::Pollution, 2, 0, world->getInfoPollution().data());
-    textPanel->addInfo(QInfo::Solidarity, 2, 1, world->getInfoSolidarity().data());
-    textPanel->addInfo(QInfo::Science, 2, 2, world->getInfoScience().data());
-    textPanel->addInfo(QInfo::Risks, 3, 0, "Risks: ");
-    textPanel->addInfo(QInfo::War, 3, 1, world->getInfoActionEvent(WorldActionEvents::War).data());
-    textPanel->addInfo(QInfo::Epidemic, 3, 2,
-                       world->getInfoActionEvent(WorldActionEvents::Epidemic).data());
-    textPanel->addInfo(QInfo::Revolution, 3, 3,
-                       world->getInfoActionEvent(WorldActionEvents::Revolution).data());
-    textPanel->addInfo(QInfo::ActOfTerrorism, 4, 0,
-                       world->getInfoActionEvent(WorldActionEvents::ActOfTerrorism).data());
-    textPanel->addInfo(QInfo::AlienAttack, 4, 1,
-                       world->getInfoActionEvent(WorldActionEvents::AlienAttack).data());
-    textPanel->addInfo(QInfo::GlobalCataclysm, 4, 2,
-                       world->getInfoActionEvent(WorldActionEvents::GlobalCataclysm).data());
-    textPanel->addInfo(QInfo::GlobalAccident, 4, 3,
-                       world->getInfoActionEvent(WorldActionEvents::GlobalAccident).data());
-    textPanel->addInfo(QInfo::PastEvent, 5, 0,
-                       ("Past event " + world->getCurrentEvent()).data());
+    textPanel->addInfo(QInfo::InfoYear, 0, 0, "Year");
+    textPanel->addInfo(QInfo::InfoPopulation, 0, 1, "Population");
+    textPanel->addInfo(QInfo::InfoEnergy, 0, 2, "Energy");
+    textPanel->addInfo(QInfo::InfoMinerals, 0, 3, "Minerals");
+    textPanel->addInfo(QInfo::InfoFood, 0, 4, "Food");
+    textPanel->addInfo(QInfo::InfoCapacity, 0, 5, "Capacity");
+    textPanel->addInfo(QInfo::InfoSolidarity, 0, 6, "Solidarity");
+    textPanel->addInfo(QInfo::InfoPollution, 0, 7, "Pollution");
+    textPanel->addInfo(QInfo::InfoScience, 0, 8, "Science");
 
+    textPanel->addInfo(QInfo::Year, 1, 0, QString::asprintf("%ld", world->getYear()));
+    textPanel->addInfo(QInfo::Population, 1, 1, QString::asprintf("%ld", world->getPopulation()));
+    textPanel->addInfo(QInfo::Energy, 1, 2, QString::asprintf("%ld [%ld]", world->getEnergy(),
+                                                              world->getModEnergy()));
+    textPanel->addInfo(QInfo::Minerals, 1, 3, QString::asprintf("%ld [%ld]", world->getMinerals(),
+                                                                world->getModMinerals()));
+    textPanel->addInfo(QInfo::Food, 1, 4, QString::asprintf("%ld [%ld]", world->getFood(),
+                                                            world->getModFood()));
+    textPanel->addInfo(QInfo::Capacity, 1, 5, QString::asprintf("%ld", world->getCapacity()));
+    textPanel->addInfo(QInfo::Solidarity, 1, 6, QString::asprintf("%3.2f %%",
+                                                                  double(world->getSolidarity())));
+    textPanel->addInfo(QInfo::Pollution, 1, 7,
+                       QString::asprintf("%3.2f %% [%3.2f %%]", double(world->getPolltion()),
+                                         double(world->getModPollution())));
+    textPanel->addInfo(QInfo::Science, 1, 8, QString::asprintf("%ld [%ld]", world->getScience(),
+                                                               world->getModScience()));
+
+    textPanel->addInfo(QInfo::War, 2, 0, world->getInfoActionEvent(WorldActionEvents::War).data());
+    textPanel->addInfo(QInfo::Epidemic, 2, 1,
+                       world->getInfoActionEvent(WorldActionEvents::Epidemic).data());
+    textPanel->addInfo(QInfo::Revolution, 2, 2,
+                       world->getInfoActionEvent(WorldActionEvents::Revolution).data());
+    textPanel->addInfo(QInfo::ActOfTerrorism, 2, 3,
+                       world->getInfoActionEvent(WorldActionEvents::ActOfTerrorism).data());
+    textPanel->addInfo(QInfo::AlienAttack, 2, 4,
+                       world->getInfoActionEvent(WorldActionEvents::AlienAttack).data());
+    textPanel->addInfo(QInfo::GlobalCataclysm, 2, 5,
+                       world->getInfoActionEvent(WorldActionEvents::GlobalCataclysm).data());
+    textPanel->addInfo(QInfo::GlobalAccident, 2, 6,
+                       world->getInfoActionEvent(WorldActionEvents::GlobalAccident).data());
+    textPanel->addInfo(QInfo::PastEvent, 2, 7,
+                       ("Past event " + world->getCurrentEvent()).data());
 
     textPanel->setMinimumSize(600, 400);
 
@@ -151,31 +167,38 @@ void QGameScreen::installInfoPanel()
 
 void QGameScreen::updateInfoPanel()
 {
-    textPanel->getLabel(QInfo::Year)->setText(world->getInfoYear().data());
-    textPanel->getLabel(QInfo::Population)->setText(world->getInfoPopulation().data());
-    textPanel->getLabel(QInfo::Capacity)->setText(world->getInfoCapacity().data());
-    textPanel->getLabel(QInfo::Energy)->setText(world->getInfoEnergy().data());
-    textPanel->getLabel(QInfo::Minerals)->setText(world->getInfoMinerals().data());
-    textPanel->getLabel(QInfo::Food)->setText(world->getInfoFood().data());
-    textPanel->getLabel(QInfo::Pollution)->setText(world->getInfoPollution().data());
-    textPanel->getLabel(QInfo::Solidarity)->setText(world->getInfoSolidarity().data());
-    textPanel->getLabel(QInfo::Science)->setText(world->getInfoScience().data());
-    textPanel->getLabel(QInfo::War)->
-            setText(world->getInfoActionEvent(WorldActionEvents::War).data());
-    textPanel->getLabel(QInfo::Epidemic)->
-            setText(world->getInfoActionEvent(WorldActionEvents::Epidemic).data());
-    textPanel->getLabel(QInfo::Revolution)->
-            setText(world->getInfoActionEvent(WorldActionEvents::Revolution).data());
-    textPanel->getLabel(QInfo::ActOfTerrorism)->
-            setText(world->getInfoActionEvent(WorldActionEvents::ActOfTerrorism).data());
-    textPanel->getLabel(QInfo::AlienAttack)->
-            setText(world->getInfoActionEvent(WorldActionEvents::AlienAttack).data());
-    textPanel->getLabel(QInfo::GlobalCataclysm)->
-            setText(world->getInfoActionEvent(WorldActionEvents::GlobalCataclysm).data());
-    textPanel->getLabel(QInfo::GlobalAccident)->
-            setText(world->getInfoActionEvent(WorldActionEvents::GlobalAccident).data());
-    textPanel->getLabel(QInfo::PastEvent)->
-            setText(("Past event: " + world->getCurrentEvent()).data());
+    textPanel->updateInfo(QInfo::Year, QString::asprintf("%ld", world->getYear()));
+    textPanel->updateInfo(QInfo::Population, QString::asprintf("%ld", world->getPopulation()));
+    textPanel->updateInfo(QInfo::Energy, QString::asprintf("%ld [%ld]", world->getEnergy(),
+                                                           world->getModEnergy()));
+    textPanel->updateInfo(QInfo::Minerals, QString::asprintf("%ld [%ld]", world->getMinerals(),
+                                                             world->getModMinerals()));
+    textPanel->updateInfo(QInfo::Food, QString::asprintf("%ld [%ld]", world->getFood(),
+                                                         world->getModFood()));
+    textPanel->updateInfo(QInfo::Capacity, QString::asprintf("%ld", world->getCapacity()));
+    textPanel->updateInfo(QInfo::Solidarity, QString::asprintf("%3.2f %%",
+                                                               double(world->getSolidarity())));
+    textPanel->updateInfo(QInfo::Pollution,
+                          QString::asprintf("%3.2f %% [%3.2f %%]", double(world->getPolltion()),
+                                            double(world->getModPollution())));
+    textPanel->updateInfo(QInfo::Science, QString::asprintf("%ld [%ld]", world->getScience(),
+                                                            world->getModScience()));
+
+    textPanel->updateInfo(QInfo::War, world->getInfoActionEvent(WorldActionEvents::War).data());
+    textPanel->updateInfo(QInfo::Epidemic,
+                          world->getInfoActionEvent(WorldActionEvents::Epidemic).data());
+    textPanel->updateInfo(QInfo::Revolution,
+                          world->getInfoActionEvent(WorldActionEvents::Revolution).data());
+    textPanel->updateInfo(QInfo::ActOfTerrorism,
+                          world->getInfoActionEvent(WorldActionEvents::ActOfTerrorism).data());
+    textPanel->updateInfo(QInfo::AlienAttack,
+                          world->getInfoActionEvent(WorldActionEvents::AlienAttack).data());
+    textPanel->updateInfo(QInfo::GlobalCataclysm,
+                          world->getInfoActionEvent(WorldActionEvents::GlobalCataclysm).data());
+    textPanel->updateInfo(QInfo::GlobalAccident,
+                          world->getInfoActionEvent(WorldActionEvents::GlobalAccident).data());
+    textPanel->updateInfo(QInfo::PastEvent,
+                          ("Past event " + world->getCurrentEvent()).data());
 }
 
 void QGameScreen::showBuildPanel()

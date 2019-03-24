@@ -3,7 +3,7 @@
 #include <QtWidgets>
 #include "QButtonsPanel/QButtonsPanel.h"
 #include "QTextPanel.h"
-#include "../World.h"
+#include "headers/World/World.h"
 
 #include "headers/QConWidgets/QButtonsPanel/QMainMenuPanel.h"
 #include "headers/QConWidgets/QButtonsPanel/QActionPanel.h"
@@ -52,7 +52,7 @@ protected:
     bool event(QEvent *event);
 
 private:
-    QWorld *world = new QWorld(this);
+    World *world = new World(this);
     QPalette *pall = new QPalette();
 
     QStackedWidget *header = new QStackedWidget();
