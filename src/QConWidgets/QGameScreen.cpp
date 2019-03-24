@@ -31,7 +31,6 @@ QGameScreen::QGameScreen(QWidget *parent) :
 
 QGameScreen::~QGameScreen()
 {
-    delete world;
     delete pall;
     delete header;
     delete footer;
@@ -42,6 +41,7 @@ QGameScreen::~QGameScreen()
     delete buildPanel;
     delete destroyPanel;
     delete sciencePanel;
+    delete world;
 }
 
 void QGameScreen::handlerMenuPanel()

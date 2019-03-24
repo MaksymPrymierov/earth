@@ -28,7 +28,6 @@ SOURCES += \
     src/QConWidgets/QGameMainWindow.cpp \
     src/QConWidgets/QGameScreen.cpp \
     src/QConWidgets/QMainMenu.cpp \
-    src/QConWidgets/QTextPanel.cpp \
     src/main.cpp \
     src/QConResources.cpp \
     src/Building/Building.cpp \
@@ -46,7 +45,8 @@ SOURCES += \
     src/QConWidgets/QButtonsPanel/QSciencePanel.cpp \
     src/World/Science.cpp \
     src/World/World.cpp \
-    src/World/WorldEvent.cpp
+    src/World/WorldEvent.cpp \
+    src/QConWidgets/QTextPanel/QTextPanel.cpp
 
 
 
@@ -54,7 +54,6 @@ HEADERS += \
     headers/QConWidgets/QGameMainWindow.h \
     headers/QConWidgets/QGameScreen.h \
     headers/QConWidgets/QMainMenu.h \
-    headers/QConWidgets/QTextPanel.h \
     headers/QConResources.h \
     headers/Building/Building.h \
     headers/Building/CleaningStation.h \
@@ -72,7 +71,8 @@ HEADERS += \
     headers/World/Science.h \
     headers/World/World.h \
     headers/World/WorldEvent.h \
-    headers/World/WorldStats.h
+    headers/World/WorldStats.h \
+    headers/QConWidgets/QTextPanel/QTextPanel.h
 
 FORMS +=
 

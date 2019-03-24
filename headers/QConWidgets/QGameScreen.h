@@ -2,7 +2,6 @@
 
 #include <QtWidgets>
 #include "QButtonsPanel/QButtonsPanel.h"
-#include "QTextPanel.h"
 #include "headers/World/World.h"
 
 #include "headers/QConWidgets/QButtonsPanel/QMainMenuPanel.h"
@@ -10,6 +9,7 @@
 #include "headers/QConWidgets/QButtonsPanel/QBuildPanel.h"
 #include "headers/QConWidgets/QButtonsPanel/QDestroyPanel.h"
 #include "headers/QConWidgets/QButtonsPanel/QSciencePanel.h"
+#include "headers/QConWidgets/QTextPanel/QTextPanel.h"
 
 enum class QButtonPanel : quint8
 {
